@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  borrower: MyString
+  note: MyText
+  building: MyString
+  agent: MyString
+  out: 2016-07-29 14:58:39
+  in: 2016-07-29 14:58:39
+
+two:
+  borrower: MyString
+  note: MyText
+  building: MyString
+  agent: MyString
+  out: 2016-07-29 14:58:39
+  in: 2016-07-29 14:58:39
