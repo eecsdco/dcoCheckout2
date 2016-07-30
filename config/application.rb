@@ -13,3 +13,7 @@ module DcoCheckout
     # -- all .rb files in that directory are automatically loaded.
   end
 end
+
+Rails.application.configure do
+  config.administrators = [:travigd, :victorbp]
+end

@@ -5,6 +5,9 @@ gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
 # to get variables from the environment inside rails
 gem "figaro"
 
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0'
 # Use sqlite3 as the database for Active Record
