@@ -16,4 +16,7 @@ end
 
 Rails.application.configure do
   config.administrators = [:travigd, :victorbp]
+  config.cosign_login_path = "https://weblogin.umich.edu/?cosign-sabine.eecs&https://sabine.eecs.umich.edu/"
+  config.cosign_logout_path = "https://weblogin.umich.edu/cosign-bin/logout?https://sabine.eecs.umich.edu/"
+  config.exceptions_app = self.routes
 end

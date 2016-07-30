@@ -1,42 +1,75 @@
 header
   background-color: #002a54
   color: white
-  //height: 130px
-  padding: 15px
+  height: 130px
+  padding: 0
+  font-family: Georgia
+  min-width: 1000px
 
 
   div#header-container
-    max-width: 1200px
+    min-width: 1000px
+    width: 1000px
     margin: 0 auto
+    padding: 15px 50px
     position: relative
+    height: 130px
 
     #block-M
-      display: inline-block
+      position: absolute
+      left: 25px
       height: 100px
       margin: 0
 
     h1
-      display: inline-block
       font-family: Georgia
-      //margin: -30px 0 0 50px
+      margin: 0
       position: absolute
-      left: 150px
-      vertical-align: middle
+      left: 165px
+      top: 35px
   
     nav
       position: absolute
-      bottom: -15px
+      bottom: 0px
       left: 150px
 
       a
         display: inline-block
         text-align: center
-        padding: 0px 5px 0px 15px
-        margin: 10px 10px 10px 0
+        padding: 0px 15px 0px 15px
+        margin: 10px 0px 10px 0px
         color: white
         font-family: Georgia
         border-left: 2px solid white
 
       a:first-child
         border-left: none
+
+    div#user-info
+      position: absolute
+      height: 130px
+      right: 0
+      width: 150px
+      top: 0
+      right: 25px
+      padding: 15px
+      background-color: white
+
+      span#uniqname
+        display: block
+        width: 100%
+        text-align: center
+        color: #00274c
+        font-size: 16px
+        line-height: 50px
+        top: 15px
+
+      a
+        display: block
+        bottom: 0
+        font-family: Georgia
+        line-height: 50px
+        font-size: 16px
+        text-align: center
+        width: 100%
 

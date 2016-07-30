@@ -3,12 +3,18 @@
     <%= image_tag "block_M_transparent.png", id: "block-M" %>
     <h1>DCO Checkout System</h1>
     <nav>
-      <%= link_to "Home", :controller => "welcome" %>
-      <%= link_to "Checkout", :controller => "records", :action => "new" %>
-      <%= link_to "Return" %>
-      <%= link_to "Account", :controller => "records", :action => "index" %>
-      <%= link_to "Statistics" %>
-      <%= link_to "DCO Staff" %>
+      <%= link_to "Home", root_path  %>
+      <%= link_to "Checkout", checkout_path %>
+      <%= link_to "Return", return_path %>
+      <%= link_to "Account", account_path, class: "current-link" %>
+      <%= link_to "Statistics", statistics_path %>
+      <%= link_to "DCO Staff", admin_path %>
     </nav>
+    <% if logged_in? %>
+      <div id="user-info">
+        <span id="uniqname"><%= uniqname %></span>
+        <%= link_to "Logout", logout_path %>
+      </div>
+    <% end %>
   </div>
 </header>

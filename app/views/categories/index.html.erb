@@ -1,0 +1,17 @@
+<h1>Categories</h1>
+<p>Find me in app/views/categories/index.html.erb</p>
+<p><%= link_to "Create a new category...", new_category_path %>
+<p>Here are the categories I have in my database.</p>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+  <% @categories.each do |category| %>
+    <tr>
+      <td><%= link_to category.name, category %></td>
+      <td><%= category.description %></td>
+    </tr>
+  <% end %>
+</table>
+<% console %>
