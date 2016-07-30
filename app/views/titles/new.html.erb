@@ -1,13 +1,23 @@
-<h1>Categories#new</h1>
-<%= form_for :category, url: categories_path do |f| %>
+<h1>Create a new title for checkout</h1>
+<%= form_for :title, url: titles_path do |f| %>
   <p>
     <%= f.label :name %><br>
     <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :category %><br>
+    <%= f.collection_select(:category_id, Category.all, :id, :name) %>
   </p>
  
   <p>
     <%= f.label :description %><br>
     <%= f.text_area :description %>
+  </p>
+
+  <p>
+    <%= f.label :notice %><br>
+    <%= f.text_area :notice %>
   </p>
 
   <p>

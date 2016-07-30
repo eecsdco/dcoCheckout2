@@ -3,7 +3,12 @@ module ApplicationHelper
     request.env["REMOTE_USER"]
   end
 
-  def active_if(item)
-    path = request.original_fullpath
+  def short_text(text)
+    if not text.nil? and text.length >= 50
+      text[0..47] + '...'
+    else
+      text
+    end
   end
+
 end

@@ -12,15 +12,12 @@ Rails.application.routes.draw do
   get '/account', to: 'account#index'
   get '/account/logout', as: 'logout'
 
-  resources :categories, only: [:index, :show]
-  resources :titles, only: [:index, :show]
+  resources :categories
+  resources :titles
   resources :records, only: [:show, :create]
 
   get '/admin', to: 'admin#index'
   scope path: :admin do
-    resources :categories, only: [:new, :create, :edit, :update, :destroy]
-    resources :titles, only: [:new, :create, :edit, :update, :destroy]
-    resources :records, only: [:new, :create, :edit, :update, :destroy]
   end
 
   match '/401', :to => 'errors#unauthorized', :via => :all, :as => 'unauthorized'

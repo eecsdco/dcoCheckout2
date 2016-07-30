@@ -1,0 +1,19 @@
+<h1>Titles</h1>
+<p>Find me in app/views/titles/index.html.erb</p>
+<p><%= link_to "Create a new title for checkout...", new_title_path %>
+<p>Here are the titles I have in my database.</p>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Category</th>
+    <th>Description</th>
+  </tr>
+  <% @titles.each do |title| %>
+    <tr>
+      <td><%= link_to title.name, title %></td>
+      <td><%= link_to title.category.name, title.category %></td>
+      <td><%= title.description %></td>
+    </tr>
+  <% end %>
+</table>
+<% console %>

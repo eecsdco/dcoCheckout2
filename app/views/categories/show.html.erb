@@ -1,0 +1,24 @@
+<h1>Categories</h1>
+<p>Find me in app/views/categories/show.html.erb</p>
+<h3><%= @category.name %></h3>
+<p><%= @category.description %></p>
+<table class="index-table">
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Notice</th>
+    <th>Available</th>
+    <th>Form Required?</th>
+    <th>Max Loan Period</th>
+  </tr>
+  <% @category.titles.each do |title| %>
+    <tr>
+      <td><%= link_to title.name, title %></td>
+      <td><%= short_text title.description %></td>
+      <td><%= short_text title.notice %></td>
+      <td><%= title.n_available%></td>
+      <td><%= title.form_required %></td>
+      <td><%= title.max_loan %></td>
+    </tr>
+  <% end %>
+<% console %>

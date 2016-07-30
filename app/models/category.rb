@@ -1,3 +1,3 @@
 class Category < ApplicationRecord
-  has_many :records
+  has_many :titles
 end

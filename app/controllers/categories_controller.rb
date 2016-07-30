@@ -1,8 +1,12 @@
-class CategoriesController < AdminController
-  skip_before_action :require_administrator, only: [:index, :show]
+class CategoriesController < ApplicationController
+  before_action :require_administrator, only: [:index, :show]
 
   def index
     @categories = Category.all
+  end
+
+  def show
+    @category = Category.find(params[:id])
   end
 
   def new
@@ -10,8 +14,8 @@ class CategoriesController < AdminController
 
   def create
     @category = Category.new(category_parameters)
-    render plain: params[:category].inspect + category_parameters.inspect
     @category.save
+    redirect_to @category
   end
 
   private
