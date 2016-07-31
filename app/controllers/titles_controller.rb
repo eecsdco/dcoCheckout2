@@ -1,14 +1,19 @@
 class TitlesController < ApplicationController
+  before_action :load_title, only: [:edit, :update, :show, :destroy]
   before_action :require_administrator,
     only: [:new, :create, :update, :edit, :destroy]
 
   def new
+    @title = Title.new
   end
   
   def create
     @title = Title.new(title_parameters)
-    @title.save
-    redirect_to @title
+    if @title.save
+      redirect_to @title
+    else
+      render :new
+    end
   end
 
   def index
@@ -16,23 +21,25 @@ class TitlesController < ApplicationController
   end
 
   def show
-    render inline: "Not implemented"
   end
 
   def update
-    render inline: "Not implemented"
   end
 
   def edit
-    render inline: "Not implemented"
   end
 
   def destroy
-    render inline: "Not implemented"
+    @title.destroy
+    redirect_to titles_path
   end
 
   private
     def title_parameters
-      params.require(:title).permit(:name, :category_id, :description, :notice, :n_available, :form_required, :max_loan)
+      params.require(:title).permit(:name, :category_id, :description, :notice_id, :n_available, :form_required, :max_loan)
+    end
+
+    def load_title
+      @title = Title.find(params[:id])
     end
 end

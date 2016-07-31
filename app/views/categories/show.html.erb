@@ -1,7 +1,9 @@
-<h1>Categories</h1>
 <p>Find me in app/views/categories/show.html.erb</p>
 <h3><%= @category.name %></h3>
 <p><%= @category.description %></p>
+<%= link_to 'Edit', edit_category_path(@category) %> |
+<%= link_to 'Back', categories_path %>
+<h4>Relevant Titles</h4>
 <table class="index-table">
   <tr>
     <th>Name</th>

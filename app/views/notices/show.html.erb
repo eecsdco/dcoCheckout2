@@ -1,0 +1,12 @@
+<p>
+  <strong>Name:</strong>
+  <%= @notice.name %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @notice.text %>
+</p>
+
+<%= link_to 'Edit', edit_notice_path(@notice) %> |
+<%= link_to 'Back', notices_path %>

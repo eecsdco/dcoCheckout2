@@ -1,0 +1,13 @@
+<p>
+  <strong>Name:</strong>
+  <%= @title.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @title.description %>
+</p>
+
+<%= link_to 'Edit', edit_title_path(@title) %> | 
+<%= link_to 'Delete', @title, method: :delete %> | 
+<%= link_to 'Back', titles_path %>
