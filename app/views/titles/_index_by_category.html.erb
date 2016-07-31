@@ -1,18 +1,26 @@
-<h1>Titles in <%= category.name %></h1>
 <p>Find me in app/views/titles/_index_by_category.html.erb</p>
-<p><%= link_to "Create a new title for checkout...", new_title_path(category: category) %>
-<p>Here are the titles I have in my database.</p>
 <table class="index-table">
   <tr>
-    <th>Name</th>
-    <th>Category</th>
+    <th colspan=2>Name</th>
     <th>Description</th>
+    <th>Notice</th>
+    <th>Available</th>
+    <th>Form Required?</th>
+    <th>Max Loan Period</th>
   </tr>
-  <% titles.each do |title| %>
+  <% @category.titles.each do |title| %>
     <tr>
       <td><%= link_to title.name, title %></td>
-      <td><%= link_to title.category.name, title.category %></td>
+      <td><%= link_to "(edit)", edit_title_path(title) %></td>
       <td><%= short_text title.description %></td>
+      <td>
+        <% unless title.notice.nil? %>
+          <%= link_to title.notice.name, title.notice %></td>
+        <% end %>
+      </td>
+      <td><%= title.n_available%></td>
+      <td><%= title.form_required %></td>
+      <td><%= title.max_loan %></td>
     </tr>
   <% end %>
 </table>

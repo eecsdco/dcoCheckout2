@@ -4,27 +4,5 @@
 <%= link_to 'Edit', edit_category_path(@category) %> |
 <%= link_to 'Back', categories_path %>
 <h4>Relevant Titles</h4>
-<table class="index-table">
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Notice</th>
-    <th>Available</th>
-    <th>Form Required?</th>
-    <th>Max Loan Period</th>
-  </tr>
-  <% @category.titles.each do |title| %>
-    <tr>
-      <td><%= link_to title.name, title %></td>
-      <td><%= short_text title.description %></td>
-      <td>
-        <% unless title.notice.nil? %>
-        <%= link_to title.notice.name, title.notice %></td>
-        <% end %>
-      </td>
-      <td><%= title.n_available%></td>
-      <td><%= title.form_required %></td>
-      <td><%= title.max_loan %></td>
-    </tr>
-  <% end %>
+<%= render "titles/index_by_category", category: @category, titles: @category.titles %>
 <% console %>
