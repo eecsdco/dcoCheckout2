@@ -1,7 +1,7 @@
 <%= form_for(title) do |f| %>
   <% if title.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(title.errors.count, "error") %> prohibited this notice from being saved:</h2>
+      <h4><%= pluralize(title.errors.count, "error") %> prohibited this title from being saved:</h4>
 
       <ul>
       <% title.errors.full_messages.each do |message| %>
@@ -29,6 +29,15 @@
     <%= f.select(:notice_id, Notice.all.collect {|n| [ n.name, n.id ] }, {include_blank: '-- None --'}) %>
     <!--<%= f.collection_select(:notice_id, Notice.all, :id, :name) %>
     -->
+  </p>
+  <p>
+    <%= f.label :n_available %><br>
+    <%= f.text_field :n_available %>
+  </p>
+
+  <p>
+    <%= f.label :form_required %><br>
+    <%= f.check_box :form_required %>
   </p>
 
   <p>

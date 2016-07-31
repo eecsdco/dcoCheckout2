@@ -4,11 +4,13 @@ class TitlesController < ApplicationController
     only: [:new, :create, :update, :edit, :destroy]
 
   def new
-    @title = Title.new
+    @title = Title.new(title_parameters)
   end
   
   def create
     @title = Title.new(title_parameters)
+    logger.debug title_parameters.inspect
+    flash[:notice] = title_parameters.inspect
     if @title.save
       redirect_to @title
     else
@@ -17,11 +19,14 @@ class TitlesController < ApplicationController
   end
 
   def index
-    if params[:category].nil?
+    if params[:category_id].nil? and params[:all].nil?
       render "category_chooser", layout: true, :locals => {:path => :titles_path}
-    else
-      @category = Category.find(params[:category])
+    elsif params[:all].nil?
+      @category = Category.find(params[:category_id])
       @titles = Title.where(category: @category)
+    else
+      @category = nil
+      @titles = Title.all
     end
   end
 
@@ -44,12 +49,16 @@ class TitlesController < ApplicationController
     redirect_to titles_path
   end
 
-  private
-    def title_parameters
-      params.require(:title).permit(:name, :category_id, :description, :notice_id, :n_available, :form_required, :max_loan)
+  def title_parameters
+    permit_attribute_list = [:name, :category_id, :description, :notice_id, :n_available, :form_required, :max_loan]
+    if params[:title]
+      params.require(:title).permit(*permit_attribute_list)
+    else
+      params.permit(*permit_attribute_list)
     end
+  end
 
-    def load_title
-      @title = Title.find(params[:id])
-    end
+  def load_title
+    @title = Title.find(params[:id])
+  end
 end
