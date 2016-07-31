@@ -17,7 +17,11 @@
     <tr>
       <td><%= link_to title.name, title %></td>
       <td><%= short_text title.description %></td>
-      <td><%= short_text title.notice %></td>
+      <td>
+        <% unless title.notice.nil? %>
+        <%= link_to title.notice.name, title.notice %></td>
+        <% end %>
+      </td>
       <td><%= title.n_available%></td>
       <td><%= title.form_required %></td>
       <td><%= title.max_loan %></td>

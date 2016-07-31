@@ -24,9 +24,17 @@ class ApplicationController < ActionController::Base
     not uniqname.nil?
   end
 
+  def administrator?
+    Rails.configuration.administrators.include? uniqname.to_sym
+  end
+
   def require_administrator
-    unless Rails.configuration.administrators.include? request.env['REMOTE_USER'].to_sym
-      redirect_to unauthorized_path
+    if logged_in?
+      unless administrator?
+        redirect_to unauthorized_path
+      end
+    else
+      redirect_to login_path
     end
   end
 

@@ -1,10 +1,6 @@
 class AdminController < ApplicationController
-  def require_administrator
-    unless Rails.configuration.administrators.include? request.env['REMOTE_USER'].to_sym
-      redirect_to unauthorized_path
-    end
-  end
-
+  before_action :require_login
+  before_action :require_administrator
   def index
   end
 end

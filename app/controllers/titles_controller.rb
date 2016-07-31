@@ -24,6 +24,11 @@ class TitlesController < ApplicationController
   end
 
   def update
+    if @title.update(title_parameters)
+      redirect_to @title
+    else
+      render :edit
+    end
   end
 
   def edit

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :notices
-  get 'welcome/index'
+  get 'welcome/index', as: 'home'
   root 'welcome#index'
   
   get '/checkout', to: 'records#checkout'
