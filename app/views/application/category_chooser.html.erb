@@ -1,0 +1,10 @@
+<div id="category-container">
+  <% path_method = method(path) %>
+  <% Category.all.each do |c| %>
+    <%= link_to(path_method.call(:category => c), class: "category", category: c) do %>
+      <span><%= c.name %></span>
+    <% end %>
+  <% end %>
+</div>
+
+<% console %>

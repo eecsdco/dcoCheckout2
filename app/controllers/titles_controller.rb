@@ -17,7 +17,12 @@ class TitlesController < ApplicationController
   end
 
   def index
-    @titles = Title.all
+    if params[:category].nil?
+      render "category_chooser", layout: true, :locals => {:path => :titles_path}
+    else
+      @category = Category.find(params[:category])
+      @titles = Title.where(category: @category)
+    end
   end
 
   def show
