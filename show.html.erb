@@ -1,0 +1,13 @@
+<h3><%= @title.name %></h3>
+
+<div id="edit-links">
+<%= link_to 'Edit', edit_title_path(@title) %> | 
+<%= link_to 'Delete', @title, method: :delete %> | 
+<%= link_to 'Back', titles_path %>
+
+<p>
+  <strong>Description:</strong>
+  <%= @title.description %>
+</p>
+
+<% console %>

@@ -63,22 +63,22 @@ class Integer
     
     human_str = ""
     if y > 0
-      human_str += y.to_s + " years, "
+      human_str += y.to_s + (y == 1 ? " year, " : " years, ")
     end
     if w > 0
-      human_str += w.to_s + " weeks, "
+      human_str += w.to_s + (w == 1 ? " week, " : " weeks, ")
     end
     if d > 0
-      human_str += d.to_s + " days, "
+      human_str += d.to_s + (d == 1 ? " day, " : " days, ")
     end
     if h > 0
-      human_str += h.to_s + " hours, "
+      human_str += h.to_s + (h == 1 ? " hour, " : " hours, ")
     end
     if m > 0
-      human_str += m.to_s + " minutes, "
+      human_str += m.to_s + (m == 1 ? " minute, " : " minutes, ")
     end
     if s > 0
-      human_str += s.to_s + " seconds, "
+      human_str += s.to_s + (s == 1 ? " second, " : " seconds, ")
     end
     human_str = human_str[0..-3]
     return human_str

@@ -1,0 +1,13 @@
+
+<div id="show-nav">
+  <h3><%= object.name %></h3>
+  <div id="show-nav-links">
+    <%= link_to 'Edit', edit_path %>
+    <%= link_to 'Delete', object, method: :delete %>
+    <%= link_to 'Back', back_path %>
+  </div>
+</div>
+
+<div id="show-content">
+  <%= yield %>
+</div>
