@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :offices
   resources :titles
   resources :records, except: :new
+  post '/records/:id/confirm_return', to: 'records#confirm_return', as: 'confirm_record'
 
   get '/admin', to: 'admin#index'
   scope path: :admin do

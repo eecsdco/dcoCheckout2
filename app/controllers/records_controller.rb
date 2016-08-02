@@ -1,8 +1,8 @@
 class RecordsController < ApplicationController
   before_action :require_login
-  before_action :require_administrator, only: [:index]
+  before_action :require_administrator, only: [:confirm_return]
   before_action :get_title, only: [:new]
-  before_action :get_record, only: [:show, :return, :edit, :update, :destroy]
+  before_action :get_record, only: [:show, :return, :edit, :update, :destroy, :confirm_return]
 
   def index
     @records = Record.all
@@ -22,7 +22,7 @@ class RecordsController < ApplicationController
     if @title
       @record = Record.new
       @record.title = @title
-      @record.loan_length = @title.max_loan
+      #@record.loan_length = @title.max_loan
       render "new", layout: true
     else
       redirect_to titles_path
@@ -60,6 +60,12 @@ class RecordsController < ApplicationController
 
   def return_post
     render inline: "<p>Not implemented</p>", layout: true
+  end
+
+  def confirm_return
+    @record.return_approved = DateTime.current
+    @record.save
+    redirect_to @record
   end
 
   private

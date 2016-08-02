@@ -3,33 +3,61 @@
 <% end %>
 
 <% content_for :secondary_nav do %>
-  <%= link_to "Return", "#notimplemented" %>
+  <% unless @record.in %>
+    <%= link_to "Return", "#notimplemented" %>
+  <% end %>
   <% if administrator? %>
+    <% if @record.in and @record.return_approved.nil? %>
+      <%= link_to "Confirm Return", confirm_record_path %>
+    <% end %>
     <%= link_to 'Edit', edit_record_path(@record) %>
     <%= link_to 'Delete', @record, method: :delete, data: {:confirm => "Are you sure?"} %>
   <% end %>
   <%= link_to 'Back', :back %>
 <% end %>
-  <div>
-    <span class="show-label">Item:</span>
-    <p><%= link_to @record.title.name, @record.title %><p>
-  </div>
-  <div>
-    <span class="show-label">Category:</span>
-    <p><%= link_to @record.title.category.name, @record.title.category %><p>
-  </div>
-  <div>
-    <span class="show-label">Borrower:</span>
-    <p><%= link_to @record.borrower, account_path(@record.borrower) %><p>
-  </div>
-  <% unless @record.borrower == @record.agent %>
-    <div>
-      <span class="show-label">Checked out by:</span>
-      <p><%= @record.agent %><p>
-    </div>
-  <% end %>
-  <div>
-    <span class="show-label">Due at:</span>
-    <p class=<%= '"past-due"' if DateTime.current > @record.due %>><%= format_datetime @record.due %><p>
-  </div>
 
+<% if administrator? and @record.in and @record.return_approved.nil? %>
+  <div class="pending-approval">
+    <label>Pending Approval:</label>
+    <p>This item has been marked as returned by the borrower. Please make sure that the the item has indeed been returned, and that everything is in acceptable condition.</p>
+    <p><%= button_to "Confirm Return", confirm_record_path %></p>
+  </div>
+<% end %>
+
+<div>
+  <span class="show-label">Item:</span>
+  <p><%= link_to @record.title.name, @record.title %><p>
+</div>
+<div>
+  <span class="show-label">Category:</span>
+  <p><%= link_to @record.title.category.name, @record.title.category %><p>
+</div>
+<div>
+  <span class="show-label">Borrower:</span>
+  <p><%= link_to @record.borrower, account_path(@record.borrower) %><p>
+</div>
+<% unless @record.borrower == @record.agent %>
+  <div>
+    <span class="show-label">Checked out by:</span>
+    <p><%= @record.agent %><p>
+  </div>
+<% end %>
+<div>
+  <span class="show-label">Due at:</span>
+  <p class=<%= '"past-due"' if DateTime.current > @record.due and @record.in.nil? %>><%= format_datetime @record.due %><p>
+</div>
+<div>
+  <span class="show-label">Checked out at:</span>
+  <p><%= format_datetime @record.out %><p>
+</div>
+<% if @record.in %>
+  <div>
+    <span class="show-label">Checked in at:</span>
+    <p class=<%= '"past-due"' if @record.in > @record.due %>><%= format_datetime @record.in %><p>
+  </div>
+  <div>
+    <span class="show-label">Return approved at:</span>
+    <p><%= format_datetime @record.return_approved unless @record.return_approved.nil? %><p>
+  </div>
+<% end %>
+<% console %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160801191012) do
+ActiveRecord::Schema.define(version: 20160802020545) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -41,9 +41,10 @@ ActiveRecord::Schema.define(version: 20160801191012) do
     t.string   "agent"
     t.datetime "out"
     t.datetime "in"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.datetime "due"
+    t.datetime "return_approved"
     t.index ["title_id"], name: "index_records_on_title_id"
   end
 

@@ -1,11 +1,13 @@
 require 'str_to_seconds'
 class Title < ApplicationRecord
+  # TODO XXX TODO XXX
+  # See note at top of models/record.rb
   belongs_to :category
   belongs_to :notice, optional: true
   belongs_to :office
   has_many :records
 
-  validates :name, presence: true, :uniqueness => { :scope => :category } 
+  validates :name, presence: true, :uniqueness => { :scope => [:category, :office_id] } 
   validates :category, presence: true
   validates :description, presence: true, allow_nil: true
   validates :n_available, presence: true, numericality: { only_integer: true, greater_than: 0 }
@@ -16,7 +18,7 @@ class Title < ApplicationRecord
   attr_accessor :max_loan
 
   def max_loan
-    read_attribute(:max_loan)
+    read_attribute(:max_loan).to_human_time unless read_attribute(:max_loan).nil?
   end
 
   def max_loan_seconds
