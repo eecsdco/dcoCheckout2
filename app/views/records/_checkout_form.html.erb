@@ -1,0 +1,57 @@
+<%= form_for(record) do |f| %>
+  <% if record.errors.any? %>
+    <div id="error_explanation">
+      <h4><%= pluralize(record.errors.count, "error") %> prohibited this record from being saved:</h4>
+
+      <ul>
+      <% record.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.hidden_field :title_id, :value => @title.id %>
+  <% if @title.notice %>
+    <div class="notice">
+      <label>Notice:</label>
+      <p><%= @title.notice.text %></p>
+    </div>
+  <% end %>
+  <div>
+    <label>Title:</label>
+    <p><%= link_to @title.name, @title %></p>
+  </div>
+  <div>
+    <label>Category:</label>
+    <p><%= link_to @title.category.name, @title.category %></p>
+  </div>
+  <% if @title.description %>
+    <div>
+      <label>Description:</label>
+      <p><%= @title.description %>
+    </div>
+  <% end %>
+  <div>
+    <%= f.label :borrower, "Borrower (uniqname):" %>
+    <% if administrator? %>
+      <%= f.text_field :borrower %>
+    <% else %>
+      <p><%= link_to uniqname, account_path(uniqname) %></p>
+    <% end %>
+  </div>
+  <div>
+    <%= f.label :note, "Note:" %>
+    <%= f.text_area :note %>
+  </div>
+  <div>
+    <%= f.label :loan_length, "Loan length:" %>
+    <% if administrator? %>
+      <%= f.text_field :loan_length %>
+    <% else %>
+      <p><%= @title.max_loan %></p>
+    <% end %>
+  </div>
+  <div>
+    <%= f.submit "Request Loan" %>
+  </div>
+<% end %>

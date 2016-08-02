@@ -12,7 +12,13 @@
     <div id="wrapper">
       <%= render "layouts/header" %>
       <div id="body-wrapper">
-        <%= yield %>
+        <% if content_for? :secondary_nav or content_for? :secondary_title %>
+          <%= render "layouts/secondary_nav" do %>
+            <%= yield %>
+          <% end %>
+        <% else %>
+          <%= yield %>
+        <% end %>
       </div>
       <%= render "layouts/footer" %>
     </div>

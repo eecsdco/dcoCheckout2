@@ -1,8 +1,17 @@
+<% content_for :secondary_title do %>
+  <%= @category.name %>
+<% end %>
+<% content_for :secondary_nav do %>
+  <%= link_to 'New Title', new_title_path(category_id: @category) %>
+	<%= link_to 'Edit Category', edit_category_path(@category) %>
+  <%= link_to 'Delete Category', @category, method: :delete, data: {:confirm => "Are you sure?"} %>
+	<%= link_to 'Back', :back %>
+<% end %>
 <p>Find me in app/views/categories/show.html.erb</p>
-<h3><%= @category.name %></h3>
+
 <p><%= @category.description %></p>
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+
 <h4>Relevant Titles</h4>
 <%= render "titles/index_by_category", category: @category, titles: @category.titles %>
+
 <% console %>

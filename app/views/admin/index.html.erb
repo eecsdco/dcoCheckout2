@@ -1,9 +1,12 @@
-<h1>admin#index</h1>
-<p>Find me in app/views/admin/index.html.erb</p>
-<p>You are logged in as <span style="font-weight: bold;"><%= request.env['REMOTE_USER'] %></span>, and that's pretty nifty.</p>
-<p>P.S. You're also an administrator, so, yeah...</p>
-<p><%= link_to "Manage Categories...", categories_path %></p>
-<p><%= link_to "Manage Notices...", notices_path %></p>
-<p><%= link_to "Manage Titles...", titles_path %></p>
-<p><%= link_to "Manage Records...", records_path %></p>
+<% content_for :show_nav do %>
+	<p><%= link_to "Manage Categories", categories_path %></p>
+	<p><%= link_to "Manage Notices", notices_path %></p>
+	<p><%= link_to "Manage Titles", titles_path %></p>
+	<p><%= link_to "Manage Records", '#notimplemented' %></p>
+	<p><%= link_to "Manage Admistrators", '#notimplemented' %>
+<% end %>
+
+<%= render "show_with_nav", title: "Administrative Portal" do %>
+	<p>This is where the proxy checkout form will appear. I am views/admin/index.html.erb</p>
+<% end %>
 <% console %>

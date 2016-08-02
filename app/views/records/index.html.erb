@@ -1,0 +1,10 @@
+<% content_for :secondary_title do %>
+  Checkout Records
+<% end %>
+<% content_for :secondary_nav do %>
+  <%= link_to 'Back', :back %>
+<% end %>
+
+<%= render "records/records_table", records: @records, display_borrower: true %>
+
+<% console %>

@@ -1,11 +1,23 @@
-<%= render "show_with_nav",
-    object: @title,
-    name: @title.name,
-    edit_path: edit_title_path(@title),
-    back_path: titles_path do%>
+<% content_for :secondary_title do %>
+  <%= @title.name %>
+<% end %>
+
+<% content_for :secondary_nav do %>
+  <%= link_to "Checkout", checkout_path(@title) %>
+  <% if administrator? %>
+    <%= link_to 'Edit', edit_title_path(@title) %>
+    <%= link_to 'Delete', @title, method: :delete %>
+  <% end %>
+  <%= link_to 'Back', titles_path(category_id: @title.category) %>
+<% end %>
   <div>
     <span class="show-label">Category:</span>
     <p><%= link_to @title.category.name, @title.category %><p>
+  </div>
+  <div>
+    <span class="show-label">Location:</span>
+    <p><%= link_to @title.office.name, @title.office %><p>
+    <p><%= @title.office.address %></p>
   </div>
   <div>
     <span class="show-label">Description:</span>
@@ -13,8 +25,15 @@
   </div>
   <div>
     <span class="show-label">Notice:</span>
-    <p><%= link_to @title.notice.name, @title.notice %><p>
-    <p><%= @title.notice.text %></p>
+    <% unless @title.notice.nil? %>
+      <% if administrator? %>
+        <p><%= link_to @title.notice.name, @title.notice %><p>
+      <% end %>
+      </p>
+      <p><%= @title.notice.text %></p>
+    <% else %>
+      <p>None</p>
+    <% end %>
   </div>
   <div>
     <span class="show-label">Number available:</span>
@@ -36,6 +55,3 @@
     <span class="show-label">Updated at:</span>
     <p><%= @title.updated_at %></p>
   </div>
-
-<% end %>
-<% console %>

@@ -1,0 +1,32 @@
+<% # define defaults %>
+<% display_borrower ||= false %>
+
+<table class="index-table" style="margin-top: 20px">
+  <tr>
+    <th colspan=2>Item</th>
+    <th>Category</th>
+    <% if display_borrower %>
+      <th>Borrower</th>
+    <% end %>
+    <th>Note</th>
+    <th>Due</th>
+  </tr>
+  <% records.each do |record| %>
+    <tr>
+      <td><%= link_to record.title.name, record %></td>
+      <td style="min-width: 0">
+        <% if record.in.nil? and record.borrower == uniqname %>
+          <%= link_to "(return)", return_path(record) %>
+        <% end %>
+      </td>
+      <% if display_borrower %>
+        <td><%= link_to record.borrower, account_path(record.borrower) %></td>
+      <% end %>
+      <td><%= link_to record.title.category.name, record.title.category %></td>
+      <td><%= short_text record.note %></td>
+      <% past_due = DateTime.current > record.due %>
+      <td class=<%= '"past-due"' if past_due %>><%= format_datetime record.due %><%= " (past due)" if past_due %></td>
+    </tr>
+  <% end %>
+</table>
+<p class="todo-message">TODO: Anything...?</p>

@@ -15,8 +15,15 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </p>
+  
+  <p>
     <%= f.label :category %><br>
     <%= f.collection_select(:category_id, Category.all, :id, :name) %>
+  </p>
+
+  <p>
+    <%= f.label :office %><br>
+    <%= f.collection_select(:office_id, Office.all, :id, :name) %>
   </p>
  
   <p>

@@ -1,21 +1,25 @@
 Rails.application.routes.draw do
+  root 'welcome#index'
+
   resources :notices
   get 'welcome/index', as: 'home'
-  root 'welcome#index'
-  
-  get '/checkout', to: 'records#checkout'
-  post '/checkout', to: 'records#checkout_post'
-  get '/return', to: 'records#returnt'
-  post '/return/:id', to: 'records#return_post'
+   
+  get '/checkout/:title_id', to: 'records#new', as: 'checkout'
+  # to do, refactor this to be more resourceful routing
+  post '/checkout', to: 'records#create'
+  get '/return(/:record_id)', to: 'records#return'
+  post '/return', to: 'records#return_post'
 
   get '/statistics', to: 'statistics#index'
 
-  get '/account', to: 'account#index'
-  get '/account/logout', as: 'logout'
+  get '/accounts', to: 'accounts#index'
+  get '/accounts/:uniqname', to: 'accounts#show', as: 'account'
+  get '/accounts/logout', as: 'logout'
 
   resources :categories
+  resources :offices
   resources :titles
-  resources :records, only: [:show, :create]
+  resources :records, except: :new
 
   get '/admin', to: 'admin#index'
   scope path: :admin do

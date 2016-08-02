@@ -1,26 +1,31 @@
-<p>Find me in app/views/titles/_index_by_category.html.erb</p>
-<table class="index-table">
+<table class="index-table" style="margin-top: 20px">
   <tr>
     <th colspan=2>Name</th>
     <th>Description</th>
     <th>Notice</th>
     <th>Available</th>
-    <th>Form Required?</th>
-    <th>Max Loan Period</th>
+    <th>Form?</th>
+    <th>Loan Length</th>
   </tr>
   <% @category.titles.each do |title| %>
     <tr>
       <td><%= link_to title.name, title %></td>
-      <td><%= link_to "(edit)", edit_title_path(title) %></td>
+      <td>
+        <% if administrator? %>
+          <%= link_to "(edit)", edit_title_path(title) %><br> 
+        <% end %>
+        <%= link_to "(checkout)", checkout_path(title) %>
+      </td>
       <td><%= short_text title.description %></td>
       <td>
         <% unless title.notice.nil? %>
           <%= link_to title.notice.name, title.notice %></td>
         <% end %>
       </td>
-      <td><%= title.n_available%></td>
-      <td><%= title.form_required %></td>
+      <td style="text-align: center;"><%= title.n_available%> / <%= title.n_available %></td>
+      <td><%= title.form_required ? "Yes" : "No" %></td>
       <td><%= title.max_loan %></td>
     </tr>
   <% end %>
 </table>
+<p class="todo-message">TODO: Change Available to reflect the number currently available instead of the total number available for checkout (i.e. total - # currently checked out</p>

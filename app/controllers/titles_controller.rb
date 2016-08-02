@@ -9,8 +9,6 @@ class TitlesController < ApplicationController
   
   def create
     @title = Title.new(title_parameters)
-    logger.debug title_parameters.inspect
-    flash[:notice] = title_parameters.inspect
     if @title.save
       redirect_to @title
     else
@@ -50,7 +48,7 @@ class TitlesController < ApplicationController
   end
 
   def title_parameters
-    permit_attribute_list = [:name, :category_id, :description, :notice_id, :n_available, :form_required, :max_loan]
+    permit_attribute_list = [:name, :category_id, :description, :notice_id, :n_available, :form_required, :max_loan, :office_id]
     if params[:title]
       params.require(:title).permit(*permit_attribute_list)
     else

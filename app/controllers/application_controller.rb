@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :login_path, :logout_path, :uniqname, :logged_in?
+  helper_method :login_path, :logout_path, :uniqname, :logged_in?, :administrator?
   def login_path
     path = Rails.configuration.cosign_login_path
     if path[-1] = "/"
@@ -17,7 +17,11 @@ class ApplicationController < ActionController::Base
   end
 
   def uniqname
-    request.env['REMOTE_USER']
+    if Rails.env.development? and params[:view_as]
+      params[:view_as]
+    else
+      request.env['REMOTE_USER']
+    end
   end
 
   def logged_in?

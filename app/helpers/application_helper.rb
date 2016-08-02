@@ -11,4 +11,8 @@ module ApplicationHelper
     end
   end
 
+  def format_datetime(datetime)
+    datetime.strftime(Rails.configuration.datetime_format)
+  end
+
 end

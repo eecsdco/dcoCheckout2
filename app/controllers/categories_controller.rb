@@ -28,6 +28,11 @@ class CategoriesController < ApplicationController
     redirect_to @category
   end
 
+  def destroy
+    @category.destroy
+    redirect_to categories_path
+  end
+
   private
     def category_parameters
       params.require(:category).permit(:name, :description)

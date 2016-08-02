@@ -1,0 +1,35 @@
+<% content_for :secondary_title do %>
+  Record for Checkout of<br /><%= @record.title.name %>
+<% end %>
+
+<% content_for :secondary_nav do %>
+  <%= link_to "Return", "#notimplemented" %>
+  <% if administrator? %>
+    <%= link_to 'Edit', edit_record_path(@record) %>
+    <%= link_to 'Delete', @record, method: :delete, data: {:confirm => "Are you sure?"} %>
+  <% end %>
+  <%= link_to 'Back', :back %>
+<% end %>
+  <div>
+    <span class="show-label">Item:</span>
+    <p><%= link_to @record.title.name, @record.title %><p>
+  </div>
+  <div>
+    <span class="show-label">Category:</span>
+    <p><%= link_to @record.title.category.name, @record.title.category %><p>
+  </div>
+  <div>
+    <span class="show-label">Borrower:</span>
+    <p><%= link_to @record.borrower, account_path(@record.borrower) %><p>
+  </div>
+  <% unless @record.borrower == @record.agent %>
+    <div>
+      <span class="show-label">Checked out by:</span>
+      <p><%= @record.agent %><p>
+    </div>
+  <% end %>
+  <div>
+    <span class="show-label">Due at:</span>
+    <p class=<%= '"past-due"' if DateTime.current > @record.due %>><%= format_datetime @record.due %><p>
+  </div>
+

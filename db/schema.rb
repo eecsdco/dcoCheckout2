@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160730225720) do
+ActiveRecord::Schema.define(version: 20160801191012) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -27,16 +27,23 @@ ActiveRecord::Schema.define(version: 20160730225720) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "offices", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.text     "address",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "records", force: :cascade do |t|
     t.integer  "title_id"
     t.string   "borrower"
     t.text     "note"
-    t.string   "building"
     t.string   "agent"
     t.datetime "out"
     t.datetime "in"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "due"
     t.index ["title_id"], name: "index_records_on_title_id"
   end
 
@@ -50,8 +57,10 @@ ActiveRecord::Schema.define(version: 20160730225720) do
     t.datetime "updated_at",    null: false
     t.integer  "max_loan"
     t.integer  "notice_id"
+    t.integer  "office_id"
     t.index ["category_id"], name: "index_titles_on_category_id"
     t.index ["notice_id"], name: "index_titles_on_notice_id"
+    t.index ["office_id"], name: "index_titles_on_office_id"
   end
 
 end

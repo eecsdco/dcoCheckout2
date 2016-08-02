@@ -1,3 +1,15 @@
-<p>Find me in app/views/titles/index.html.erb</p>
-<%= render "index_by_category", category: @category, titles: @titles %>
+<% content_for :secondary_title do %>
+  <%= @category.name %>
+<% end %>
+<% content_for :secondary_nav do %>
+  <% if administrator? %>
+    <%= link_to 'New Title', new_title_path(category_id: @category) %>
+    <%= link_to 'Edit Category', edit_category_path(@category) %>
+    <%= link_to 'Delete Category', @category, method: :delete %>
+  <% end %>
+  <%= link_to 'Back', :back %>
+<% end %>
+<p><%= @category.description %></p>
+<%= render "titles/index_by_category", category: @category, titles: @category.titles %>
+
 <% console %>

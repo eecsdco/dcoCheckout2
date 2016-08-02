@@ -1,0 +1,15 @@
+
+<div id="show-nav">
+  <% if content_for? :secondary_title %>
+    <h3><%= content_for :secondary_title %></h3>
+  <% end %>
+  <div id="show-nav-links">
+  	<% if content_for? :secondary_nav %>
+  		<%= content_for :secondary_nav %>
+  	<% end %>
+  </div>
+</div>
+
+<div id="show-content">
+  <%= yield %>
+</div>

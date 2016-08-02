@@ -1,10 +1,10 @@
 
 <div id="show-nav">
-  <h3><%= object.name %></h3>
+  <h3><%= title %></h3>
   <div id="show-nav-links">
-    <%= link_to 'Edit', edit_path %>
-    <%= link_to 'Delete', object, method: :delete %>
-    <%= link_to 'Back', back_path %>
+  	<% if content_for? :show_nav %>
+  		<%= content_for :show_nav %>
+  	<% end %>
   </div>
 </div>
 
