@@ -1,32 +1,61 @@
-<% # define defaults %>
-<% display_borrower ||= false %>
-
+<% display ||= {} %>
 <table class="index-table" style="margin-top: 20px">
   <tr>
-    <th colspan=2>Item</th>
-    <th>Category</th>
-    <% if display_borrower %>
+    <% if :name.in? display %>
+      <th colspan=2>Item</th>
+    <% end %>
+    <% if :category.in? display %>
+      <th>Category</th>
+    <% end %>
+    <% if :borrower.in? display %>
       <th>Borrower</th>
     <% end %>
-    <th>Note</th>
-    <th>Due</th>
+    <% if :note.in? display %>
+      <th>Note</th>
+    <% end %>
+    <% if :out.in? display %>
+      <th>Out</th>
+    <% end %>
+    <% if :in.in? display %>
+      <th>In</th>
+    <% end %>
+    <% if :due.in? display %>
+      <th>Due</th>
+    <% end %>
   </tr>
   <% records.each do |record| %>
     <tr>
-      <td><%= link_to record.title.name, record %></td>
-      <td style="min-width: 0">
-        <% if record.in.nil? and record.borrower == uniqname %>
-          <%= link_to "(return)", return_path(record) %>
-        <% end %>
-      </td>
-      <td><%= link_to record.title.category.name, record.title.category %></td>
-      <% if display_borrower %>
+      <% if :name.in? display %>
+        <td><%= link_to record.title.name, record %></td>
+        <td style="min-width: 0">
+          <% if administrator? and :edit_link.in? display %>
+            <%= link_to "(edit)", edit_record_path(record) %>
+          <% end %>
+          <% if record.in.nil? and record.borrower == uniqname and :return_link.in? display%>
+            <%= link_to "(return)", return_path(record) %>
+          <% end %>
+        </td>
+      <% end %>
+      <% if :category.in? display %>
+        <td><%= link_to record.title.category.name, record.title.category %></td>
+      <% end %>
+      <% if :borrower.in? display %>
         <td><%= link_to record.borrower, account_path(record.borrower) %></td>
       <% end %>
-      <td><%= short_text record.note %></td>
-      <% past_due = DateTime.current > record.due %>
-      <td class=<%= '"past-due"' if past_due %>><%= format_datetime record.due %><%= " (past due)" if past_due %></td>
+      <% if :note.in? display %>
+        <td><%= short_text record.note %></td>
+      <% end %>
+      <% if :out.in? display %>
+        <td><%= format_datetime record.out%></td>
+      <% end %>
+      <% if :in.in? display %>
+        <td><%= format_datetime record.in unless record.in.nil? %></td>
+      <% end %>
+      <% if :due.in? display %>
+        <% past_due = DateTime.current > record.due %>
+        <td class=<%= '"past-due"' if past_due %>><%= format_datetime record.due %><%= " (past due)" if past_due %></td>
+      <% end %>
     </tr>
   <% end %>
 </table>
-<p class="todo-message">TODO: Anything...?</p>
+<p class="todo-message">REFACTOR: views/records_records_table probably can just be named _table because it's already under records; the code can also be redone to be neater (more "ruby/railsish") and also at the same time it would be really easy to implement a variable ordering (i.e. the order of columns is the order that they're presented in under the display: parameter</p>

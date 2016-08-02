@@ -2,14 +2,10 @@ class RecordsController < ApplicationController
   before_action :require_login
   before_action :require_administrator, only: [:confirm_return]
   before_action :get_title, only: [:new]
-  before_action :get_record, only: [:show, :return, :edit, :update, :destroy, :confirm_return]
+  before_action :get_record, only: [:show, :return, :return_post, :edit, :update, :destroy, :confirm_return]
 
   def index
     @records = Record.all
-  end
-
-  def out
-    @records = Record.where(borrower: uniqname, in: nil)
   end
 
   def show
@@ -52,14 +48,17 @@ class RecordsController < ApplicationController
 
   def return
     if @record
-      render inline: "<p>Not implemented: present return prompt</p>", layout: true
+      render "return"
     else
-      render inline: "<p>Not implemented: list records that are out</p>", layout: true
+      @records = Record.where(borrower: uniqname, in: nil)
+      render "out", layout: true
     end
   end
 
   def return_post
-    render inline: "<p>Not implemented</p>", layout: true
+    @record.in = DateTime.current
+    @record.save
+    redirect_to @record
   end
 
   def confirm_return
@@ -83,6 +82,6 @@ class RecordsController < ApplicationController
     end
 
     def get_record
-      @record = Record.find_by_id(params[:id])
+      @record = Record.find_by_id(params[:record_id])
     end
 end

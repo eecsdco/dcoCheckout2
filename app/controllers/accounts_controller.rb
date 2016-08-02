@@ -1,5 +1,6 @@
-class AccountController < ApplicationController
+class AccountsController < ApplicationController
   def index
+    render inline: "<p>Not implemented</p>", layout: true
   end
 
   def logout

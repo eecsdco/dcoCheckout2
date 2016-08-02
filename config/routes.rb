@@ -7,20 +7,23 @@ Rails.application.routes.draw do
   get '/checkout/:title_id', to: 'records#new', as: 'checkout'
   # to do, refactor this to be more resourceful routing
   post '/checkout', to: 'records#create'
-  get '/return(/:record_id)', to: 'records#return'
-  post '/return', to: 'records#return_post'
+  get '/return(/:record_id)', to: 'records#return', as: 'return'
+  post '/return/:record_id', to: 'records#return_post', as: 'post_return'
 
   get '/statistics', to: 'statistics#index'
 
   get '/accounts', to: 'accounts#index'
+  get '/logout', to: 'accounts#logout', as: 'logout'
   get '/accounts/:uniqname', to: 'accounts#show', as: 'account'
-  get '/accounts/logout', as: 'logout'
 
   resources :categories
   resources :offices
   resources :titles
-  resources :records, except: :new
-  post '/records/:id/confirm_return', to: 'records#confirm_return', as: 'confirm_record'
+  # this param: :record_id thing is kind of kludgy
+  # it comes from the need to distinguish title_id and record_id in the records controller
+  resources :records, except: :new, param: :record_id
+  post '/records/:record_id/confirm_return', to: 'records#confirm_return', as: 'confirm_record'
+  resources :administrators
 
   get '/admin', to: 'admin#index'
   scope path: :admin do

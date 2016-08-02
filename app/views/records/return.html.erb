@@ -1,0 +1,41 @@
+<% content_for :secondary_title do %>
+  Return<br><%= @record.title.name %>
+<% end %>
+
+<% content_for :secondary_nav do %>
+  <%= link_to 'Back', :back %>
+<% end %>
+
+<!-- TODO: A lot of this has been copied from show.html.erb, and could probably afford to be refactored into a seperate view partial -->
+
+<div>
+  <span class="show-label">Item:</span>
+  <p><%= link_to @record.title.name, @record.title %><p>
+</div>
+<div>
+  <span class="show-label">Category:</span>
+  <p><%= link_to @record.title.category.name, @record.title.category %><p>
+</div>
+<div>
+  <span class="show-label">Borrower:</span>
+  <p><%= link_to @record.borrower, account_path(@record.borrower) %><p>
+</div>
+<% unless @record.borrower == @record.agent %>
+  <div>
+    <span class="show-label">Checked out by:</span>
+    <p><%= @record.agent %><p>
+  </div>
+<% end %>
+<div>
+  <span class="show-label">Due at:</span>
+  <p class=<%= '"past-due"' if DateTime.current > @record.due and @record.in.nil? %>><%= format_datetime @record.due %><p>
+</div>
+<div>
+  <span class="show-label">Checked out at:</span>
+  <p><%= format_datetime @record.out %><p>
+</div>
+<div class="form-action">
+  <p>Before returning the item, please make sure that you have all the components (ex. charging cables) and that everything is in good shape. Please give the item to a DCO staff member, and inform them if item wasn't working as expected.</p>
+  <%= button_to "Return", post_return_path(@record) %>
+</div>
+<% console %>

@@ -6,14 +6,15 @@
 	<p><%= link_to "Manage Categories", categories_path %></p>
 	<p><%= link_to "Manage Notices", notices_path %></p>
 	<p><%= link_to "Manage Titles", titles_path %></p>
-	<p><%= link_to "Manage Records", '#notimplemented' %></p>
-	<p><%= link_to "Manage Admistrators", '#notimplemented' %>
+	<p><%= link_to "Manage Records", records_path %></p>
+	<p><%= link_to "Manage Admistrators", administrators_path %>
 <% end %>
 
 <% if @pending_returns.empty? %>
   <p>No returns are pending approval. Good job, DCO!</p>
 <% else %>
-  <%= render "records/records_table", records: @pending_returns, display_borrower: true %>
+  <p>The following returns are pending approval. Please make sure all items have been returned before approving the request.</p>
+  <%= render "records/records_table", records: @pending_returns, display: [:name, :category, :borrower, :in, :due] %>
 <% end %>
 
 <% console %>

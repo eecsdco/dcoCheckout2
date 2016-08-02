@@ -4,7 +4,7 @@
 
 <% content_for :secondary_nav do %>
   <% unless @record.in %>
-    <%= link_to "Return", "#notimplemented" %>
+    <%= link_to "Return", return_path(@record) %>
   <% end %>
   <% if administrator? %>
     <% if @record.in and @record.return_approved.nil? %>

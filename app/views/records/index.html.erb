@@ -5,6 +5,7 @@
   <%= link_to 'Back', :back %>
 <% end %>
 
-<%= render "records/records_table", records: @records, display_borrower: true %>
+<%= render "records/records_table", records: @records,
+    display: [:name, :category, :borrower, :out, :in] %>
 
 <% console %>
