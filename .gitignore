@@ -41,3 +41,11 @@ bower.json
 # Ignore Byebug command history file.
 .byebug_history
 .swp
+
+# Mac stuff
+.Trash*
+*DS_Store
+
+# Utilities (ex. remote reload script)
+migrate.sh
+reload_app.sh
