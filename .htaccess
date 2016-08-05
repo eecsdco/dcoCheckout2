@@ -1,5 +1,5 @@
-CosignProtected On
+#CosignProtected On
 #AuthType Cosign
-Require all granted
+#Require all granted
 #Require valid-user
 #Require user victorbp travigd

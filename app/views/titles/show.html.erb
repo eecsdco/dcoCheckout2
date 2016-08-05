@@ -11,43 +11,42 @@
   <%= link_to 'Back', titles_path(category_id: @title.category) %>
 <% end %>
 
-  <div>
-    <span class="show-label">Category:</span>
-    <p><%= link_to @title.category.name, @title.category %><p>
-  </div>
-  <div>
-    <span class="show-label">Location:</span>
-    <p><%= link_to @title.office.name, @title.office %><p>
-    <p><%= @title.office.address %></p>
-  </div>
-  <div>
-    <span class="show-label">Description:</span>
-    <p><%= @title.description %><p>
-  </div>
-  <div>
-    <span class="show-label">Notice:</span>
-    <% unless @title.notice.nil? %>
-      <% if administrator? %>
-        <p><%= link_to @title.notice.name, @title.notice %><p>
-      <% end %>
-      </p>
-      <p><%= @title.notice.text %></p>
-    <% else %>
-      <p>None</p>
+<div>
+  <span class="show-label">Category:</span>
+  <p><%= link_to @title.category.name, @title.category %><p>
+</div>
+<div>
+  <span class="show-label">Location:</span>
+  <p><%= link_to @title.office.name, @title.office %><p>
+  <p><%= @title.office.address %></p>
+</div>
+<div>
+  <span class="show-label">Description:</span>
+  <p><%= @title.description %><p>
+</div>
+<div>
+  <span class="show-label">Notice:</span>
+  <% unless @title.notice.nil? %>
+    <% if administrator? %>
+      <p><%= link_to @title.notice.name, @title.notice %><p>
     <% end %>
-  </div>
+    </p>
+    <p><%= @title.notice.text %></p>
+  <% else %>
+    <p>None</p>
+  <% end %>
+</div>
+<% unless @title.n_available.nil? %>
   <div>
     <span class="show-label">Number available:</span>
-    <p><%= @title.n_available %></p>
+    <p><%= @title.n_in %> out of <%= @title.n_available %> <%= @title.n_in > 1 ? "are" : "is" %> available for checkout</p>
   </div>
-  <div>
-    <span class="show-label">Form required</span>
-    <p><%= @title.form_required ? "Yes" : "No" %></p>
-  </div>
-  <div>
-    <span class="show-label">Maximum loan length:</span>
-    <p><%= @title.max_loan %></p>
-  </div>
+<% end %>
+<div>
+  <span class="show-label">Loan length:</span>
+  <p><%= @title.loan_length %></p>
+</div>
+<% if administrator? %>
   <div>
     <span class="show-label">Created at:</span>
     <p><%= @title.created_at %></p>
@@ -56,3 +55,4 @@
     <span class="show-label">Updated at:</span>
     <p><%= @title.updated_at %></p>
   </div>
+<% end %>

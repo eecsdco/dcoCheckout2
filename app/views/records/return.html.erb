@@ -28,7 +28,11 @@
 <% end %>
 <div>
   <span class="show-label">Due at:</span>
-  <p class=<%= '"past-due"' if DateTime.current > @record.due and @record.in.nil? %>><%= format_datetime @record.due %><p>
+  <% if @record.due %>
+    <p class=<%= '"past-due"' if DateTime.current > @record.due and @record.in.nil? %>><%= format_datetime @record.due %><p>
+  <% else %>
+    <p>Loaned indefinitely</p>
+  <% end %>
 </div>
 <div>
   <span class="show-label">Checked out at:</span>

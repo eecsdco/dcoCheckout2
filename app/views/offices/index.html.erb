@@ -1,0 +1,26 @@
+<% content_for :secondary_title do %>
+  DCO Offices
+<% end %>
+
+<% content_for :secondary_nav do %>
+  <%= link_to "New", new_office_path %>
+  <%= link_to "Back", :back %>
+<% end %>
+
+<table class="index-table">
+  <tr>
+    <th colspan=2>Name</th>
+    <th>Address</th>
+  </tr>
+  <% @offices.each do |office| %>
+    <tr>
+      <td><%= link_to office.name, office %></td>
+      <td>
+        <% if administrator? %>
+          <%= link_to "(edit)", edit_office_path(office) %>
+        <% end %>
+      </td>
+      <td><%= simple_format office.address %></td>
+    </tr>
+  <% end %>
+</table>

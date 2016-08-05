@@ -10,19 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160802020545) do
+ActiveRecord::Schema.define(version: 20160802175052) do
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "description"
-    t.integer  "max_loan"
+    t.string   "name",                               null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.string   "description",                        null: false
+    t.integer  "loan_length_seconds",                null: false
+    t.boolean  "enabled",             default: true
   end
 
   create_table "notices", force: :cascade do |t|
-    t.string   "name"
-    t.text     "text"
+    t.string   "name",       null: false
+    t.text     "text",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -35,11 +36,11 @@ ActiveRecord::Schema.define(version: 20160802020545) do
   end
 
   create_table "records", force: :cascade do |t|
-    t.integer  "title_id"
-    t.string   "borrower"
+    t.integer  "title_id",        null: false
+    t.string   "borrower",        null: false
     t.text     "note"
-    t.string   "agent"
-    t.datetime "out"
+    t.string   "agent",           null: false
+    t.datetime "out",             null: false
     t.datetime "in"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
@@ -49,16 +50,15 @@ ActiveRecord::Schema.define(version: 20160802020545) do
   end
 
   create_table "titles", force: :cascade do |t|
-    t.integer  "category_id"
-    t.string   "name"
-    t.text     "description"
+    t.integer  "category_id",         null: false
+    t.string   "name",                null: false
+    t.text     "description",         null: false
     t.integer  "n_available"
-    t.boolean  "form_required"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.integer  "max_loan"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "loan_length_seconds"
     t.integer  "notice_id"
-    t.integer  "office_id"
+    t.integer  "office_id",           null: false
     t.index ["category_id"], name: "index_titles_on_category_id"
     t.index ["notice_id"], name: "index_titles_on_notice_id"
     t.index ["office_id"], name: "index_titles_on_office_id"

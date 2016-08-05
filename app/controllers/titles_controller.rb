@@ -1,5 +1,6 @@
 class TitlesController < ApplicationController
   before_action :load_title, only: [:edit, :update, :show, :destroy]
+  before_action :require_login
   before_action :require_administrator,
     only: [:new, :create, :update, :edit, :destroy]
 
@@ -21,8 +22,8 @@ class TitlesController < ApplicationController
       render "category_chooser", layout: true, :locals => {:path => :titles_path}
     elsif params[:all].nil?
       @category = Category.find(params[:category_id])
-      @titles = Title.where(category: @category)
     else
+      # TODO: this will throw an error right now because the index view references @category.name
       @category = nil
       @titles = Title.all
     end
@@ -47,8 +48,15 @@ class TitlesController < ApplicationController
     redirect_to titles_path
   end
 
+  def search
+    query = params.require(:q)
+    @titles = Title.where("name LIKE :q OR description LIKE :q", {q: "%#{query}%"})
+    #render inline: "<% console %>", layout: true
+    render json: @titles, status: :created
+  end
+
   def title_parameters
-    permit_attribute_list = [:name, :category_id, :description, :notice_id, :n_available, :form_required, :max_loan, :office_id]
+    permit_attribute_list = [:name, :category_id, :description, :notice_id, :n_available, :loan_length, :office_id]
     if params[:title]
       params.require(:title).permit(*permit_attribute_list)
     else

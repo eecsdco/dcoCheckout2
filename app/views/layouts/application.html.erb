@@ -12,6 +12,9 @@
     <div id="wrapper">
       <%= render "layouts/header" %>
       <div id="body-wrapper">
+        <% if flash[:error] %>
+          <div id="flash-error"><%= flash[:error] %></div>
+        <% end %>
         <% if content_for? :secondary_nav or content_for? :secondary_title %>
           <%= render "layouts/secondary_nav" do %>
             <%= yield %>

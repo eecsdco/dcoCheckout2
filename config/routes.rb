@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '/titles/search', to: 'titles#search', as: 'search_titles'
   root 'welcome#index'
 
   resources :notices
@@ -23,7 +24,6 @@ Rails.application.routes.draw do
   # it comes from the need to distinguish title_id and record_id in the records controller
   resources :records, except: :new, param: :record_id
   post '/records/:record_id/confirm_return', to: 'records#confirm_return', as: 'confirm_record'
-  resources :administrators
 
   get '/admin', to: 'admin#index'
   scope path: :admin do

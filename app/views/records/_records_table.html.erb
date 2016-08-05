@@ -40,7 +40,7 @@
         <td><%= link_to record.title.category.name, record.title.category %></td>
       <% end %>
       <% if :borrower.in? display %>
-        <td><%= link_to record.borrower, account_path(record.borrower) %></td>
+        <td><%= link_to record.borrower, account_path(uniqname: record.borrower) %></td>
       <% end %>
       <% if :note.in? display %>
         <td><%= short_text record.note %></td>
@@ -52,8 +52,12 @@
         <td><%= format_datetime record.in unless record.in.nil? %></td>
       <% end %>
       <% if :due.in? display %>
-        <% past_due = DateTime.current > record.due %>
-        <td class=<%= '"past-due"' if past_due %>><%= format_datetime record.due %><%= " (past due)" if past_due %></td>
+        <% if record.due %>
+          <% past_due = DateTime.current > record.due %>
+          <td class=<%= '"past-due"' if past_due %>><%= format_datetime record.due %><%= " (past due)" if past_due %></td>
+        <% else %>
+          <td>Loaned indefinitely</td>
+        <% end %>
       <% end %>
     </tr>
   <% end %>

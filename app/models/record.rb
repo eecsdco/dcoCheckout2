@@ -8,27 +8,41 @@ class Record < ApplicationRecord
   # transform the actual attribute
   belongs_to :title
 
-  def loan_length
-    unless self[:out].nil? or self[:due].nil?
-      @_loan_length = (self.due - self.out).round
-    end
+  validates :title_id, presence: true
+  validate :title_exists
+  validates :borrower, presence: true
+  # note
+  validates :agent, presence: true
+  validates :out, presence: true
+  # in
+  # due
+  # return_approved
 
-    if @_loan_length.nil?
-      @_loan_length = self.title.max_loan.to_seconds
-    end
-    @_loan_length.to_human_time
+  def loan_length
+    self.loan_length_seconds.to_human_time
   end
 
   def loan_length=(length)
-    if length.nil?
-      @_loan_length = 0
+    self.loan_length_seconds = length.to_seconds unless length.nil?
+  end
+
+  def loan_length_seconds
+    if @loan_length_seconds.nil?
+      if self.due and self.out
+        @loan_length_seconds = (self.due - self.out).round.days
+      elsif new_record? and !self.title.nil?
+        @loan_length_seconds = self.title.loan_length_seconds
+      end
     end
-    if length.is_a? Integer
-      @_loan_length = length
-    else
-    # test if max_loan is already an integer representing number of seconds
-      @_loan_length = length.to_seconds
-      write_attribute(:due, DateTime.current + @_loan_length.seconds)
-    end
+    @loan_length_seconds
+  end
+
+  def loan_length_seconds=(length)
+    @loan_length_seconds = length
+    self.due = DateTime.current + length.seconds
+  end
+
+  def title_exists
+    errors.add(:title_id, "is not a valid title") unless Title.find_by_id(self.title_id)
   end
 end

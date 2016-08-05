@@ -3,6 +3,9 @@
   <% if content_for? :secondary_title %>
     <h3><%= content_for :secondary_title %></h3>
   <% end %>
+  <% if content_for? :secondary_description %>
+    <p><%= content_for :secondary_description %></p>
+  <% end %>
   <div id="show-nav-links">
   	<% if content_for? :secondary_nav %>
   		<%= content_for :secondary_nav %>

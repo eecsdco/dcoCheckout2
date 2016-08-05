@@ -34,7 +34,7 @@
 </div>
 <div>
   <span class="show-label">Borrower:</span>
-  <p><%= link_to @record.borrower, account_path(@record.borrower) %><p>
+  <p><%= link_to @record.borrower, account_path(uniqname: @record.borrower) %><p>
 </div>
 <% unless @record.borrower == @record.agent %>
   <div>
@@ -42,9 +42,19 @@
     <p><%= @record.agent %><p>
   </div>
 <% end %>
+<% unless @record.note.empty? %>
+  <div>
+    <span class="show-label">Note:</span>
+    <p><%= @record.note %>
+  </div>
+<% end %>
 <div>
   <span class="show-label">Due at:</span>
-  <p class=<%= '"past-due"' if DateTime.current > @record.due and @record.in.nil? %>><%= format_datetime @record.due %><p>
+  <% if @record.due %>
+    <p class=<%= '"past-due"' if DateTime.current > @record.due and @record.in.nil? %>><%= format_datetime @record.due %><p>
+  <% else %>
+    <p>Loaned indefinitely</p>
+  <% end %>
 </div>
 <div>
   <span class="show-label">Checked out at:</span>
@@ -53,7 +63,7 @@
 <% if @record.in %>
   <div>
     <span class="show-label">Checked in at:</span>
-    <p class=<%= '"past-due"' if @record.in > @record.due %>><%= format_datetime @record.in %><p>
+    <p class=<%= '"past-due"' if @record.due and @record.in > @record.due %>><%= format_datetime @record.in %><p>
   </div>
   <div>
     <span class="show-label">Return approved at:</span>

@@ -10,32 +10,32 @@ class Title < ApplicationRecord
   validates :name, presence: true, :uniqueness => { :scope => [:category, :office_id] } 
   validates :category, presence: true
   validates :description, presence: true, allow_nil: true
-  validates :n_available, presence: true, numericality: { only_integer: true, greater_than: 0 }
-  validates :form_required, inclusion: { in: [true, false] }
+  validates :n_available, presence: true, numericality: { only_integer: true, greater_than: 0 }, allow_nil: true
   validates :notice_id, presence: true, allow_nil: true
-  validates :max_loan, presence: true, allow_nil: false
+  validates :loan_length_seconds, presence: true, allow_nil: false
 
-  attr_accessor :max_loan
+  after_initialize :initialize_default_loan
 
-  def max_loan
-    read_attribute(:max_loan).to_human_time unless read_attribute(:max_loan).nil?
+  def initialize_default_loan
+    if self.category and self.loan_length_seconds.nil? and self.new_record?
+      self.loan_length_seconds = self.category.loan_length_seconds
+    end
   end
 
-  def max_loan_seconds
-    return self[:max_loan]
+  def n_in
+    self.n_available - n_out unless self.n_available.nil?
   end
 
-  def max_loan=(length)
-    if length.is_a? Integer
-      length = length.to_s
-    end
-    logger.debug "max_loan= #{length}"
-    # test if max_loan is already an integer representing number of seconds
-    unless length.to_i.to_s == length or length.nil?
-      length = length.to_seconds
-    end
-    logger.debug "max_loan= #{length}"
-    write_attribute(:max_loan, length)
+  def n_out
+    self.records.where(in: nil).length
+  end
+
+  def loan_length
+    self.loan_length_seconds.to_human_time unless self.loan_length_seconds.nil?
+  end
+
+  def loan_length=(length)
+    self.loan_length_seconds = length.to_seconds
   end
 end
 

@@ -3,11 +3,11 @@
 <% end %>
 
 <% content_for :secondary_nav do %>
-	<p><%= link_to "Manage Categories", categories_path %></p>
-	<p><%= link_to "Manage Notices", notices_path %></p>
-	<p><%= link_to "Manage Titles", titles_path %></p>
-	<p><%= link_to "Manage Records", records_path %></p>
-	<p><%= link_to "Manage Admistrators", administrators_path %>
+	<%= link_to "Manage Categories", categories_path %>
+	<%= link_to "Manage Notices", notices_path %>
+	<%= link_to "Manage Titles", titles_path %>
+	<%= link_to "Manage Records", records_path %>
+  <%= link_to "Manage DCO Offices", offices_path %>
 <% end %>
 
 <% if @pending_returns.empty? %>

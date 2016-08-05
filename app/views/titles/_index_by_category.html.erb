@@ -4,12 +4,11 @@
     <th>Description</th>
     <th>Notice</th>
     <th>Available</th>
-    <th>Form?</th>
     <th>Loan Length</th>
   </tr>
   <% @category.titles.each do |title| %>
     <tr>
-      <td><%= link_to title.name, title %></td>
+      <td style="min-width: 100px;"><%= link_to title.name, title %></td>
       <td>
         <% if administrator? %>
           <%= link_to "(edit)", edit_title_path(title) %><br> 
@@ -22,9 +21,12 @@
           <%= link_to title.notice.name, title.notice %></td>
         <% end %>
       </td>
-      <td style="text-align: center;"><%= title.n_available%> / <%= title.n_available %></td>
-      <td><%= title.form_required ? "Yes" : "No" %></td>
-      <td><%= title.max_loan %></td>
+      <td style="text-align: center;">
+        <% unless title.n_available.nil? %>
+          <%= title.n_available%> / <%= title.n_available %>
+        <% end %>
+      </td>
+      <td><%= title.loan_length %></td>
     </tr>
   <% end %>
 </table>

@@ -16,9 +16,7 @@ class RecordsController < ApplicationController
 
   def new
     if @title
-      @record = Record.new
-      @record.title = @title
-      #@record.loan_length = @title.max_loan
+      @record = Record.new(title: @title)
       render "new", layout: true
     else
       redirect_to titles_path
@@ -30,14 +28,19 @@ class RecordsController < ApplicationController
     @record.out = DateTime.current
     @record.agent = uniqname
     unless administrator?
-      @record.loan_length = @record.title.max_loan
+      @record.loan_length_seconds = @record.title.loan_length_seconds
+      logger.debug "Setting loan_length_seconds on #{@record.id} to #{@record.title.loan_length}"
       @record.borrower = uniqname # don't let the user redefine things
     end
     if @record.save
       redirect_to @record
     else
-      params[:title_id] = params[:record][:title_id]
-      render :new
+      @title = Title.find_by_id(@record.title_id)
+      if @title.nil?
+        redirect_to titles_path
+      else
+        render "new"
+      end
     end
   end
 
@@ -78,7 +81,12 @@ class RecordsController < ApplicationController
     end
 
     def record_parameters
-      params.require(:record).permit(:title_id, :borrower, :note, :agent, :loan_length)
+      valid_params_list = [:title_id, :borrower, :note, :agent, :loan_length]
+      begin
+        params.require(:record).permit(valid_params_list)
+      rescue ActionController::ParameterMissing
+        params.permit(valid_params_list)
+      end
     end
 
     def get_record
