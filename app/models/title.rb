@@ -16,12 +16,6 @@ class Title < ApplicationRecord
 
   after_initialize :initialize_default_loan
 
-  def initialize_default_loan
-    if self.category and self.loan_length_seconds.nil? and self.new_record?
-      self.loan_length_seconds = self.category.loan_length_seconds
-    end
-  end
-
   def n_in
     self.n_available - n_out unless self.n_available.nil?
   end
@@ -37,5 +31,24 @@ class Title < ApplicationRecord
   def loan_length=(length)
     self.loan_length_seconds = length.to_seconds
   end
+
+  #############################################################################
+  private #####################################################################
+  #############################################################################
+
+  # private
+  # def category_must_be_enabled
+  #   if enabled and !category.enabled
+  #     errors.add(:enabled, "cannot be set if the title's category is not enabled")
+  #   end
+  # end
+
+  # private
+  def initialize_default_loan
+    if self.category and self.loan_length_seconds.nil? and self.new_record?
+      self.loan_length_seconds = self.category.loan_length_seconds
+    end
+  end
+  
 end
 

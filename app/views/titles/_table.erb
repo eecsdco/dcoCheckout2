@@ -1,0 +1,80 @@
+<% display ||= {} %>
+
+<% content_for :titles_table do %>
+  <table class="index-table" style="margin-top: 20px">
+    <tr>
+      <% if administrator? and :enable_checkbox.in? display %>
+        <th>Enabled</th>
+      <% end %>
+      <th colspan=2>Name</th>
+      <% if :description.in? display %>
+        <th>Description</th>
+      <% end %>
+      <% if :notice.in? display %>
+        <th>Notice</th>
+      <% end %>
+      <% if :n_available.in? display %>
+        <th>Available</th>
+      <% end %>
+      <% if :loan_length.in? display %>
+        <th>Loan Length</th>
+      <% end %>
+    </tr>
+    <% titles.each do |title| %>
+      <tr>
+        <% if administrator? and :enable_checkbox.in? display %>
+          <td>
+            <%= hidden_field_tag "title_ids[]", title.id %>
+            <%= check_box_tag  "titles_enabled[]", title.id, title.enabled %>  
+          </td>
+        <% end %>
+        <td style="min-width: 100px;">
+          <%= link_to title.name, title %>
+        </td>
+        <td>
+          <% if administrator? and :edit_link.in? display %>
+            <%= link_to "(edit)", edit_title_path(title) %><br> 
+          <% end %>
+          <% if :checkout_link.in? display and title.enabled %>
+            <%= link_to "(checkout)", checkout_path(title) %>
+          <% elsif !title.enabled %>
+            <span style="font-weight: bold;">(disabled)</span>
+          <% end %>
+        </td>
+        <% if :description.in? display %>
+          <td><%= short_text title.description %></td>
+        <% end %>
+        <% if :notice.in? display %>
+          <td>
+            <% unless title.notice.nil? %>
+              <%= link_to title.notice.name, title.notice %></td>
+            <% end %>
+          </td>
+        <% end %>
+        <% if :n_available.in? display %>
+          <td style="text-align: center;">
+            <% unless title.n_available.nil? %>
+              <%= title.n_available%> / <%= title.n_available %>
+            <% end %>
+          </td>
+        <% end %>
+        <% if :loan_length.in? display %>
+          <td><%= title.loan_length %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
+
+<% # form wrapper %>
+<% if administrator? and :enable_checkbox.in? display %>
+  <%= form_tag enable_multiple_titles_path do %>
+    <%= content_for :titles_table %>
+    <%= submit_tag "Update Enabled Titles", style: "margin: 15px 0;" %>
+  <% end %>
+<% else %>
+  <% # render without the form and enabled checkboxes %>
+  <%= content_for :titles_table %>
+<% end %>
+
+<p class="todo-message">TODO: Add a building column, add filter by building</p>

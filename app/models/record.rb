@@ -7,6 +7,7 @@ class Record < ApplicationRecord
   # Title actually has two separate attributes, whereas Title tries to
   # transform the actual attribute
   belongs_to :title
+  has_one :office, :through => :title
 
   validates :title_id, presence: true
   validate :title_exists

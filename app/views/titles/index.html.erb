@@ -4,12 +4,16 @@
 <% content_for :secondary_nav do %>
   <% if administrator? %>
     <%= link_to 'New Title', new_title_path(category_id: @category) %>
-    <%= link_to 'Edit Category', edit_category_path(@category) %>
-    <%= link_to 'Delete Category', @category, method: :delete %>
+    <% if params[:show_all] == "true" %>
+      <%= link_to 'Hide Disabled Titles', titles_path(category_id: @category, show_all: nil) %>
+    <% else %>
+      <%= link_to 'Show Disabled Titles', titles_path(category_id: @category, show_all: true) %>
+    <% end %>
   <% end %>
   <%= link_to 'Back', :back %>
 <% end %>
 <p><%= @category.description %></p>
-<%= render "titles/index_by_category", category: @category, titles: @category.titles %>
+<%= render "titles/table", titles: @titles,
+    display: [:description, :checkout_link, :n_available, :loan_length] %>
 
 <% console %>

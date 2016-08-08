@@ -11,6 +11,17 @@
   <%= link_to 'Back', titles_path(category_id: @title.category) %>
 <% end %>
 
+<% unless @title.enabled %>
+  <div class="notice">
+    <p>
+      This title is disabled; it is no longer available for checkout.
+      <% if administrator? %>
+        You can re-enable this title by going to the edit menu, and checking the "enabled" box. The title's category must be enabled in order to enable the title.
+      <% end %>
+    </p>
+  </div>
+<% end %>
+
 <div>
   <span class="show-label">Category:</span>
   <p><%= link_to @title.category.name, @title.category %><p>

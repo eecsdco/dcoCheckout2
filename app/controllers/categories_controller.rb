@@ -11,13 +11,16 @@ class CategoriesController < ApplicationController
   end
 
   def new
-    @category = Category.new
+    @category = Category.new()
   end
 
   def create
     @category = Category.new(category_parameters)
-    @category.save
-    redirect_to @category
+    if @category.save
+      redirect_to @category
+    else
+      render 'new'
+    end
   end
 
   def edit
@@ -28,14 +31,9 @@ class CategoriesController < ApplicationController
     redirect_to @category
   end
 
-  def destroy
-    @category.destroy
-    redirect_to categories_path
-  end
-
   private
     def category_parameters
-      params.require(:category).permit(:name, :description, :loan_length, :enabled)
+      params.require(:category).permit(:name, :description, :loan_length)
     end
 
     def set_category

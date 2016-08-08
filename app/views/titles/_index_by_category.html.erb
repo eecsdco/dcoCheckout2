@@ -1,33 +1,48 @@
-<table class="index-table" style="margin-top: 20px">
-  <tr>
-    <th colspan=2>Name</th>
-    <th>Description</th>
-    <th>Notice</th>
-    <th>Available</th>
-    <th>Loan Length</th>
-  </tr>
-  <% @category.titles.each do |title| %>
+<%= form_tag enable_multiple_titles_path do %>
+  <%= hidden_field_tag "category_id", @category.id %>
+  <table class="index-table" style="margin-top: 20px">
     <tr>
-      <td style="min-width: 100px;"><%= link_to title.name, title %></td>
-      <td>
-        <% if administrator? %>
-          <%= link_to "(edit)", edit_title_path(title) %><br> 
-        <% end %>
-        <%= link_to "(checkout)", checkout_path(title) %>
-      </td>
-      <td><%= short_text title.description %></td>
-      <td>
-        <% unless title.notice.nil? %>
-          <%= link_to title.notice.name, title.notice %></td>
-        <% end %>
-      </td>
-      <td style="text-align: center;">
-        <% unless title.n_available.nil? %>
-          <%= title.n_available%> / <%= title.n_available %>
-        <% end %>
-      </td>
-      <td><%= title.loan_length %></td>
+      <% if administrator? %>
+        <th>Enabled</th>
+      <% end %>
+      <th colspan=2>Name</th>
+      <th>Description</th>
+      <th>Notice</th>
+      <th>Available</th>
+      <th>Loan Length</th>
     </tr>
+    <% @category.titles.each do |title| %>
+      <tr>
+        <% if administrator? %>
+          <td>
+            <%= hidden_field_tag "title_ids[]", title.id %>
+            <%= check_box_tag  "titles_enabled[]", title.id, title.enabled %>  
+          </td>
+        <% end %>
+        <td style="min-width: 100px;"><%= link_to title.name, title %></td>
+        <td>
+          <% if administrator? %>
+            <%= link_to "(edit)", edit_title_path(title) %><br> 
+          <% end %>
+          <%= link_to "(checkout)", checkout_path(title) if title.enabled %>
+        </td>
+        <td><%= short_text title.description %></td>
+        <td>
+          <% unless title.notice.nil? %>
+            <%= link_to title.notice.name, title.notice %></td>
+          <% end %>
+        </td>
+        <td style="text-align: center;">
+          <% unless title.n_available.nil? %>
+            <%= title.n_available%> / <%= title.n_available %>
+          <% end %>
+        </td>
+        <td><%= title.loan_length %></td>
+      </tr>
+    <% end %>
+  </table>
+  <% if administrator? %>
+    <%= submit_tag "Update Enabled Titles" %>
   <% end %>
-</table>
-<p class="todo-message">TODO: Add a building column, add filter by building</p>
+  <p class="todo-message">TODO: Add a building column, add filter by building</p>
+<% end %>

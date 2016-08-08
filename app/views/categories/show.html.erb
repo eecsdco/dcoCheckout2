@@ -10,12 +10,22 @@
   <% if administrator? %>
     <%= link_to 'New Title', new_title_path(category_id: @category) %>
 	  <%= link_to 'Edit Category', edit_category_path(@category) %>
-    <%= link_to 'Delete Category', @category, method: :delete, data: {:confirm => "Are you sure?"} %>
   <% end %>
 	<%= link_to 'Back', :back %>
 <% end %>
 
+<% unless @category.enabled %>
+  <div class="notice">
+    <p>
+      This category is disabled; its titles are not available for checkout.
+      <% if administrator? %>
+        You can enable this category by enabling some titles within it, or by adding new titles.
+      <% end %>
+    </p>
+  </div>
+<% end %>
 
-<%= render "titles/index_by_category", category: @category, titles: @category.titles %>
+<%= render "titles/table", titles: @category.titles,
+    display: [:enable_checkbox, :edit_link, :description, :notice, :n_available, :loan_length] %>
 
 <% console %>

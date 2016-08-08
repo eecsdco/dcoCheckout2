@@ -10,15 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160802175052) do
+ActiveRecord::Schema.define(version: 20160808155724) do
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name",                               null: false
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-    t.string   "description",                        null: false
-    t.integer  "loan_length_seconds",                null: false
-    t.boolean  "enabled",             default: true
+    t.string   "name",                null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "description",         null: false
+    t.integer  "loan_length_seconds", null: false
   end
 
   create_table "notices", force: :cascade do |t|
@@ -59,6 +58,7 @@ ActiveRecord::Schema.define(version: 20160802175052) do
     t.integer  "loan_length_seconds"
     t.integer  "notice_id"
     t.integer  "office_id",           null: false
+    t.boolean  "enabled",             null: false
     t.index ["category_id"], name: "index_titles_on_category_id"
     t.index ["notice_id"], name: "index_titles_on_notice_id"
     t.index ["office_id"], name: "index_titles_on_office_id"

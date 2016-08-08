@@ -1,17 +1,26 @@
-<h1>Categories</h1>
-<p>Find me in app/views/categories/index.html.erb</p>
-<p><%= link_to "Create a new category...", new_category_path %>
-<p>Here are the categories I have in my database.</p>
+<% content_for :secondary_title do %>
+  Categories
+<% end %>
+
+<% content_for :secondary_nav do %>
+  <%= link_to "New", new_category_path %>
+  <%= link_to "Back", :back %>
+<% end %>
+
 <table class="index-table">
   <tr>
     <th>Name</th>
     <th>Description</th>
+    <th class="align-center">Titles</th>
   </tr>
   <% @categories.each do |category| %>
     <tr>
       <td><%= link_to category.name, category %></td>
       <td><%= category.description %></td>
+      <td class="align-center"><%= category.titles.length %></td>
     </tr>
   <% end %>
 </table>
+
+<p class="todo-message">TODO: Bulk edit?</p>
 <% console %>

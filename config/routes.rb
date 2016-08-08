@@ -17,9 +17,18 @@ Rails.application.routes.draw do
   get '/logout', to: 'accounts#logout', as: 'logout'
   get '/accounts/:uniqname', to: 'accounts#show', as: 'account'
 
-  resources :categories
+  resources :categories, except: [:destroy]
+  get 'categories/:id/disable(.:format)', to: 'categories#disable', as: 'disable_category'
+  get 'categories/:id/enable(.:format)', to: 'categories#enable', as: 'enable_category'
   resources :offices
-  resources :titles
+  resources :titles do
+    collection do
+      # this post request should be a get (b/c we're getting a form), but,
+      # because we're passing multiple title id's as an array, it's better to
+      # do it as a post request
+      post 'enable_multiple'
+    end
+  end
   # this param: :record_id thing is kind of kludgy
   # it comes from the need to distinguish title_id and record_id in the records controller
   resources :records, except: :new, param: :record_id
