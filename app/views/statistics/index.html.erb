@@ -1,0 +1,38 @@
+<% content_for :secondary_title do %>
+  Statistics
+<% end %>
+
+<% content_for :secondary_nav do %>
+  <%= link_to "Back", :back %>
+<% end %>
+
+<table class="index-table" style="margin-top: 20px">
+  <tr>
+    <th colspan=2>Name</th>
+    <th>Checkouts</th>
+    <th>Available</th>
+    <th>Loan Length</th>
+  </tr>
+  <% @titles_count_hash.each do |title, count| %>
+    <tr>
+      <td style="min-width: 100px;">
+        <%= link_to title.name, title %>
+      </td>
+      <td>
+        <% if administrator? %>
+          <%= link_to "(edit)", edit_title_path(title) %><br> 
+        <% end %>
+        <% unless title.enabled %>
+          <span style="font-weight: bold;">(disabled)</span>
+        <% end %>
+      </td>
+      <td><%= count %></td>
+      <td style="text-align: center;">
+        <% unless title.n_available.nil? %>
+          <%= title.n_in %> / <%= title.n_available %>
+        <% end %>
+      </td>
+      <td><%= title.loan_length %></td>
+    </tr>
+  <% end %>
+</table>

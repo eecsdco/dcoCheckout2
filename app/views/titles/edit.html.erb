@@ -1,6 +1,9 @@
-<h1>Editing Notice</h1>
+<%= content_for :secondary_title do %>
+  Edit <%= @title.name %>
+<% end %>
+
+<%= content_for :secondary_nav do %>
+  <%= link_to 'Back', :back %>
+<% end %>
 
 <%= render 'form', title: @title %>
-
-<%= link_to 'Show', @title %> |
-<%= link_to 'Back', titles_path %>

@@ -1,7 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   force_ssl
-  helper_method :login_path, :logout_path, :uniqname, :logged_in?, :administrator?
+  helper_method :login_path, :logout_path, :uniqname, :logged_in?,
+    :administrator?, :current_office_id
+  
   def login_path
     path = Rails.configuration.cosign_login_path
     if path[-1] = "/"
@@ -49,6 +51,14 @@ class ApplicationController < ActionController::Base
       end
     else
       redirect_to login_path
+    end
+  end
+
+  def current_office_id
+    if params[:office_id]
+      params[:office_id]
+    else
+      Rails.configuration.checkout_computers[request.remote_addr]
     end
   end
 

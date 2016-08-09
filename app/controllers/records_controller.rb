@@ -60,14 +60,14 @@ class RecordsController < ApplicationController
 
   def return_post
     @record.in = DateTime.current
-    @record.save
+    @record.save!
     redirect_to @record
   end
 
   def confirm_return
     @record.return_approved = DateTime.current
-    @record.save
-    redirect_to @record
+    @record.save!
+    redirect_to :back
   end
 
   private

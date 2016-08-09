@@ -1,5 +1,6 @@
 class StatisticsController < ApplicationController
   def index
-    render inline: "<p>Not implemented</p>", layout: true
+    @titles_count_hash = Record.group(:title_id).order('count_all DESC')
+      .count.map {|id, count| [Title.find(id), count]}
   end
 end

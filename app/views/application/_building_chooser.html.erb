@@ -1,0 +1,4 @@
+<div id="building-chooser">
+  <span class="form-label">Office:</span>
+  <%= select_tag "office_id", options_from_collection_for_select(Office.all, "id", "name", current_office_id), include_blank: true, id: "office-selector" %>
+</div>

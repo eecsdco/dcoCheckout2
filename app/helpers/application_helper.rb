@@ -15,4 +15,8 @@ module ApplicationHelper
     datetime.strftime(Rails.configuration.datetime_format)
   end
 
+  def current_office_id
+    Rails.configuration.checkout_computers[request.remote_addr]
+  end
+
 end

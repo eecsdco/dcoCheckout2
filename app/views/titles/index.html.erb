@@ -1,6 +1,11 @@
 <% content_for :secondary_title do %>
   <%= @category.name %>
 <% end %>
+
+<% content_for :secondary_description do %>
+  <%= @category.description %>
+<% end %>
+
 <% content_for :secondary_nav do %>
   <% if administrator? %>
     <%= link_to 'New Title', new_title_path(category_id: @category) %>
@@ -12,7 +17,9 @@
   <% end %>
   <%= link_to 'Back', :back %>
 <% end %>
-<p><%= @category.description %></p>
+
+<%= render "building_chooser" %>
+
 <%= render "titles/table", titles: @titles,
     display: [:description, :checkout_link, :n_available, :loan_length] %>
 

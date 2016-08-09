@@ -1,6 +1,6 @@
 class AccountsController < ApplicationController
   def index
-    render inline: "<p>Not implemented</p>", layout: true
+    @records = Record.where(borrower: uniqname)
   end
 
   def logout

@@ -54,7 +54,7 @@
         <% if :n_available.in? display %>
           <td style="text-align: center;">
             <% unless title.n_available.nil? %>
-              <%= title.n_available%> / <%= title.n_available %>
+              <%= title.n_in %> / <%= title.n_available %>
             <% end %>
           </td>
         <% end %>

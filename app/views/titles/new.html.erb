@@ -1,7 +1,9 @@
-<h1>New Title</h1>
+<%= content_for :secondary_title do %>
+  New Title
+<% end %>
+
+<%= content_for :secondary_nav do %>
+  <%= link_to 'Back', :back %>
+<% end %>
 
 <%= render 'form', title: @title %>
-
-<%= link_to 'Back', titles_path %>
-
-<% console %>

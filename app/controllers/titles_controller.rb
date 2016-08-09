@@ -22,10 +22,17 @@ class TitlesController < ApplicationController
       render "category_chooser", layout: true, :locals => {:path => :titles_path}
     elsif !params[:all]
       @category = Category.find(params[:category_id])
+
       if params[:show_all] == "true"
         @titles = @category.titles
       else
         @titles = @category.titles.where(enabled: true)
+      end
+
+      # .nil? has to go first, because if current_office_id is nil, .empty?
+      # will raise an exception b/c nil doesn't have an empty? method
+      unless current_office_id.nil?
+        @titles = @titles.where(office_id: current_office_id)
       end
     end
   end
