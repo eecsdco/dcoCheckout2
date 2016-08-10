@@ -2,8 +2,12 @@ source 'https://rubygems.org'
 
 # rails/apache middleman-ish (really bad description of it)
 gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
+
 # to get variables from the environment inside rails
 gem "figaro"
+
+# to send delayed emails
+gem 'whenever'
 
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
