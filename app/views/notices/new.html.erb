@@ -1,5 +1,9 @@
-<h1>New Notice</h1>
+<% content_for :secondary_title do %>
+  New Notice
+<% end %>
+
+<% content_for :secondary_nav do %>
+  <%= link_to 'Back', :back %>
+<% end %>
 
 <%= render 'form', notice: @notice %>
-
-<%= link_to 'Back', notices_path %>

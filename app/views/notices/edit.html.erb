@@ -1,6 +1,10 @@
-<h1>Editing Notice</h1>
+<% content_for :secondary_title do %>
+  <h1>Editing Notice</h1>
+<% end %>
+
+<% content_for :secondary_nav do %>
+  <%= link_to 'Cancel', @notice %>
+  <%= link_to 'Back', :back %>
+<% end %>
 
 <%= render 'form', notice: @notice %>
-
-<%= link_to 'Show', @notice %> |
-<%= link_to 'Back', notices_path %>

@@ -1,8 +1,13 @@
 class RecordsController < ApplicationController
   before_action :require_login
-  before_action :require_administrator, only: [:confirm_return]
+  before_action :require_checkout_authorization, only: [:new, :create, :return, :return_post]
+  before_action :require_administrator, only: [:confirm_return, :destroy]
+
   before_action :get_title, only: [:new]
   before_action :get_record, only: [:show, :return, :return_post, :edit, :update, :destroy, :confirm_return]
+
+  before_action :require_enabled_title, only: [:new]
+
 
   def index
     @records = Record.all
@@ -25,6 +30,11 @@ class RecordsController < ApplicationController
 
   def create
     @record = Record.new(record_parameters)
+    # TODO move this into a before_action thing
+    unless @record.title.enabled
+      flash[:error] = @title.name + " is not available for checkout."
+      redirect_to @title
+    end
     @record.out = DateTime.current
     @record.agent = uniqname
     unless administrator?
@@ -91,5 +101,12 @@ class RecordsController < ApplicationController
 
     def get_record
       @record = Record.find_by_id(params[:record_id])
+    end
+
+    def require_enabled_title
+      unless @title.enabled
+        flash[:error] = @title.name + " is not available for checkout."
+        redirect_to @title
+      end
     end
 end

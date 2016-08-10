@@ -3,7 +3,7 @@
 <% end %>
 
 <% content_for :secondary_nav do %>
-  <%= link_to "Checkout", checkout_path(@title) %>
+  <%= link_to "Checkout", checkout_path(@title) if @title.enabled and authorized_to_checkout? %>
   <% if administrator? %>
     <%= link_to 'Edit', edit_title_path(@title) %>
     <%= link_to 'Delete', @title, method: :delete %>

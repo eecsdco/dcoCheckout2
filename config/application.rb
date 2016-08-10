@@ -20,7 +20,7 @@ Rails.application.configure do
   config.datetime_format = '%l:%M %p on %B %e, %Y'
 
   # Uniqnames of DCO staff who can edit shit
-  config.administrators = [:travigd, :victorbp]
+  config.administrators = [:travigd, :victorbp, :laura, :don, :lrandolp, :kbanas, :hugh, :jvanlav, :liz, :dholt, :stander, :armruval, :mmgeorg, :swethar, :hayjacob]
 
   # Computers that can check stuff out
   # 1 represents the EECS office, 2 represents the BBB office

@@ -1,12 +1,14 @@
-<p>
-  <strong>Name:</strong>
+<% content_for :secondary_title do %>
   <%= @notice.name %>
-</p>
+<% end %>
+
+<% content_for :secondary_nav do %>
+  <%= link_to 'Edit', edit_notice_path(@notice) %>
+  <%= link_to 'Back', :back %>
+<% end %>
+
 
 <p>
   <strong>Text:</strong>
   <%= @notice.text %>
 </p>
-
-<%= link_to 'Edit', edit_notice_path(@notice) %> |
-<%= link_to 'Back', notices_path %>

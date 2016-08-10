@@ -35,7 +35,7 @@
           <% if administrator? and :edit_link.in? display %>
             <%= link_to "(edit)", edit_title_path(title) %><br> 
           <% end %>
-          <% if :checkout_link.in? display and title.enabled %>
+          <% if :checkout_link.in? display and title.enabled and authorized_to_checkout? %>
             <%= link_to "(checkout)", checkout_path(title) %>
           <% elsif !title.enabled %>
             <span style="font-weight: bold;">(disabled)</span>
