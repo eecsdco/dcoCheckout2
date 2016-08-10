@@ -12,6 +12,7 @@
     <th>Checkouts</th>
     <th>Available</th>
     <th>Loan Length</th>
+    <th>Average Time Out</th>
   </tr>
   <% @titles_count_hash.each do |title, count| %>
     <tr>
@@ -33,6 +34,7 @@
         <% end %>
       </td>
       <td><%= title.loan_length %></td>
+      <td><%= title.average_loan_time %></td>
     </tr>
   <% end %>
 </table>

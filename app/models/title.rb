@@ -32,6 +32,26 @@ class Title < ApplicationRecord
     self.loan_length_seconds = length.to_seconds
   end
 
+  def average_loan_time_seconds
+    unless ActiveRecord::Base.connection.instance_of? ActiveRecord::ConnectionAdapters::Mysql2Adapter
+      # unfortunately, this is not database agnostic, and this will only
+      # (as far as I know) work using MySQL
+      return nil
+    end
+    returned_records = records.where.not(in:nil)
+    if returned_records.present?
+      return returned_records.average('unix_timestamp(`in`) - unix_timestamp(`out`)').round
+    else
+      return nil
+    end
+  end
+
+  def average_loan_time
+    unless average_loan_time_seconds.nil?
+      average_loan_time_seconds.to_human_time
+    end
+  end
+
   #############################################################################
   private #####################################################################
   #############################################################################
