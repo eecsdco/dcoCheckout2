@@ -52,6 +52,22 @@ class Title < ApplicationRecord
     end
   end
 
+  def options
+    # split string on newlines or commas, then remove whitespace from each
+    # option
+    if options_str.nil? or options_str.empty?
+      # return an empty list so that .in? or .include? doesn't complain
+      return []
+    else
+      return options_str.split("\n")
+    end
+  end
+
+  def options=(options_array)
+    options_array.each { |option| option.strip! }
+    self.options_str = options_array.join("\n")
+  end
+
   #############################################################################
   private #####################################################################
   #############################################################################

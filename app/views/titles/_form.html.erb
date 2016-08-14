@@ -11,48 +11,53 @@
     </div>
   <% end %>
 
-  <p>
-    <%= f.label :name %><br>
+  <div>
+    <%= f.label :name %>
     <%= f.text_field :name %>
-  </p>
+  </div>
   
-  <p>
-    <%= f.label :category %><br>
+  <div>
+    <%= f.label :category %>
     <%= f.collection_select(:category_id, Category.all, :id, :name) %>
-  </p>
+  </div>
 
-  <p>
-    <%= f.label :office %><br>
+  <div>
+    <%= f.label :office %>
     <%= f.collection_select(:office_id, Office.all, :id, :name) %>
-  </p>
+  </div>
  
-  <p>
-    <%= f.label :description %><br>
+  <div>
+    <%= f.label :description %>
     <%= f.text_area :description %>
-  </p>
+  </div>
 
-  <p>
-    <%= f.label :notice %><br>
+  <div>
+    <%= f.label :notice %>
     <%= f.select(:notice_id, Notice.all.collect {|n| [ n.name, n.id ] }, {include_blank: '-- None --'}) %>
     <!--<%= f.collection_select(:notice_id, Notice.all, :id, :name) %>
     -->
-  </p>
-  <p>
-    <%= f.label :n_available %><br>
+  </div>
+  <div>
+    <%= f.label :n_available %>
     <%= f.text_field :n_available %>
-  </p>
+  </div>
 
-  <p>
-    <%= f.label :loan_length %><br>
+  <div>
+    <%= f.label :options_str, "Options" %>
+    <%= f.text_area :options_str %>
+  </div>
+
+  <div>
+    <%= f.label :loan_length %>
     <%= f.text_field :loan_length %>
-  </p>
+  </div>
 
-  <p>
+  <div>
     <%= f.label :enabled %>
     <%= f.check_box :enabled %>
-  </p>
+  </div>
    
-  <p>
+  <div>
     <%= f.submit %>
-  </p>
+  </div>
 <% end %>

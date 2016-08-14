@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160808155724) do
+ActiveRecord::Schema.define(version: 20160811164209) do
 
-  create_table "categories", force: :cascade do |t|
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",                null: false
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
@@ -20,48 +20,50 @@ ActiveRecord::Schema.define(version: 20160808155724) do
     t.integer  "loan_length_seconds", null: false
   end
 
-  create_table "notices", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.text     "text",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "notices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name",                     null: false
+    t.text     "text",       limit: 65535, null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
-  create_table "offices", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.text     "address",    null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "offices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name",                     null: false
+    t.text     "address",    limit: 65535, null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
-  create_table "records", force: :cascade do |t|
-    t.integer  "title_id",        null: false
-    t.string   "borrower",        null: false
-    t.text     "note"
-    t.string   "agent",           null: false
-    t.datetime "out",             null: false
+  create_table "records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "title_id",                      null: false
+    t.string   "borrower",                      null: false
+    t.text     "note",            limit: 65535
+    t.string   "agent",                         null: false
+    t.datetime "out",                           null: false
     t.datetime "in"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.datetime "due"
     t.datetime "return_approved"
-    t.index ["title_id"], name: "index_records_on_title_id"
+    t.string   "option"
+    t.index ["title_id"], name: "index_records_on_title_id", using: :btree
   end
 
-  create_table "titles", force: :cascade do |t|
-    t.integer  "category_id",         null: false
-    t.string   "name",                null: false
-    t.text     "description",         null: false
+  create_table "titles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "category_id",                       null: false
+    t.string   "name",                              null: false
+    t.text     "description",         limit: 65535, null: false
     t.integer  "n_available"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.integer  "loan_length_seconds"
     t.integer  "notice_id"
-    t.integer  "office_id",           null: false
-    t.boolean  "enabled",             null: false
-    t.index ["category_id"], name: "index_titles_on_category_id"
-    t.index ["notice_id"], name: "index_titles_on_notice_id"
-    t.index ["office_id"], name: "index_titles_on_office_id"
+    t.integer  "office_id",                         null: false
+    t.boolean  "enabled",                           null: false
+    t.string   "options_str"
+    t.index ["category_id"], name: "index_titles_on_category_id", using: :btree
+    t.index ["notice_id"], name: "index_titles_on_notice_id", using: :btree
+    t.index ["office_id"], name: "index_titles_on_office_id", using: :btree
   end
 
 end

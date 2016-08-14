@@ -32,6 +32,12 @@
   <span class="show-label">Category:</span>
   <p><%= link_to @record.title.category.name, @record.title.category %><p>
 </div>
+<% unless @record.option.nil? %>
+  <div>
+    <span class="show-label">Option:</span>
+    <p><%= @record.option %></p>
+  </div>
+<% end %>
 <div>
   <span class="show-label">Borrower:</span>
   <p><%= link_to @record.borrower, account_path(uniqname: @record.borrower) %><p>
@@ -42,7 +48,7 @@
     <p><%= @record.agent %><p>
   </div>
 <% end %>
-<% unless @record.note.empty? %>
+<% unless @record.note.nil? or @record.note.empty? %>
   <div>
     <span class="show-label">Note:</span>
     <p><%= @record.note %>

@@ -91,7 +91,7 @@ class RecordsController < ApplicationController
     end
 
     def record_parameters
-      valid_params_list = [:title_id, :borrower, :note, :agent, :loan_length]
+      valid_params_list = [:title_id, :borrower, :note, :agent, :loan_length, :option]
       begin
         params.require(:record).permit(valid_params_list)
       rescue ActionController::ParameterMissing

@@ -31,6 +31,12 @@
       <p><%= @title.description %>
     </div>
   <% end %>
+  <% unless @title.options.empty? %>
+    <div>
+      <%= f.label :option %>
+      <%= f.select(:option, options_for_select(@title.options)) %>
+    </div>
+  <% end %>
   <div>
     <%= f.label :borrower, "Borrower (uniqname):" %>
     <% if administrator? %>

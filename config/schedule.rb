@@ -2,15 +2,20 @@
 #
 # It's helpful, but not entirely necessary to understand cron before proceeding.
 # http://en.wikipedia.org/wiki/Cron
+#
+env :PATH, ENV['PATH']
 
 # Example:
 #
-# set :output, "/path/to/my/cron_log.log"
+set :output, "/w/web/dco-checkout2/log/whenever.log"
+set :environment, "development"
 #
-every :weekday, :at => '10am' do
+
+every 1.minutes do
 #   command "/usr/bin/some_great_command"
-  runner "ReminderMailer.send_reminders"
+#   runner "ReminderMailer.send_reminders"
 #   rake "some:great:rake:task"
+  rake 'reminders:send'
 end
 #
 # every 4.days do

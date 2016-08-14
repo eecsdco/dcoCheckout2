@@ -18,6 +18,7 @@ class Record < ApplicationRecord
   # in
   # due
   # return_approved
+  validate :option_exists
 
   def loan_length
     self.loan_length_seconds.to_human_time
@@ -45,5 +46,13 @@ class Record < ApplicationRecord
 
   def title_exists
     errors.add(:title_id, "is not a valid title") unless Title.find_by_id(self.title_id)
+  end
+
+  def option_exists
+    unless self.title.options.empty?
+      unless self.option.in? self.title.options
+        errors.add(:option, "is not a valid option for this title")
+      end
+    end
   end
 end
