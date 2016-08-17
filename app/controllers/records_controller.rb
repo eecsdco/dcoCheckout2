@@ -20,9 +20,17 @@ class RecordsController < ApplicationController
   end
 
   def new
+    # TODO: Refactor logic here
     if @title
-      @record = Record.new(title: @title)
-      render "new", layout: true
+      if !@title.available? and administator?
+        flash[:error] = "Every instance of this title is checked out in the checkout system. You are allowed to check it out because you are an administrator; please investigate why the system thinks there are no more of this title available (e.g. a title was returned but not marked returned, or, the number available in the system is inaccurate (i.e. too low)"
+      end
+      if @title.available? or administrator?
+        @record = Record.new(title: @title)
+        render "new", layout: true
+      else
+        flash[:error] = "This item is currently unavailable; there are no more of this item available for checkout. Please contact a DCO Staff Member if you need assistance."
+        redirect_to @title
     else
       redirect_to titles_path
     end

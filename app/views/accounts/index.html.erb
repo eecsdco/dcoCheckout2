@@ -3,8 +3,11 @@
 <% end %>
 
 <% content_for :secondary_nav do %>
+  <%= lint_to "View Account History", :accounts_history_path $>
   <%= link_to "Back", :back %>
 <% end %>
+
+<p class="todo-message">This area should show a person's most commonly checkout out titles, their average loan time, their checked-in-on-time to overdue ratio, et cetera. It should also definitely show a person's currently overdue titles, followed by titles that are checked out, and THEN titles that are returned. Or maybe not that last part, and just have a link to view all records.</p>
 
 <%= render "records/records_table", records: @records,
     display: [:name, :category, :out, :in, :due] %>

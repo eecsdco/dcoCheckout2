@@ -1,28 +1,29 @@
-<% content_for :show_nav do %>
+<% content_for :secndary_title do %>
+  Notices
+<% end %>
+
+<% content_for :secondary_nav do %>
   <%= link_to 'New Notice', new_notice_path %>
   <%= link_to 'Batch Edit', "#notimplemented" %>
   <%= link_to 'Back', :back %>
  <% end %>
 
-<%= render "show_with_nav", title: "Notices" do %>
-  <table class="index-table">
-    <thead>
+<table class="index-table">
+  <thead>
+    <tr>
+      <th style="min-width: 150px;" colspan=2>Name</th>
+      <th>Text</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @notices.each do |notice| %>
       <tr>
-        <th style="min-width: 150px;" colspan=2>Name</th>
-        <th>Text</th>
+        <td><%= link_to  notice.name, notice %></td>
+        <td><%= link_to  "(edit)", edit_notice_path(notice) %></td>
+        <td><%= notice.text %></td>
       </tr>
-    </thead>
-
-    <tbody>
-      <% @notices.each do |notice| %>
-        <tr>
-          <td><%= link_to  notice.name, notice %></td>
-          <td><%= link_to  "(edit)", edit_notice_path(notice) %></td>
-          <td><%= notice.text %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% end %>
-
+    <% end %>
+  </tbody>
+</table>
 

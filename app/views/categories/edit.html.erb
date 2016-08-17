@@ -1,2 +1,9 @@
-<h3>Create a New Category</h3>
+<%= content_for :secondary_title do %>
+  Editing Category <%= @category.name %>
+<% end %>
+
+<%= content_for :secondary_nav do %>
+  <%= link_to 'Back', :back %>
+<% end %>
+
 <%= render 'form', category: @category %>

@@ -51,7 +51,8 @@ class Record < ApplicationRecord
   def option_exists
     unless self.title.options.empty?
       unless self.option.in? self.title.options
-        errors.add(:option, "is not a valid option for this title")
+        # TODO fix how this displays
+        errors.add(:office_id, "An Office must by set for titles with limited quantity")
       end
     end
   end
