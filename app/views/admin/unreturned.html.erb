@@ -10,5 +10,5 @@
 <% if @records.empty? %>
   <p>No unreturned titles.</p>
 <% else %>
-  <%= render "records/records_table", records: @records, display: [:name, :category, :borrower, :due, :out] %>
+  <%= render "records/table", records: @records, display: [:name, :category, :borrower, :due, :out] %>
 <% end %>

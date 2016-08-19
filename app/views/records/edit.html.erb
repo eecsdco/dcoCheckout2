@@ -1,0 +1,72 @@
+<% content_for :secondary_title do %>
+  Editing Record for <%= @record.title.name %>
+<% end %>
+
+<% content_for :secondary_nav do %>2
+  <%= link_to 'Delete', @record, method: :delete, data: {:confirm => "Are you sure? A record should only be deleted if its creation was a mistake (e.g. wrong item selected)."} %>
+  <%= link_to "Back", :back %>
+<% end %>
+
+<%= form_for(@record) do |f| %>
+  <% if @record.errors.any? %>
+    <div id="error_explanation">
+      <h4><%= pluralize(@record.errors.count, "error") %> prohibited this record from being saved:</h4>
+
+      <ul>
+      <% @record.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.hidden_field :title_id, :value => @record.title.id %>
+  <% if @record.title.notice %>
+    <div class="notice">
+      <label>Notice:</label>
+      <p><%= @record.title.notice.text %></p>
+    </div>
+  <% end %>
+  <div>
+    <label>Title:</label>
+    <p><%= link_to @record.title.name, @record.title %></p>
+  </div>
+  <div>
+    <label>Category:</label>
+    <p><%= link_to @record.title.category.name, @record.title.category %></p>
+  </div>
+  <% if @record.title.description %>
+    <div>
+      <label>Description:</label>
+      <p><%= @record.title.description %>
+    </div>
+  <% end %>
+  <% unless @record.title.options.empty? %>
+    <div>
+      <%= f.label :option %>
+      <%= f.select(:option, options_for_select(@record.title.options)) %>
+    </div>
+  <% end %>
+  <div>
+    <%= f.label :borrower, "Borrower (uniqname):" %>
+    <% if administrator? %>
+      <%= f.text_field :borrower %>
+    <% else %>
+      <p><%= link_to uniqname, account_path(uniqname) %></p>
+    <% end %>
+  </div>
+  <div>
+    <%= f.label :office, "Office:" %>
+    <%= f.collection_select(:office_id, Office.all, :id, :name, :include_blank => true) %>
+  </div>
+  <div>
+    <%= f.label :note, "Note:" %>
+    <%= f.text_area :note %>
+  </div>
+  <div>
+    <%= f.label :due, "Due:" %>
+    <%= f.datetime_local_field :due %>
+  </div>
+  <div>
+    <%= f.submit "Update" %>
+  </div>
+<% end %>

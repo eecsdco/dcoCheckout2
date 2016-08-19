@@ -1,9 +1,32 @@
 <% content_for :secondary_title do %>
   Checkout Records
 <% end %>
+
 <% content_for :secondary_nav do %>
   <%= link_to 'Back', :back %>
 <% end %>
 
-<%= render "records/records_table", records: @records,
+<% content_for :secondary_description do %>
+  <%= form_tag(records_path, method: :get, enforce_utf8: false) do %>
+    <div id="filter-by-area">
+      <div>
+        <%= label_tag :title_name, "Title:" %>
+        <%= text_field_tag :title_name, params[:title_name] %>
+      </div>
+      <div>
+        <%= label_tag :uniqname, "Uniqname:" %>
+        <%= text_field_tag :uniqname, params[:uniqname] %>
+      </div>
+      <div>
+        <%= label_tag :office_id, "Office:" %>
+        <%= select_tag :office_id, options_from_collection_for_select(Office.all, "id", "name", current_office_id), include_blank: true, :id => params[:office_id] %>
+      </div>
+      <%= submit_tag "Filter", name: nil %>
+    </div>
+  <% end %>
+<% end %>
+
+<%= render "records/table", records: @records,
     display: [:name, :category, :borrower, :out, :in] %>
+
+<!-- FUTURE: Convert the filtering stuff to use AJAX instead of loading a brand new page... -->

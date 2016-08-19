@@ -18,7 +18,7 @@
   <p>No returns are pending approval. Good job, DCO!</p>
 <% else %>
   <p>The following returns are pending approval. Please make sure all items have been returned before approving the request.</p>
-  <%= render "records/records_table", records: @pending_returns, display: [:name, :category, :borrower, :in, :due] %>
+  <%= render "records/table", records: @pending_returns, display: [:name, :category, :borrower, :in, :due] %>
 <% end %>
 
 <h3>Overdue</h3>
@@ -26,9 +26,9 @@
   <p>No items are overdue. Way to go!</p>
 <% else %>
   <p>The following items have not been returned and are past their due date.</p>
-  <%= render "records/records_table", records: @overdue, display: [:name, :category, :borrower, :due] %>
+  <%= render "records/table", records: @overdue, display: [:name, :category, :borrower, :due] %>
 <% end %>
 
-<p class="todo-message">TODO: add bulk/checkbox-style approve returns, show overdue titles</p>
+<p class="todo-message">TODO: add bulk/checkbox-style approve returns</p>
 
 <% console %>

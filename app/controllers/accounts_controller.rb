@@ -30,12 +30,6 @@ class AccountsController < ApplicationController
         return
       end
     end
-    # TODO: Sort properly
-    # Definitely have it descending (is that the right word? more recent
-    # checkouts are shown higher on the list, probably sorted by time out, and
-    # not by time in
-
-    # TODO: Separate tables for overdue and out-but-not-overdue titles
 
     @overdue = Record.where(borrower: @uniqname).overdue
     @out = Record.where(borrower: @uniqname).out_but_not_overdue
@@ -45,16 +39,18 @@ class AccountsController < ApplicationController
     # this param should always exist, because it's required for the route to be
     # matched... but just because I wrote this comment, I'm gonna run into shit
     @uniqname = params[:uniqname]
-    @records = Record.where(borrower: @uniqname)
+    @records = Record.where(borrower: @uniqname).reorder(out: :desc)
   end
 
   def statistics
     @uniqname = params[:uniqname]
+
+    # generate a hash of 'title name' => 'number of checkouts' pairs for use in
+    # a pretty nifty pie chart
+    @common_titles = Hash[Record.where(borrower: @uniqname).group(:title_id).count.map { |k, v| [Title.find(k).name, v] }]
   end
 
   def logout
-    # TODO will this throw an error if the user is somehow directed to logout
-    # but there is no cosign cookie?
     cookies.delete request.env["COSIGN_SERVICE"]
     redirect_to Rails.configuration.cosign_logout_path
   end

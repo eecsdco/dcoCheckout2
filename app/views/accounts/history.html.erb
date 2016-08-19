@@ -10,6 +10,6 @@
 <% if @records.empty? %>
   <p>You haven't checked anything out before!</p>
 <% else %>
-  <%= render "records/records_table", records: @records,
-      display: [:name, :category, :out, :in, :due] %>
+  <%= render "records/table", records: @records,
+      display: [:name, :out, :in, :due] %>
 <% end %>

@@ -1,6 +1,12 @@
 <p>This is an automated message.</p>
 
-<p>You have checked out a <%= @record.title.name %> from DCO. Please remember to bring it back by <%= @record.due.strftime(Rails.configuration.datetime_format) %>.</p>
+<p>You have checked out a <%= @record.title.name %> from DCO.</p>
+
+<p><% if @record.due %>
+  Please remember to bring it back by <%= @record.due.strftime(Rails.configuration.datetime_format) %>.
+<% else %>
+  This item has been loaned indefinitely. Please bring it back when you are done using it.
+<% end %></p>
 
 <p>Thank you,<br />
 DCO Staff</p>

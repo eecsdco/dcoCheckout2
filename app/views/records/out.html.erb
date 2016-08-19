@@ -9,6 +9,6 @@
 <% if @records.empty? %>
   <p>You have no outstanding loans. Good job!</p>
 <% else %>
-  <%= render "records_table", records: @records,
+  <%= render "table", records: @records,
       display: [:name, :return_link, :category, :out, :due] %>
 <% end %>

@@ -15,7 +15,11 @@ every 2.hours do
 #   command "/usr/bin/some_great_command"
 #   runner "ReminderMailer.send_reminders"
 #   rake "some:great:rake:task"
-  rake 'reminders:send'
+  rake 'reminders:send_due'
+end
+
+every 1.days do
+  rake 'reminders:send_overdue'
 end
 #
 # every 4.days do

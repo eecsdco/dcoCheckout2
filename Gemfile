@@ -9,6 +9,9 @@ gem "figaro"
 # to send delayed emails
 gem 'whenever'
 
+# to make pretty charts
+gem 'chartkick'
+
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 

@@ -25,41 +25,33 @@ class Record < ApplicationRecord
   # return_approved
   validate :option_exists
 
+  after_initialize :initalize_default_loan
+  after_initialize :initialize_default_office
+
   def loan_length
-    self.loan_length_seconds.to_human_time
+    # get loan length in human readable form (e.g. 2 days or 12 hours)
+    self.loan_length_seconds.to_human_time unless self.loan_length_seconds.nil?
   end
 
   def loan_length=(length)
+    # set loan length in human readable form
     self.loan_length_seconds = length.to_seconds unless length.nil?
   end
 
   def loan_length_seconds
-    if @loan_length_seconds.nil?
-      if self.due and self.out
-        @loan_length_seconds = (self.due - self.out).round.days
-      elsif new_record? and !self.title.nil?
-        @loan_length_seconds = self.title.loan_length_seconds
-      end
-    end
+    # get loan_length in seconds
     @loan_length_seconds
   end
 
   def loan_length_seconds=(length)
-    if length = 0
+    # set loan length in seconds, and then update due time
+    if length == 0
       @loan_length_seconds = nil
-      self.due = nil
+      write_attribute :due, nil
     else
       @loan_length_seconds = length
-      self.due = DateTime.current + length.seconds
+      write_attribute :due, DateTime.current + length.seconds
     end
-  end
-
-  def office_id
-    # initialize office 
-    if @office_id.nil? and self.title.present? and new_record?
-      @office_id = self.title.office_id
-    end
-    @office_id
   end
 
   # scope
@@ -85,6 +77,34 @@ class Record < ApplicationRecord
     self.out.where('due > ?', DateTime.now).reorder(:out)
   end
 
+  def self.borrower_is(borrower)
+    if borrower.nil? or borrower.empty?
+      where(nil)
+    else
+      where(borrower: borrower) 
+    end
+  end
+
+  def self.office_is(id)
+    if id.nil?
+      where(nil)
+    else
+      where(office_id: id)
+    end
+  end
+
+  def self.title_like(name)
+    # finds records where title name is like name
+    # note that the % is inside the parameter because otherwise Rails will put
+    # the quotes inside the %'s (eg. for name = kevin, Rails will try to say
+    # titles.name LIKE %"kevin"% instead of LIKE "%kevin%")
+    if name.nil? or name.empty?
+      where(nil)
+    else
+      joins(:title).where("titles.name LIKE ?", "%#{name}%")
+    end
+  end
+
   #############################################################################
   private
 
@@ -100,6 +120,20 @@ class Record < ApplicationRecord
         # TODO fix how this displays
         errors.add(:option, "You must select a valid option.")
       end
+    end
+  end
+
+  # private
+  def initalize_default_loan
+    if new_record? and self.loan_length_seconds.nil? and self.title
+      self.loan_length_seconds = self.title.loan_length_seconds
+    end
+  end
+
+  # private
+  def initialize_default_office
+    if new_record? and self.office.nil? and self.title
+      write_attribute(:office_id,  self.title.office_id)
     end
   end
 end

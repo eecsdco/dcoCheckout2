@@ -8,12 +8,6 @@ class ReminderMailer < ApplicationMailer
       subject: 'Checkout Notification for ' + @record.title.name)
   end
 
-  def send_reminders
-    # this is run every two hours by whenever
-    send_due_emails
-    send_overdue_emails
-  end
-
   def send_due_emails
     records = Record.where(in: nil)
       .where("due >= :min_time AND due < :max_time",

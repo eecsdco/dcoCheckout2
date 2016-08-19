@@ -1,7 +1,7 @@
 class RecordsController < ApplicationController
   before_action :require_login
   before_action :require_checkout_authorization, only: [:new, :create, :return, :return_post]
-  before_action :require_administrator, only: [:confirm_return, :destroy]
+  before_action :require_administrator, only: [:edit, :update, :confirm_return, :destroy]
 
   before_action :get_title, only: [:new]
   before_action :get_record, only: [:show, :return, :return_post, :edit, :update, :destroy, :confirm_return]
@@ -11,6 +11,9 @@ class RecordsController < ApplicationController
 
   def index
     @records = Record.all
+    @records = @records.borrower_is(params[:uniqname])
+    @records = @records.office_is(params[:office_id])
+    @records = @records.title_like(params[:title_name])
   end
 
   def show
@@ -47,13 +50,13 @@ class RecordsController < ApplicationController
     @record.out = DateTime.current
     @record.agent = uniqname
     unless administrator?
+      # don't let the user inject stuff that they're not supposed to change
       @record.loan_length_seconds = @record.title.loan_length_seconds
-      logger.debug "Setting loan_length_seconds on #{@record.id} to #{@record.title.loan_length}"
-      @record.borrower = uniqname # don't let the user redefine things
+      @record.borrower = uniqname
       @record.office = Office.find current_office_id
-      flash[:error] = "Records#create: Office is " + @record.office.name
     end
     if @record.save
+      ReminderMailer.checkout_email(@record).deliver
       redirect_to @record
     else
       @title = Title.find_by_id(@record.title_id)
@@ -62,6 +65,17 @@ class RecordsController < ApplicationController
       else
         render "new"
       end
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @record.update(record_parameters)
+      redirect_to @record
+    else
+      render "edit"
     end
   end
 

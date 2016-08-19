@@ -16,13 +16,13 @@
 
 <% unless @overdue.empty? %>
   <h3>Overdue</h3>
-  <%= render "records/records_table", records: @overdue,
+  <%= render "records/table", records: @overdue,
       display: [:name, :category, :out, :due] %>
 <% end %>
 
 <% unless @out.empty? %>
   <h3>Out</h3>
-  <%= render "records/records_table", records: @out,
+  <%= render "records/table", records: @out,
       display: [:name, :category, :out, :due] %>
 <% end %>
 
