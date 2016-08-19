@@ -1,11 +1,5 @@
 require 'str_to_seconds'
 class Record < ApplicationRecord
-  # TODO XXX TODO XXX
-  # This whole loan_length(=) thing is a cluster fuck at this point
-  # It needs to be completely refactored probably
-  # I think Record is better at this than Title is... but I'm not sure
-  # Title actually has two separate attributes, whereas Title tries to
-  # transform the actual attribute
   belongs_to :title
   belongs_to :office
 
@@ -117,8 +111,7 @@ class Record < ApplicationRecord
   def option_exists
     unless self.title.options.empty?
       unless self.option.in? self.title.options
-        # TODO fix how this displays
-        errors.add(:option, "You must select a valid option.")
+        errors.add(:option, "must be selected for this title")
       end
     end
   end

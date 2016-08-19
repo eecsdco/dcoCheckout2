@@ -57,22 +57,22 @@
 <div>
   <span class="show-label">Due at:</span>
   <% if @record.due %>
-    <p class=<%= '"past-due"' if DateTime.current > @record.due and @record.in.nil? %>><%= format_datetime @record.due %><p>
+    <p class=<%= 'past-due' if DateTime.current > @record.due and @record.in.nil? %>><%= format_datetime @record.due %> <%= "(past due)" if DateTime.current > @record.due and @record.in.nil? %></p>
   <% else %>
     <p>Loaned indefinitely</p>
   <% end %>
 </div>
 <div>
   <span class="show-label">Checked out at:</span>
-  <p><%= format_datetime @record.out %><p>
+  <p><%= format_datetime @record.out %></p>
 </div>
 <% if @record.in %>
   <div>
     <span class="show-label">Checked in at:</span>
-    <p class=<%= '"past-due"' if @record.due and @record.in > @record.due %>><%= format_datetime @record.in %><p>
+    <p class=<%= '"past-due"' if @record.due and @record.in > @record.due %>><%= format_datetime @record.in %> <%= "(late)" if @record.due and @record.in > @record.due %></p>
   </div>
   <div>
     <span class="show-label">Return approved at:</span>
-    <p><%= format_datetime @record.return_approved unless @record.return_approved.nil? %><p>
+    <p><%= format_datetime @record.return_approved unless @record.return_approved.nil? %></p>
   </div>
 <% end %>

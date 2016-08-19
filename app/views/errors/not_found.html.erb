@@ -1,2 +1,9 @@
-<h1>Errors#not_found</h1>
-<p>Find me in app/views/errors/not_found.html.erb</p>
+<% content_for :secondary_title do %>
+  Not Found
+<% end %>
+
+<% content_for :secondary_nav do %>
+  <%= link_to "Home", root_path %>
+<% end %>
+
+<p>The page you requested could not be found; the resource you were trying to access was probably deleted. Please contact a member of DCO Staff if you need support.</p>

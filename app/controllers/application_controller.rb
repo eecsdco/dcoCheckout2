@@ -45,7 +45,6 @@ class ApplicationController < ActionController::Base
   end
 
   def require_administrator
-    # TODO the logic here is kind of iffy
     if logged_in?
       unless administrator?
         redirect_to unauthorized_path
@@ -64,8 +63,7 @@ class ApplicationController < ActionController::Base
   end
 
   def checkout_computer?
-    # TODO TODO TODO remove the or true
-    request.remote_addr.in? Rails.configuration.checkout_computers or true
+    request.remote_addr.in? Rails.configuration.checkout_computers
   end
 
   def authorized_to_checkout?

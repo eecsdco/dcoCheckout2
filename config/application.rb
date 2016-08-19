@@ -27,7 +27,7 @@ Rails.application.configure do
   config.checkout_computers = {
     '141.212.104.27' => 2, # eecs-dco-frontcomp1, in EECS
     '141.212.106.192' => 1, # dco-checkout-imac in BBB
-    '66.69.249.95' => 1 # TODO remove this, it was for testing purposes
+    '67.198.16.148' => 1 # TODO remove this, it was for testing purposes
   }
 
   # Cosign Stuff

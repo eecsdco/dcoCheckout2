@@ -34,7 +34,7 @@
   <% unless @title.options.empty? %>
     <div>
       <%= f.label :option %>
-      <%= f.select(:option, options_for_select(@title.options)) %>
+      <%= f.select(:option, options_for_select(@title.options), :include_blank => true) %>
     </div>
   <% end %>
   <div>

@@ -26,7 +26,6 @@ class Title < ApplicationRecord
   end
 
   def n_out
-    # TODO: Caching?
     self.records.where(in: nil).length
   end
 

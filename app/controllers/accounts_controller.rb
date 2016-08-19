@@ -5,13 +5,14 @@ class AccountsController < ApplicationController
   # so that they can log out.
   before_action :require_login, except: [:logout]
   before_action :require_administrator, only: [:index]
-
-  # TODO move all the uniqname processing stuff into a before_action filter
+  before_action :initialize_uniqname
 
   helper_method :total_overdue
   helper_method :total_on_time
+  helper_method :total_checkouts
 
   def index
+    # TODO
     render inline: '<p>Not implemented</p>', layout: true
   end
 
@@ -20,31 +21,22 @@ class AccountsController < ApplicationController
     # administrator, allow them to view another person's account; if they're
     # not an administrator, show them a 401 Unauthorized message; if no
     # uniqname is specified, simply show the user's account
-    if params[:uniqname].nil?
-      @uniqname = uniqname
-    else
-      if administrator?
-        @uniqname = params[:uniqname]
-      else
-        redirect_to unauthorized_path
-        return
-      end
-    end
-
     @overdue = Record.where(borrower: @uniqname).overdue
     @out = Record.where(borrower: @uniqname).out_but_not_overdue
+
+    @total_checked_out = @overdue.length + @out.length
+
+    @pie_chart_params = {}
+    @pie_chart_params["Checked Out"] = @total_checked_out if (@total_checked_out > 0)
+    @pie_chart_params["Returned On Time"] = total_on_time if total_on_time > 0
+    @pie_chart_params["Returned Past Due"] = total_overdue if total_overdue > 0
   end
 
   def history
-    # this param should always exist, because it's required for the route to be
-    # matched... but just because I wrote this comment, I'm gonna run into shit
-    @uniqname = params[:uniqname]
     @records = Record.where(borrower: @uniqname).reorder(out: :desc)
   end
 
   def statistics
-    @uniqname = params[:uniqname]
-
     # generate a hash of 'title name' => 'number of checkouts' pairs for use in
     # a pretty nifty pie chart
     @common_titles = Hash[Record.where(borrower: @uniqname).group(:title_id).count.map { |k, v| [Title.find(k).name, v] }]
@@ -69,6 +61,7 @@ class AccountsController < ApplicationController
       .length
   end
 
+  # private
   def total_on_time
     # NOT DATABASE AGNOSTIC
     # DEPENDS UPON MYSQL FOR THE ` QUOTING OF COLUMN NAMES
@@ -77,5 +70,29 @@ class AccountsController < ApplicationController
     Record.where(borrower: @uniqname)
       .where('(`in` <= `due`)', DateTime.now)
       .length
+  end
+
+  # private
+  def total_checkouts
+    Record.where(borrower: @uniqname).length
+  end
+
+  # private
+  def initialize_uniqname
+    if params[:uniqname].nil? or params[:uniqname] == uniqname
+      # if no uniqname is passed, just present the user with their own account
+      # if the uniqname is passed, and it matches the uniqname of the user
+      # making the request, that's okay too
+      @uniqname = uniqname
+    else
+      if administrator?
+        # only administrators are allowed to view other peoples accounts
+        @uniqname = params[:uniqname]
+      else
+        # if not an administrator, they're not allowed to view other people's accounts
+        redirect_to unauthorized_path
+        return
+      end
+    end
   end
 end

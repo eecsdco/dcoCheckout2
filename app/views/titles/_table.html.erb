@@ -13,6 +13,9 @@
       <% if :notice.in? display %>
         <th>Notice</th>
       <% end %>
+      <% if :office.in? display %>
+        <th>Office</th>
+      <% end %>
       <% if :n_available.in? display %>
         <th>Available</th>
       <% end %>
@@ -55,6 +58,9 @@
             <% end %>
           </td>
         <% end %>
+        <% if :office.in? display %>
+          <td><%= title.office.name unless title.office.nil? %></td>
+        <% end %>
         <% if :n_available.in? display %>
           <td style="text-align: center;">
             <% unless title.n_available.nil? %>
@@ -80,5 +86,3 @@
   <% # render without the form and enabled checkboxes %>
   <%= content_for :titles_table %>
 <% end %>
-
-<p class="todo-message">TODO: Add a building column, add filter by building</p>

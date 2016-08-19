@@ -7,7 +7,6 @@ function submit_search() {
     // process search results
     var new_html = ""
     jQuery.each(results, function (i, result) {
-      console.log(result)
       new_html += '<a href="/titles/' + result.id + '">' + result.name + "</a>\n";
     });
     $("#searchbar-results").html(new_html);

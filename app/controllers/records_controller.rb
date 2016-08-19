@@ -23,14 +23,17 @@ class RecordsController < ApplicationController
   end
 
   def new
-    # TODO: Refactor logic here
     if @title
-      if !@title.available? and administrator?
-        flash[:error] = "Every instance of this title is checked out in the checkout system. You are allowed to check it out because you are an administrator; please investigate why the system thinks there are no more of this title available (e.g. a title was returned but not marked returned, or, the number available in the system is inaccurate (i.e. too low)"
-      end
-      if @title.available? or administrator?
+      if ((Record.where(borrower: uniqname)
+          .where('(? > `due` AND `in` IS NULL)', DateTime.now)
+          .length) > 0) and !administrator?
+        flash[:error] = "You are unable to check out any new titles. Your account currently has a hold on it: you have overdue titles. Please speak to a member of the DCO Staff to resolve this issue."
+        redirect_to account_path
+      elsif @title.available?
         @record = Record.new(title: @title)
-        render "new", layout: true
+      elsif administrator?
+        @record = Record.new(title: @title)
+        flash.now[:error] = "Every instance of this title is checked out in the checkout system. You are allowed to check it out because you are an administrator; please investigate why the system thinks there are no more of this title available (e.g. a title was returned but not marked returned, or, the number available in the system is inaccurate (i.e. too low)"
       else
         flash[:error] = "This item is currently unavailable; there are no more of this item available for checkout. Please contact a DCO Staff Member if you need assistance."
         redirect_to @title
@@ -42,11 +45,6 @@ class RecordsController < ApplicationController
 
   def create
     @record = Record.new(record_parameters)
-    # TODO move this into a before_action thing
-    unless @record.title.enabled
-      flash[:error] = @title.name + " is not available for checkout."
-      redirect_to @title
-    end
     @record.out = DateTime.current
     @record.agent = uniqname
     unless administrator?
@@ -127,10 +125,13 @@ class RecordsController < ApplicationController
 
   def get_record
     @record = Record.find_by_id(params[:record_id])
+    if @record.nil?
+      redirect_to not_found_path
+    end
   end
 
   def require_enabled_title
-    unless @title.enabled
+    unless @title.enabled or administrator?
       flash[:error] = @title.name + " is not available for checkout."
       redirect_to @title
     end

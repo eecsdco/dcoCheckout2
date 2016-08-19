@@ -92,7 +92,6 @@ class TitlesController < ApplicationController
       @titles = Titles.where(enabled: true)
     end
     @titles = @titles.sort_by { |title| ((title.name.index(regexp) or 999)) }
-    #render inline: "<% console %>", layout: true
     render json: @titles, status: :created
   end
 
@@ -102,7 +101,7 @@ class TitlesController < ApplicationController
 
   # private
   def title_parameters
-    permit_attribute_list = [:name, :category_id, :description, :notice_id, :n_available, :loan_length, :office_id, :enabled]
+    permit_attribute_list = [:name, :category_id, :description, :notice_id, :n_available, :loan_length, :office_id, :enabled, :options_str]
     if params[:title]
       params.require(:title).permit(*permit_attribute_list)
     else
