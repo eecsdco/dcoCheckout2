@@ -2,7 +2,7 @@
 
 <div id="category-container">
   <% path_method = method(path) %>
-  <% Category.all.each do |c| %>
+  <% @categories.each do |c| %>
     <%= link_to(path_method.call(:category_id => c), class: "category", category: c) do %>
       <div><!-- CSS magic for vertical alignment -->
         <p><%= c.name %></p>

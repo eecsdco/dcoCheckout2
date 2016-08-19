@@ -9,19 +9,15 @@ class ReminderMailer < ApplicationMailer
   end
 
   def send_reminders
-    puts "running send_reminders"
     # this is run every two hours by whenever
-    puts "running send_due_emails"
     send_due_emails
-    puts "running send_overdue_emails"
     send_overdue_emails
   end
 
   def send_due_emails
-    puts "send_due_emails"
     records = Record.where(in: nil)
       .where("due >= :min_time AND due < :max_time",
-      {min_time: DateTime.now - 2.hours, max_time: DateTime.now})
+      {min_time: DateTime.now, max_time: DateTime.now + 2.hours})
     records.each do |record|
       due_email(record).deliver
     end
@@ -30,23 +26,24 @@ class ReminderMailer < ApplicationMailer
   def due_email(record)
     @record = record
     mail(to: record.borrower + '@umich.edu',
-      subject: record.title.name + " is Due",
+      subject: "Your " + record.title.name + " is Due",
       template_name: 'due_email')
   end
 
   def send_overdue_emails
     puts "send_overdue_emails"
     records = Record.where(in: nil)
-      .where("due >= ?", DateTime.now)
+      .where("due <= ?", DateTime.now)
     records.each do |record|
       overdue_email(record).deliver
     end
   end
 
   def overdue_email(record)
+    puts "Sending overdue email to #{record.borrower}"
     @record = record
     mail(to: record.borrower + '@umich.edu',
-      subject: record.title.name + ' is Overdue',
+      subject: "Your " + record.title.name + ' is Overdue',
       template_name: 'overdue_email')
   end
 end

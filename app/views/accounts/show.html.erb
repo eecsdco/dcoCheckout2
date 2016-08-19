@@ -1,0 +1,33 @@
+<% content_for :secondary_title do %>
+  <%= @uniqname %>
+<% end %>
+
+<% content_for :secondary_nav do %>
+  <%= link_to "Account History", account_history_path(@uniqname) %>
+  <%= link_to "Account Statistics", account_statistics_path(@uniqname) %>
+  <%= link_to "Back", :back %>
+<% end %>
+
+<p class="todo-message">This area should show a person's most commonly checkout out titles, their average loan time, their checked-in-on-time to overdue ratio, et cetera. It should also definitely show a person's currently overdue titles, followed by titles that are checked out, and THEN titles that are returned. Or maybe not that last part, and just have a link to view all records.</p>
+
+<p>You have <%= @overdue.length + @out.length %> titles currently checked out.</p>
+
+<p>You have returned <%= total_on_time %> titles on time, and were late returning <%= total_overdue %> titles.</p>
+
+<% unless @overdue.empty? %>
+  <h3>Overdue</h3>
+  <%= render "records/records_table", records: @overdue,
+      display: [:name, :category, :out, :due] %>
+<% end %>
+
+<% unless @out.empty? %>
+  <h3>Out</h3>
+  <%= render "records/records_table", records: @out,
+      display: [:name, :category, :out, :due] %>
+<% end %>
+
+<% if @overdue.empty? and @out.empty? %>
+  <p>You currently have no titles checked out. DCO thanks you for returning everything that you have borrowed. Have a great day!</p>
+<% end %>
+
+<% console if administrator? %>

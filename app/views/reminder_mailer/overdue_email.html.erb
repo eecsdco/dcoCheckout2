@@ -1,1 +1,1 @@
-<p>This is a reminder that <%= @record.title.name %> is now past its due date. It was due at <%= @record.due %>. Please return it as soon as possible, or contact DCO if you believe this is an error.</p>
+<p>This is a reminder that the <%= @record.title.name %>  that you checked out is now past its due time. It was due at <%= @record.due.strftime(Rails.configuration.datetime_format) %>. Please return it as soon as possible, or contact DCO if you believe this is an error.</p>

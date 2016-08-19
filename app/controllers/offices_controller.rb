@@ -13,11 +13,22 @@ class OfficesController < ApplicationController
 
   def create
     @office = Office.new(office_parameters)
-    @office.save
-    redirect_to @office
+    if @office.save
+      redirect_to @office
+    else
+      render 'new'
+    end
   end
 
   def show
+  end
+
+  def update
+    if @office.update(office_parameters)
+      redirect_to @office
+    else
+      render 'edit'
+    end
   end
 
   def destroy

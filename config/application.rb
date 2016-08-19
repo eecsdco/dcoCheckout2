@@ -25,8 +25,9 @@ Rails.application.configure do
   # Computers that can check stuff out
   # 1 represents the EECS office, 2 represents the BBB office
   config.checkout_computers = {
-    '141.212.104.27' => 1, # eecs-dco-frontcomp1, in EECS
-    '141.212.106.192' => 2 # dco-checkout-imac in BBB
+    '141.212.104.27' => 2, # eecs-dco-frontcomp1, in EECS
+    '141.212.106.192' => 1, # dco-checkout-imac in BBB
+    '66.69.249.95' => 1 # TODO remove this, it was for testing purposes
   }
 
   # Cosign Stuff

@@ -11,7 +11,7 @@ set :output, "/w/web/dco-checkout2/log/whenever.log"
 set :environment, "development"
 #
 
-every 1.minutes do
+every 2.hours do
 #   command "/usr/bin/some_great_command"
 #   runner "ReminderMailer.send_reminders"
 #   rake "some:great:rake:task"

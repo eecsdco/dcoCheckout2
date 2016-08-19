@@ -64,7 +64,8 @@ class ApplicationController < ActionController::Base
   end
 
   def checkout_computer?
-    request.remote_addr.in? Rails.configuration.checkout_computers
+    # TODO TODO TODO remove the or true
+    request.remote_addr.in? Rails.configuration.checkout_computers or true
   end
 
   def authorized_to_checkout?

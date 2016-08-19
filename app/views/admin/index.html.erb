@@ -3,11 +3,13 @@
 <% end %>
 
 <% content_for :secondary_nav do %>
+  <%= link_to "Show All Unreturned", admin_unreturned_path %>
+  <%= link_to "Show Long Term Loans", admin_longterm_path %>
+  <%= link_to "Manage DCO Offices", offices_path %>
 	<%= link_to "Manage Categories", categories_path %>
 	<%= link_to "Manage Notices", notices_path %>
 	<%= link_to "Manage Titles", titles_path %>
 	<%= link_to "Manage Records", records_path %>
-  <%= link_to "Manage DCO Offices", offices_path %>
   <%= link_to "Back", :back %>
 <% end %>
 

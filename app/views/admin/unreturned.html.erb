@@ -1,0 +1,14 @@
+<% content_for :secondary_title do %>
+  Unreturned Titles
+<% end %>
+
+<% content_for :secondary_nav do %>
+  <%= link_to "Show Long Term Loans", admin_longterm_path %>
+  <%= link_to "Back", admin_path %>
+<% end %>
+
+<% if @records.empty? %>
+  <p>No unreturned titles.</p>
+<% else %>
+  <%= render "records/records_table", records: @records, display: [:name, :category, :borrower, :due, :out] %>
+<% end %>

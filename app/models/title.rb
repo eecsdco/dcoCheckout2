@@ -20,22 +20,26 @@ class Title < ApplicationRecord
 
   belongs_to :category
   belongs_to :notice, optional: true
-  belongs_to :office
+  belongs_to :office, optional: true
   has_many :records
 
-  validates :name, presence: true, :uniqueness => { :scope => [:category, :office_id] } 
+  validates :name, presence: true, :uniqueness => { :scope => [:category] } 
   validates :category, presence: true
   validates :description, presence: true, allow_nil: true
   validates :n_available, presence: true, numericality: { only_integer: true, greater_than: 0 }, allow_nil: true
   validates :notice_id, presence: true, allow_nil: true
   validates :loan_length_seconds, presence: true, allow_nil: false
+  #validates :office_id, presence: true, allow_nil: true
 
   validate :office_id_and_n_available
 
   after_initialize :initialize_default_loan
 
   def n_in
-    self.n_available - n_out unless self.n_available.nil?
+    unless self.n_available.nil?
+      # return zero instead of a negative number
+      [self.n_available - self.n_out, 0].max
+    end
   end
 
   def n_out
@@ -50,6 +54,7 @@ class Title < ApplicationRecord
     elsif self.n_available.nil?
       # if a title has a nil n_available, there are an infinite number available for checkout
       return true
+    end
     # if the title is enabled, and has a limited numeber available, the title
     # is enabled if and only if the number in stock is 1 or more
     return n_in > 0
@@ -99,6 +104,13 @@ class Title < ApplicationRecord
     self.options_str = options_array.join("\n")
   end
 
+  def popularity
+    # return the total number of checkouts for sorting purposes
+    Rails.cache.fetch("#{cache_key}/popularity", expires_in: 24.hours) do
+      self.records.length
+    end
+  end
+
   #############################################################################
   private #####################################################################
   #############################################################################
@@ -123,5 +135,6 @@ class Title < ApplicationRecord
     if !n_available.nil? and office_id.nil?
       errors.add(:n_available, "is not a valid option for this title")
     end
+  end
 end
 

@@ -46,6 +46,14 @@
     <% end %>
   </div>
   <div>
+    <%= f.label :office, "Office:" %>
+    <% if administrator? %>
+      <%= f.collection_select(:office_id, Office.all, :id, :name, :include_blank => true) %>
+    <% else %>
+      <p><%= link_to Office.find(current_office_id).name, Office.find(current_office_id) %></p>
+    <% end %>
+  </div>
+  <div>
     <%= f.label :note, "Note:" %>
     <%= f.text_area :note %>
   </div>

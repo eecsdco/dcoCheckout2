@@ -1,1 +1,6 @@
-<p>You have checked out <%= @record.title.name %>. Don't forget to bring it back!</p>
+<p>This is an automated message.</p>
+
+<p>You have checked out a <%= @record.title.name %> from DCO. Please remember to bring it back by <%= @record.due.strftime(Rails.configuration.datetime_format) %>.</p>
+
+<p>Thank you,<br />
+DCO Staff</p>

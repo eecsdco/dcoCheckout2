@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
   before_action :require_administrator, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @categories = Category.all
+    @categories = Category.all.sort_by(&:popularity).reverse!
   end
 
   def show

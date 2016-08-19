@@ -26,11 +26,13 @@
   <span class="show-label">Category:</span>
   <p><%= link_to @title.category.name, @title.category %><p>
 </div>
-<div>
-  <span class="show-label">Location:</span>
-  <p><%= link_to @title.office.name, @title.office %><p>
-  <p><%= @title.office.address %></p>
-</div>
+<% unless @title.office.nil? %>
+  <div>
+    <span class="show-label">Location:</span>
+    <p><%= link_to @title.office.name, @title.office %><p>
+    <%= simple_format @title.office.address %>
+  </div>
+<% end %>
 <div>
   <span class="show-label">Description:</span>
   <p><%= @title.description %><p>

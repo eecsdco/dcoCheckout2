@@ -1,0 +1,14 @@
+<% content_for :secondary_title do %>
+  Long-Term Loans
+<% end %>
+
+<% content_for :secondary_nav do %>
+  <%= link_to "Show All Unreturned", admin_unreturned_path %>
+  <%= link_to "Back", admin_path %>
+<% end %>
+
+<% if @records.empty? %>
+  <p>No long term loans.</p>
+<% else %>
+  <%= render "records/records_table", records: @records, display: [:name, :category, :borrower, :out] %>
+<% end %>

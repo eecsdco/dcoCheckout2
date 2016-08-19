@@ -1,0 +1,15 @@
+<% content_for :secondary_title do %>
+  <%= @uniqname %>'s Account History
+<% end %>
+
+<% content_for :secondary_nav do %>
+  <%= link_to "Account Statistics", account_statistics_path(@uniqname) %>
+  <%= link_to "Back", account_path(@uniqname) %>
+<% end %>
+
+<% if @records.empty? %>
+  <p>You haven't checked anything out before!</p>
+<% else %>
+  <%= render "records/records_table", records: @records,
+      display: [:name, :category, :out, :in, :due] %>
+<% end %>

@@ -22,7 +22,7 @@ class RecordsController < ApplicationController
   def new
     # TODO: Refactor logic here
     if @title
-      if !@title.available? and administator?
+      if !@title.available? and administrator?
         flash[:error] = "Every instance of this title is checked out in the checkout system. You are allowed to check it out because you are an administrator; please investigate why the system thinks there are no more of this title available (e.g. a title was returned but not marked returned, or, the number available in the system is inaccurate (i.e. too low)"
       end
       if @title.available? or administrator?
@@ -31,6 +31,7 @@ class RecordsController < ApplicationController
       else
         flash[:error] = "This item is currently unavailable; there are no more of this item available for checkout. Please contact a DCO Staff Member if you need assistance."
         redirect_to @title
+      end
     else
       redirect_to titles_path
     end
@@ -49,6 +50,8 @@ class RecordsController < ApplicationController
       @record.loan_length_seconds = @record.title.loan_length_seconds
       logger.debug "Setting loan_length_seconds on #{@record.id} to #{@record.title.loan_length}"
       @record.borrower = uniqname # don't let the user redefine things
+      @record.office = Office.find current_office_id
+      flash[:error] = "Records#create: Office is " + @record.office.name
     end
     if @record.save
       redirect_to @record
@@ -89,32 +92,33 @@ class RecordsController < ApplicationController
   end
 
   private
-    def get_title
-      logger.debug params
-      if params[:title_id]
-        @title = Title.find(params[:title_id])
-      else
-        @title = nil
-      end
-    end
 
-    def record_parameters
-      valid_params_list = [:title_id, :borrower, :note, :agent, :loan_length, :option]
-      begin
-        params.require(:record).permit(valid_params_list)
-      rescue ActionController::ParameterMissing
-        params.permit(valid_params_list)
-      end
+  def get_title
+    logger.debug params
+    if params[:title_id]
+      @title = Title.find(params[:title_id])
+    else
+      @title = nil
     end
+  end
 
-    def get_record
-      @record = Record.find_by_id(params[:record_id])
+  def record_parameters
+    valid_params_list = [:title_id, :borrower, :office_id, :note, :loan_length, :option]
+    begin
+      params.require(:record).permit(valid_params_list)
+    rescue ActionController::ParameterMissing
+      params.permit(valid_params_list)
     end
+  end
 
-    def require_enabled_title
-      unless @title.enabled
-        flash[:error] = @title.name + " is not available for checkout."
-        redirect_to @title
-      end
+  def get_record
+    @record = Record.find_by_id(params[:record_id])
+  end
+
+  def require_enabled_title
+    unless @title.enabled
+      flash[:error] = @title.name + " is not available for checkout."
+      redirect_to @title
     end
+  end
 end

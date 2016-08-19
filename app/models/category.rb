@@ -23,6 +23,19 @@ class Category < ApplicationRecord
     !titles.where(enabled: true).empty?
   end
 
+  def popularity
+    # return the total number of checkout records for all titles within the
+    # category for sorting purposes (i.e. categories with most checkouts are
+    # listed first in the checkout menu)
+    @popularity = 0
+    Rails.cache.fetch("#{cache_key}/popularity", expires_in: 12.hours) do
+      self.titles.each do |title|
+        @popularity += title.popularity
+      end
+    end
+    @popularity
+  end
+
   #############################################################################
   private #####################################################################
   #############################################################################

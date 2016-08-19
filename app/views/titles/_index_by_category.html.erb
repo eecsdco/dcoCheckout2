@@ -24,7 +24,7 @@
           <% if administrator? %>
             <%= link_to "(edit)", edit_title_path(title) %><br> 
           <% end %>
-          <%= link_to "(checkout)", checkout_path(title) if title.enabled and authorized_to_checkout? %>
+          <%= link_to "(checkout)", checkout_path(title) if ((title.available? and authorized_to_checkout?) or administrator?) %>
         </td>
         <td><%= short_text title.description %></td>
         <td>

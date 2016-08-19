@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160811164209) do
+ActiveRecord::Schema.define(version: 20160818201314) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",                null: false
@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(version: 20160811164209) do
     t.datetime "due"
     t.datetime "return_approved"
     t.string   "option"
+    t.integer  "office_id"
+    t.index ["office_id"], name: "index_records_on_office_id", using: :btree
     t.index ["title_id"], name: "index_records_on_title_id", using: :btree
   end
 
@@ -58,7 +60,7 @@ ActiveRecord::Schema.define(version: 20160811164209) do
     t.datetime "updated_at",                        null: false
     t.integer  "loan_length_seconds"
     t.integer  "notice_id"
-    t.integer  "office_id",                         null: false
+    t.integer  "office_id"
     t.boolean  "enabled",                           null: false
     t.string   "options_str"
     t.index ["category_id"], name: "index_titles_on_category_id", using: :btree
@@ -66,4 +68,5 @@ ActiveRecord::Schema.define(version: 20160811164209) do
     t.index ["office_id"], name: "index_titles_on_office_id", using: :btree
   end
 
+  add_foreign_key "records", "offices"
 end

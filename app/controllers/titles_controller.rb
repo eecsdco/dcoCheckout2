@@ -19,6 +19,7 @@ class TitlesController < ApplicationController
 
   def index
     if params[:category_id].nil? and params[:all].nil?
+      @categories = Category.all.sort_by(&:popularity).reverse!
       render "category_chooser", layout: true, :locals => {:path => :titles_path}
     elsif !params[:all]
       @category = Category.find(params[:category_id])
@@ -28,12 +29,12 @@ class TitlesController < ApplicationController
       else
         @titles = @category.titles.where(enabled: true)
       end
-
-      # .nil? has to go first, because if current_office_id is nil, .empty?
-      # will raise an exception b/c nil doesn't have an empty? method
+      
       unless current_office_id.nil?
-        @titles = @titles.where(office_id: current_office_id)
+        @titles = @titles.where("office_id = ? OR office_id IS NULL", current_office_id)
       end
+
+      @titles = @titles.sort_by(&:popularity).reverse!
     end
   end
 

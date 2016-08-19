@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  # TODO clean up routes.rb TODO
+
   get '/titles/search', to: 'titles#search', as: 'search_titles'
   root 'welcome#index'
 
@@ -14,8 +17,15 @@ Rails.application.routes.draw do
   get '/statistics', to: 'statistics#index'
 
   get '/accounts', to: 'accounts#index'
+  get '/account(/:uniqname)', to: 'accounts#show', as: 'account'
+  # originally, this path was /account(/:uniqname)/history, such that uniqname
+  # was an optional field, but it was getting gobbled up by the
+  # /account(:/uniqname) route; the simple fix to this is to move the history
+  # route above the account show route, but, if someone with the uniqname
+  # history ever attempts to view their account, it wouldn't really work...
+  get '/account/:uniqname/history', to: 'accounts#history', as: 'account_history'
+  get '/account/:uniqname/statistics', to: 'accounts#statistics', as: 'account_statistics'
   get '/logout', to: 'accounts#logout', as: 'logout'
-  get '/accounts/:uniqname', to: 'accounts#show', as: 'account'
 
   resources :categories, except: [:destroy]
   get 'categories/:id/disable(.:format)', to: 'categories#disable', as: 'disable_category'
@@ -35,8 +45,8 @@ Rails.application.routes.draw do
   post '/records/:record_id/confirm_return', to: 'records#confirm_return', as: 'confirm_record'
 
   get '/admin', to: 'admin#index'
-  scope path: :admin do
-  end
+  get '/admin/unreturned', to: 'admin#unreturned', as: 'admin_unreturned'
+  get '/admin/longterm', to: 'admin#longterm', as: 'admin_longterm'
 
   match '/401', :to => 'errors#unauthorized', :via => :all, :as => 'unauthorized'
   match '/404', :to => 'errors#not_found', :via => :all

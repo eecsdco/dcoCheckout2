@@ -1,0 +1,12 @@
+<% content_for :secondary_title do %>
+  <%= @uniqname %>'s Account Statistics
+<% end %>
+
+<% content_for :secondary_nav do %>
+  <%= link_to "Account History", account_history_path(@uniqname) %>
+  <%= link_to "Back", account_path(@uniqname) %>
+<% end %>
+
+<p>Nothing here yet.</p>
+
+<p>TODO: Show a user's on-time to overdue ratios, show their most commonly checked out titles, average loan length, etc.</p>
