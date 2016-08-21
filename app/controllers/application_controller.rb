@@ -1,3 +1,5 @@
+require 'ipaddr'
+
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   force_ssl
@@ -58,7 +60,20 @@ class ApplicationController < ActionController::Base
     if params[:office_id]
       params[:office_id]
     else
-      Rails.configuration.checkout_computers[request.remote_addr]
+      remote_addr = IPAddr.new request.remote_addr
+      logger.debug "checking #{remote_addr.inspect}"
+      for subnet, office_id in Rails.configuration.office_subnets
+        if subnet === remote_addr
+          # === is a ruby, class definable operator, but it usually means
+          # something along the lines of "does the thing on the right fit
+          # inside the thing on the left"
+          logger.debug "in subnet #{subnet.inspect}"
+          return office_id
+        else
+          logger.debug "not in subnet #{subnet.inspect}"
+        end
+      end
+      return nil
     end
   end
 
