@@ -27,6 +27,30 @@
 <% end %>
 
 <%= render "records/table", records: @records,
-    display: [:name, :category, :borrower, :out, :in] %>
+    display: [:name, :category, :borrower, :out, :in, (:office unless params[:office_id].present?)] %>
+
+<% if @total_pages > 1 %>
+  <!-- FUTURE: This is kind of a hack so... idk -->
+  <div class="pagination-container">
+    <ul class="pagination">
+      <% @dot_dot_dotted = false %>
+      <% (1..@total_pages).each do |i| %>
+        <% # always show the first page, the last page, and the pages within %>
+        <% # a distance of 2 %>
+        <% if i == 1 or i == @total_pages or (i - @current_page).abs < 3 %>
+          <% @dot_dot_dotted = false %>
+          <li <%= 'class=active' if i == @current_page %>>
+            <%= link_to i.to_s, @params.merge(:page => i) %>
+          </li>
+        <% elsif !@dot_dot_dotted %>
+          <% @dot_dot_dotted = true %>
+          <li class="disabled"><a>&hellip;</a></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
 
 <!-- FUTURE: Convert the filtering stuff to use AJAX instead of loading a brand new page... -->

@@ -23,6 +23,10 @@ Rails.application.configure do
   # Uniqnames of DCO staff who can edit shit
   config.administrators = [:travigd, :victorbp, :laura, :don, :lrandolp, :kbanas, :hugh, :jvanlav, :liz, :dholt, :stander, :armruval, :mmgeorg, :swethar, :hayjacob]
 
+  # number of items to show on index/listing pages (numbers greater than this
+  # result in the page being split into multiple sub-pages)
+  config.index_length = 20
+
   # Computers that can check stuff out
   # 1 represents the EECS office, 2 represents the BBB office
   config.checkout_computers = {

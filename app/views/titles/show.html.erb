@@ -37,6 +37,12 @@
   <span class="show-label">Description:</span>
   <p><%= @title.description %><p>
 </div>
+<% if @title.options_str.present? %>
+  <div>
+    <span class="show-label">Options:</span>
+    <%= simple_format @title.options_str %>
+  </div>
+<% end %>
 <div>
   <span class="show-label">Notice:</span>
   <% unless @title.notice.nil? %>

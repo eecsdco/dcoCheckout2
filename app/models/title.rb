@@ -83,7 +83,11 @@ class Title < ApplicationRecord
 
   def options=(options_array)
     options_array.each { |option| option.strip! }
-    self.options_str = options_array.join("\n")
+    write_attribute :options_str, options_array.join("\n")
+  end
+
+  def options_str=(new_options_str)
+    self.options = new_options_str.split("\n")
   end
 
   def popularity

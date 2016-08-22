@@ -10,6 +10,9 @@
     <% if :borrower.in? display %>
       <th>Borrower</th>
     <% end %>
+    <% if :office.in? display %>
+      <th>Office</th>
+    <% end %>
     <% if :note.in? display %>
       <th>Note</th>
     <% end %>
@@ -41,6 +44,11 @@
       <% end %>
       <% if :borrower.in? display %>
         <td><%= link_to record.borrower, account_path(uniqname: record.borrower) %></td>
+      <% end %>
+      <% if :office.in? display %>
+        <td>
+          <%= record.office.name %>
+        </td>
       <% end %>
       <% if :note.in? display %>
         <td><%= short_text record.note %></td>

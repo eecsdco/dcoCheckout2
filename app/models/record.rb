@@ -50,7 +50,7 @@ class Record < ApplicationRecord
 
   # scope
   def self.default_scope
-    order(:out)
+    order(out: :desc)
   end
 
   # scope
@@ -61,29 +61,29 @@ class Record < ApplicationRecord
 
   def self.overdue
     # return records that are overdue
-    self.out.where('due < ?', DateTime.now).reorder(:due)
+    self.out.where('due < ?', DateTime.now).reorder(due: :desc)
   end
 
   def self.out_but_not_overdue
     # returns records which are not checked in, but which are also not overdue
     # useful for when you might be displaying records which are overdue and
     # then records that are out in two different areas
-    self.out.where('due > ?', DateTime.now).reorder(:out)
+    self.out.where('due > ?', DateTime.now)
   end
 
   def self.borrower_is(borrower)
-    if borrower.nil? or borrower.empty?
-      where(nil)
+    if borrower.present?
+      where(borrower: borrower)
     else
-      where(borrower: borrower) 
+      where(nil)
     end
   end
 
   def self.office_is(id)
-    if id.nil?
-      where(nil)
-    else
+    if id.present?
       where(office_id: id)
+    else
+      where(nil)
     end
   end
 
@@ -92,10 +92,10 @@ class Record < ApplicationRecord
     # note that the % is inside the parameter because otherwise Rails will put
     # the quotes inside the %'s (eg. for name = kevin, Rails will try to say
     # titles.name LIKE %"kevin"% instead of LIKE "%kevin%")
-    if name.nil? or name.empty?
-      where(nil)
-    else
+    if name.present?
       joins(:title).where("titles.name LIKE ?", "%#{name}%")
+    else
+      where(nil)
     end
   end
 

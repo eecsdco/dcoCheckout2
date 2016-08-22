@@ -4,16 +4,35 @@ class RecordsController < ApplicationController
   before_action :require_administrator, only: [:edit, :update, :confirm_return, :destroy]
 
   before_action :get_title, only: [:new]
-  before_action :get_record, only: [:show, :return, :return_post, :edit, :update, :destroy, :confirm_return]
+  before_action :get_record, only: [:show, :return_post, :edit, :update, :destroy, :confirm_return]
 
   before_action :require_enabled_title, only: [:new]
 
 
   def index
-    @records = Record.all
+    # Rails lazy-loads all this, so the conditions are all applied at the same
+    # time; this means that instead of taking the first 20 records, then
+    # filtering those, it takes the first twenty records that match all the
+    # critera specified
+    @records = Record.where(nil)
     @records = @records.borrower_is(params[:uniqname])
     @records = @records.office_is(params[:office_id])
     @records = @records.title_like(params[:title_name])
+
+
+    @total_pages = (@records.count.to_f / Rails.configuration.index_length).ceil
+    @current_page = params[:page].to_i # if nil, to_i converts to 0
+    if @current_page < 1
+      # don't allow negative page numbers
+      @current_page = 1
+    elsif @current_page > @total_pages
+      # don't allow a user to go past the total number of pages
+      @current_page = @total_pages
+    end
+    @params = params.permit(:title_name, :uniqname, :office_id)
+
+    @records = @records.limit(Rails.configuration.index_length)
+      .offset((@current_page - 1)  * Rails.configuration.index_length)
   end
 
   def show
@@ -83,6 +102,7 @@ class RecordsController < ApplicationController
   end
 
   def return
+    @record = Record.find_by_id(params[:record_id])
     if @record
       render "return"
     else
