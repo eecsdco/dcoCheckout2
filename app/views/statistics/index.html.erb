@@ -38,3 +38,5 @@
     </tr>
   <% end %>
 </table>
+
+<%= pie_chart @titles_count_hash.map { |title, count| [title.name, count] } %>

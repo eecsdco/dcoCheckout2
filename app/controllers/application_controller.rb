@@ -17,21 +17,13 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login
-    if request.env['REMOTE_USER'].nil? and cookies[:view_as].nil?
+    if request.env['REMOTE_USER'].nil?
       redirect_to login_path
     end
   end
 
   def uniqname
-    if Rails.env.development?
-      if params[:view_as]
-        cookies[:view_as] = params[:view_as]
-        return cookies[:view_as]
-      elsif cookies[:view_as]
-        return cookies[:view_as]
-      end
-      request.env['REMOTE_USER']
-    end
+    return request.env['REMOTE_USER']
   end
 
   def logged_in?

@@ -5,7 +5,7 @@ class TitlesController < ApplicationController
     only: [:new, :create, :update, :edit, :destroy]
 
   def new
-    @title = Title.new(title_parameters)
+    @title = Title.new(title_parameters.merge(enabled: true))
   end
   
   def create

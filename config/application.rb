@@ -77,8 +77,8 @@ Rails.application.configure do
   }
 
   # Cosign Stuff
-  config.cosign_login_path = "https://weblogin.umich.edu/?cosign-sabine.eecs&https://sabine.eecs.umich.edu/"
-  config.cosign_logout_path = "https://weblogin.umich.edu/cosign-bin/logout?https://sabine.eecs.umich.edu/"
+  config.cosign_login_path = "https://weblogin.umich.edu/?cosign-checkout.eecs&https://checkout.eecs.umich.edu/"
+  config.cosign_logout_path = "https://weblogin.umich.edu/cosign-bin/logout?https://checkout.eecs.umich.edu/"
   
   # use the routes defined to handle exceptions (HTTP 404, 500)
   config.exceptions_app = self.routes

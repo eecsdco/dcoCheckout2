@@ -13,6 +13,7 @@
 
   <div>
     <%= f.label :name %>
+    <p>A relatively descriptive name for this item. Undescriptive (i.e. BAD) names include things like "Laptop" or "Display Adapter," as these terms can represent a large array of things.</p>
     <%= f.text_field :name %>
   </div>
   
@@ -23,37 +24,44 @@
 
   <div>
     <%= f.label :office %>
+    <p>The location of this item. This field can be left blank for items which are available in both offices (ex. VGA Cables, Microsoft Office, etc.). This field cannot be left blank if a set number available is specified, as there is no way to keep track of how many are in each office.</p>
     <%= f.collection_select(:office_id, Office.all, :id, :name, :include_blank => true) %>
   </div>
  
   <div>
     <%= f.label :description %>
+    <p>A description for the item. This field is also searched when selecting a title from the search bar.</p>
     <%= f.text_area :description %>
   </div>
 
   <div>
     <%= f.label :notice %>
+    <p>A predefined notice that the user is presented with when checking the item out. Used for notifications about non-free software that cannot be installed on non-University owned machines, for example.</p>
     <%= f.select(:notice_id, Notice.all.collect {|n| [ n.name, n.id ] }, {include_blank: '-- None --'}) %>
     <!--<%= f.collection_select(:notice_id, Notice.all, :id, :name) %>
     -->
   </div>
   <div>
     <%= f.label :n_available %>
+    <p>The number (if finite) of this item that is available for checkout. This field cannot be used if an office is not specified, as there is no way to keep track of how many are in each office.</p>
     <%= f.text_field :n_available %>
   </div>
 
   <div>
     <%= f.label :options_str, "Options" %>
+    <p>A list of new-line separated options available for checkout; the user will be forced to select one of these when they check this item out. When there are multiple copies of an item that's relatively expensive, identifying information should be put here (e.g. serial numbers if there are three of the same model of laptop).</p>
     <%= f.text_area :options_str %>
   </div>
 
   <div>
     <%= f.label :loan_length %>
+    <p>A loan length time in human readable format (e.g. 1 week, 4 days, etc.). Administrators may override this value when checking something out.</p>
     <%= f.text_field :loan_length %>
   </div>
 
   <div>
     <%= f.label :enabled %>
+    <p>If enabled, the title is available for checkout.</p>
     <%= f.check_box :enabled %>
   </div>
    
