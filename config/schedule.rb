@@ -7,7 +7,7 @@ env :PATH, ENV['PATH']
 
 # Example:
 #
-set :output, "/w/web/dco-checkout2/log/whenever.log"
+set :output, "log/whenever.log"
 set :environment, "development"
 #
 
