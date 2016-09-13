@@ -49,11 +49,6 @@ class Record < ApplicationRecord
   end
 
   # scope
-  def self.default_scope
-    order(out: :desc)
-  end
-
-  # scope
   def self.out
     # return records which have not yet been checked in
     where(in: nil)
