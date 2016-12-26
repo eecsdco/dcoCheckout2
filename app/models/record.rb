@@ -104,9 +104,9 @@ class Record < ApplicationRecord
 
   # private
   def option_exists
-    unless self.title.options.empty?
+    if self.title and !self.title.options.empty?
       unless self.option.in? self.title.options
-        errors.add(:option, "must be selected for this title")
+        #errors.add(:option, "must be selected for this title")
       end
     end
   end

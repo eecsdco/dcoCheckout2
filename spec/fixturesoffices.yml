@@ -1,4 +1,5 @@
-office_1:
+---
+Office_1:
   id: 1
   name: 2917 BBB
   address: "Departmental Computing Organization\r\n2917 Bob and Betty Beyster Building\r\n2260
@@ -12,15 +13,14 @@ office_1:
     utc: 2016-09-01 21:13:36.000000000 Z
     zone: *1
     time: 2016-09-01 17:13:36.000000000 Z
-office_2:
+Office_2:
   id: 2
   name: 4403 EECS
   address: "Departmental Computing Organization\r\n4403 Electrical Engineering and
     Computer Science Building\r\n1301 Beal Ave\r\nAnn Arbor, MI, 48109"
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-01 21:14:36.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-01 17:14:36.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-01 21:14:47.000000000 Z

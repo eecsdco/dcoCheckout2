@@ -1,4 +1,5 @@
-notice_1:
+---
+Notice_1:
   id: 1
   name: Wired Network Registration
   text: To connect new computers (or computers that have changed rooms) to the DCO
@@ -13,7 +14,7 @@ notice_1:
     utc: 2016-09-01 21:37:12.000000000 Z
     zone: *1
     time: 2016-09-01 17:37:12.000000000 Z
-notice_2:
+Notice_2:
   id: 2
   name: Microsoft Notice
   text: Microsoft Software, per our license agreement with Microsoft, may only be
@@ -21,8 +22,7 @@ notice_2:
     This software must not be duplicated.
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-02 18:47:08.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-02 14:47:08.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-02 18:47:08.000000000 Z

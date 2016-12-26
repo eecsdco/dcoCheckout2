@@ -1,4 +1,5 @@
-record_1:
+---
+Record_1:
   id: 1
   title_id: 16
   borrower: honglak
@@ -9,7 +10,6 @@ record_1:
     zone: &1 !ruby/object:ActiveSupport::TimeZone
       name: America/New_York
     time: 2016-09-02 14:43:59.000000000 Z
-  in: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-02 18:43:59.000000000 Z
     zone: *1
@@ -22,10 +22,9 @@ record_1:
     utc: 2016-09-04 18:43:59.000000000 Z
     zone: *1
     time: 2016-09-04 14:43:59.000000000 Z
-  return_approved: 
   option: Windows 10 Enterprise
   office_id: 1
-record_2:
+Record_2:
   id: 2
   title_id: 19
   borrower: tienliao
@@ -33,10 +32,8 @@ record_2:
   agent: travigd
   out: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-06 15:32:14.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-06 11:32:14.000000000 Z
-  in: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-06 15:32:14.000000000 Z
     zone: *1
@@ -49,10 +46,8 @@ record_2:
     utc: 2016-10-08 15:32:14.000000000 Z
     zone: *1
     time: 2016-10-08 11:32:14.000000000 Z
-  return_approved: 
-  option: 
   office_id: 2
-record_3:
+Record_3:
   id: 3
   title_id: 22
   borrower: ajayi
@@ -60,10 +55,8 @@ record_3:
   agent: travigd
   out: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-06 17:55:34.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-06 13:55:34.000000000 Z
-  in: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-06 17:55:34.000000000 Z
     zone: *1
@@ -72,11 +65,8 @@ record_3:
     utc: 2016-09-06 17:55:41.000000000 Z
     zone: *1
     time: 2016-09-06 13:55:41.000000000 Z
-  due: 
-  return_approved: 
-  option: 
   office_id: 1
-record_4:
+Record_4:
   id: 4
   title_id: 31
   borrower: thomkuo
@@ -84,10 +74,8 @@ record_4:
   agent: travigd
   out: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-13 15:30:23.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-13 11:30:23.000000000 Z
-  in: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-13 15:30:23.000000000 Z
     zone: *1
@@ -100,10 +88,9 @@ record_4:
     utc: 2016-12-22 16:30:23.000000000 Z
     zone: *1
     time: 2016-12-22 11:30:23.000000000 Z
-  return_approved: 
   option: Capricorn (Service Tag JNVJYL1)
   office_id: 1
-record_5:
+Record_5:
   id: 5
   title_id: 11
   borrower: yajchen
@@ -111,10 +98,8 @@ record_5:
   agent: yajchen
   out: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-10-06 17:00:17.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-10-06 13:00:17.000000000 Z
-  in: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-10-06 17:00:17.000000000 Z
     zone: *1
@@ -127,10 +112,8 @@ record_5:
     utc: 2016-10-08 17:00:17.000000000 Z
     zone: *1
     time: 2016-10-08 13:00:17.000000000 Z
-  return_approved: 
-  option: 
   office_id: 1
-record_6:
+Record_6:
   id: 6
   title_id: 42
   borrower: travigd
@@ -138,22 +121,49 @@ record_6:
   agent: travigd
   out: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-10-13 18:31:47.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-10-13 14:31:47.000000000 Z
-  in: 
+  in: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2016-12-24 23:24:13.000000000 Z
+    zone: *1
+    time: 2016-12-24 18:24:13.000000000 Z
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-10-13 18:31:47.000000000 Z
     zone: *1
     time: 2016-10-13 14:31:47.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2016-10-13 18:31:47.000000000 Z
+    utc: 2016-12-24 23:24:16.000000000 Z
     zone: *1
-    time: 2016-10-13 14:31:47.000000000 Z
+    time: 2016-12-24 18:24:16.000000000 Z
   due: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-10-16 18:31:47.000000000 Z
     zone: *1
     time: 2016-10-16 14:31:47.000000000 Z
-  return_approved: 
-  option: 
+  return_approved: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2016-12-24 23:24:16.000000000 Z
+    zone: *1
+    time: 2016-12-24 18:24:16.000000000 Z
+  office_id: 1
+Record_7:
+  id: 7
+  title_id: 41
+  borrower: travigd
+  note: ''
+  agent: travigd
+  out: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2016-12-24 23:24:49.000000000 Z
+    zone: *1
+    time: 2016-12-24 18:24:49.000000000 Z
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2016-12-24 23:24:49.000000000 Z
+    zone: *1
+    time: 2016-12-24 18:24:49.000000000 Z
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2016-12-24 23:24:49.000000000 Z
+    zone: *1
+    time: 2016-12-24 18:24:49.000000000 Z
+  due: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2016-12-27 23:24:49.000000000 Z
+    zone: *1
+    time: 2016-12-27 18:24:49.000000000 Z
   office_id: 1

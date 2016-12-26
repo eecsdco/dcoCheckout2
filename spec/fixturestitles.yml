@@ -1,9 +1,9 @@
-title_1:
+---
+Title_1:
   id: 1
   category_id: 1
   name: Video Cable
   description: Video cable
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-01 21:18:11.000000000 Z
     zone: &1 !ruby/object:ActiveSupport::TimeZone
@@ -14,8 +14,6 @@ title_1:
     zone: *1
     time: 2016-09-14 14:09:29.000000000 Z
   loan_length_seconds: 172800
-  notice_id: 
-  office_id: 
   enabled: true
   options_str: |-
     VGA
@@ -23,24 +21,20 @@ title_1:
     DisplayPort
     HDMI
     Other
-title_2:
+Title_2:
   id: 2
   category_id: 2
   name: Laptop Power Supply
   description: Power supply
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-01 21:19:27.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-01 17:19:27.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-14 18:11:56.000000000 Z
     zone: *1
     time: 2016-09-14 14:11:56.000000000 Z
   loan_length_seconds: 172800
-  notice_id: 
-  office_id: 
   enabled: true
   options_str: |-
     Apple MagSafe 1 (old style)
@@ -49,226 +43,184 @@ title_2:
     HP
     Lenovo
     Other
-title_3:
+Title_3:
   id: 3
   category_id: 1
   name: USB Hub
   description: Used to connect multiple USB devices to a single USB port on a computer.
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-01 21:21:34.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-01 17:21:34.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-14 18:12:45.000000000 Z
     zone: *1
     time: 2016-09-14 14:12:45.000000000 Z
   loan_length_seconds: 172800
-  notice_id: 
-  office_id: 
   enabled: true
   options_str: ''
-title_4:
+Title_4:
   id: 4
   category_id: 1
   name: DisplayPort to DisplayPort Cable
   description: Digital video cable used to connect computers to displays.
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-01 21:23:01.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-01 17:23:01.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-01 21:23:01.000000000 Z
     zone: *1
     time: 2016-09-01 17:23:01.000000000 Z
   loan_length_seconds: 172800
-  notice_id: 
-  office_id: 
   enabled: true
   options_str: ''
-title_5:
+Title_5:
   id: 5
   category_id: 1
   name: Mini DisplayPort to VGA Adapter
   description: Used to connect computers (usually laptops, including MacBooks) to
     VGA displays. You will also need a VGA cable to connect your computer to the display.
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-01 21:25:24.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-01 17:25:24.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-01 21:25:24.000000000 Z
     zone: *1
     time: 2016-09-01 17:25:24.000000000 Z
   loan_length_seconds: 172800
-  notice_id: 
-  office_id: 
   enabled: true
   options_str: ''
-title_6:
+Title_6:
   id: 6
   category_id: 1
   name: Mini DisplayPort to HDMI Adapter
   description: Used to connect computers (usually laptops, including MacBooks) to
     HDMI displays (such as newer televisions or HDMI monitors). You will also need
     an HDMI cable to connect your computer to the display.
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-01 21:26:30.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-01 17:26:30.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-01 21:26:30.000000000 Z
     zone: *1
     time: 2016-09-01 17:26:30.000000000 Z
   loan_length_seconds: 172800
-  notice_id: 
-  office_id: 
   enabled: true
   options_str: ''
-title_7:
+Title_7:
   id: 7
   category_id: 1
   name: DisplayPort to HDMI Adapter
   description: Used to connect computers to HDMI displays (such as newer televisions
     or HDMI monitors). You will also need an HDMI cable to connect your computer to
     the display.
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-01 21:28:13.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-01 17:28:13.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-01 21:28:13.000000000 Z
     zone: *1
     time: 2016-09-01 17:28:13.000000000 Z
   loan_length_seconds: 172800
-  notice_id: 
-  office_id: 
   enabled: true
   options_str: ''
-title_8:
+Title_8:
   id: 8
   category_id: 1
   name: DisplayPort to VGA Adapter
   description: Used to connect computers to VGA displays (usually older, analog monitors).
     You will also need an VGA cable to connect your computer to the display.
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-01 21:28:59.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-01 17:28:59.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-01 21:28:59.000000000 Z
     zone: *1
     time: 2016-09-01 17:28:59.000000000 Z
   loan_length_seconds: 172800
-  notice_id: 
-  office_id: 
   enabled: true
   options_str: ''
-title_9:
+Title_9:
   id: 9
   category_id: 1
   name: DisplayPort to DVI Adapter
   description: Used to connect computers to DVI displays (such as monitors). You will
     also need a DVI cable to connect your computer to the display.
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-01 21:29:50.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-01 17:29:50.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-01 21:29:50.000000000 Z
     zone: *1
     time: 2016-09-01 17:29:50.000000000 Z
   loan_length_seconds: 172800
-  notice_id: 
-  office_id: 
   enabled: true
   options_str: ''
-title_10:
+Title_10:
   id: 10
   category_id: 1
   name: HDMI to DVI Adapter
   description: Used to connect computers and other devices to DVI displays (such as
     monitors). You will also need a DVI cable to connect your computer to the display.
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-01 21:30:55.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-01 17:30:55.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-01 21:30:55.000000000 Z
     zone: *1
     time: 2016-09-01 17:30:55.000000000 Z
   loan_length_seconds: 172800
-  notice_id: 
-  office_id: 
   enabled: true
   options_str: ''
-title_11:
+Title_11:
   id: 11
   category_id: 1
   name: HDMI to VGA Adapter
   description: Used to connect computers to VGA displays (such as older, analog monitors).
     You will also need a VGA cable to connect your computer to the display.
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-01 21:31:30.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-01 17:31:30.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-01 21:31:30.000000000 Z
     zone: *1
     time: 2016-09-01 17:31:30.000000000 Z
   loan_length_seconds: 172800
-  notice_id: 
-  office_id: 
   enabled: true
   options_str: ''
-title_12:
+Title_12:
   id: 12
   category_id: 7
   name: Optical Disk Drive
   description: A disk drive capable of reading and/or writing to CD's and/or DVD's
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-01 21:34:17.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-01 17:34:17.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-14 18:03:31.000000000 Z
     zone: *1
     time: 2016-09-14 14:03:31.000000000 Z
   loan_length_seconds: 172800
-  notice_id: 
-  office_id: 
   enabled: true
   options_str: ''
-title_13:
+Title_13:
   id: 13
   category_id: 4
   name: Ethernet Adapter
   description: Used to connect computers (usually laptops) that have no ethernet ports
     to wired networks.
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-01 21:35:38.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-01 17:35:38.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-07 01:28:01.000000000 Z
@@ -276,61 +228,50 @@ title_13:
     time: 2016-09-06 21:28:01.000000000 Z
   loan_length_seconds: 172800
   notice_id: 1
-  office_id: 
   enabled: true
   options_str: |-
     USB
     ThunderBolt
-title_14:
+Title_14:
   id: 14
   category_id: 2
   name: Mouse
   description: Not the kind that goes squeak!
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-01 21:44:57.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-01 17:44:57.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-01 21:44:57.000000000 Z
     zone: *1
     time: 2016-09-01 17:44:57.000000000 Z
   loan_length_seconds: 172800
-  notice_id: 
-  office_id: 
   enabled: true
   options_str: ''
-title_15:
+Title_15:
   id: 15
   category_id: 2
   name: Keyboard
   description: typetypetype
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-01 21:45:14.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-01 17:45:14.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-01 21:45:14.000000000 Z
     zone: *1
     time: 2016-09-01 17:45:14.000000000 Z
   loan_length_seconds: 172800
-  notice_id: 
-  office_id: 
   enabled: true
   options_str: ''
-title_16:
+Title_16:
   id: 16
   category_id: 3
   name: Microsoft Windows 10
   description: Windows
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-02 18:43:24.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-02 14:43:24.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-16 18:27:21.000000000 Z
@@ -338,21 +279,18 @@ title_16:
     time: 2016-09-16 14:27:21.000000000 Z
   loan_length_seconds: 172800
   notice_id: 2
-  office_id: 
   enabled: true
   options_str: |-
     USB Installer (64 bit)
     DVD Installer (64 bit)
-title_17:
+Title_17:
   id: 17
   category_id: 3
   name: Microsoft Windows 8
   description: Microsoft Windows 8
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-02 18:45:51.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-02 14:45:51.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-02 18:47:44.000000000 Z
@@ -360,19 +298,16 @@ title_17:
     time: 2016-09-02 14:47:44.000000000 Z
   loan_length_seconds: 172800
   notice_id: 2
-  office_id: 
   enabled: true
   options_str: ''
-title_18:
+Title_18:
   id: 18
   category_id: 3
   name: Microsoft Windows 7
   description: Microsoft Windows 7
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-02 18:48:35.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-02 14:48:35.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-02 18:48:35.000000000 Z
@@ -380,39 +315,32 @@ title_18:
     time: 2016-09-02 14:48:35.000000000 Z
   loan_length_seconds: 172800
   notice_id: 2
-  office_id: 
   enabled: true
   options_str: ''
-title_19:
+Title_19:
   id: 19
   category_id: 2
   name: Power Strip
   description: Power strip
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-06 15:31:56.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-06 11:31:56.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-06 15:31:56.000000000 Z
     zone: *1
     time: 2016-09-06 11:31:56.000000000 Z
   loan_length_seconds: 172800
-  notice_id: 
-  office_id: 
   enabled: true
   options_str: ''
-title_20:
+Title_20:
   id: 20
   category_id: 3
   name: Microsoft Office 2011
   description: Microsoft Office 2011
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-06 15:50:20.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-06 11:50:20.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-16 18:28:05.000000000 Z
@@ -425,16 +353,14 @@ title_20:
   options_str: |-
     Windows Installer
     Mac Installer
-title_21:
+Title_21:
   id: 21
   category_id: 3
   name: Microsoft Office 2016
   description: Microsoft Office 2016
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-06 15:51:27.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-06 11:51:27.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-16 18:28:15.000000000 Z
@@ -447,27 +373,23 @@ title_21:
   options_str: |-
     Windows Installer
     Mac Installer
-title_22:
+Title_22:
   id: 22
   category_id: 4
   name: Ethernet Cable
   description: Cable to connect a computer to a switch or ethernet port.
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-06 17:55:14.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-06 13:55:14.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-06 17:55:14.000000000 Z
     zone: *1
     time: 2016-09-06 13:55:14.000000000 Z
   loan_length_seconds: 259200
-  notice_id: 
-  office_id: 
   enabled: true
   options_str: ''
-title_23:
+Title_23:
   id: 23
   category_id: 2
   name: Power Cable
@@ -475,170 +397,138 @@ title_23:
     three pronged wall outlet on one end, and a pentagonal adapter that fits most
     desktops on the other. Used in both Apple and non-Apple desktop computers. This
     cable will NOT fit a laptop.
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-07 01:32:25.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-06 21:32:25.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-07 01:32:25.000000000 Z
     zone: *1
     time: 2016-09-06 21:32:25.000000000 Z
   loan_length_seconds: 172800
-  notice_id: 
-  office_id: 
   enabled: true
   options_str: ''
-title_24:
+Title_24:
   id: 24
   category_id: 5
   name: Screw Driver
   description: Used to tighten or loosen screws.
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-07 01:33:46.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-06 21:33:46.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-07 01:33:46.000000000 Z
     zone: *1
     time: 2016-09-06 21:33:46.000000000 Z
   loan_length_seconds: 172800
-  notice_id: 
-  office_id: 
   enabled: true
   options_str: ''
-title_25:
+Title_25:
   id: 25
   category_id: 5
   name: Pliers
   description: Used to ply objects
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-07 01:34:08.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-06 21:34:08.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-07 01:34:08.000000000 Z
     zone: *1
     time: 2016-09-06 21:34:08.000000000 Z
   loan_length_seconds: 172800
-  notice_id: 
-  office_id: 
   enabled: true
   options_str: ''
-title_26:
+Title_26:
   id: 26
   category_id: 5
   name: Miscellaneous Tool
   description: Please give a description of the tool in the note field.
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-07 01:50:58.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-06 21:50:58.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-07 01:50:58.000000000 Z
     zone: *1
     time: 2016-09-06 21:50:58.000000000 Z
   loan_length_seconds: 172800
-  notice_id: 
-  office_id: 
   enabled: true
   options_str: ''
-title_27:
+Title_27:
   id: 27
   category_id: 3
   name: Ubuntu 16.04 LTS
   description: Ubuntu Linux 16.04 Xenial Xerus
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-07 01:51:59.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-06 21:51:59.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-07 01:51:59.000000000 Z
     zone: *1
     time: 2016-09-06 21:51:59.000000000 Z
   loan_length_seconds: 172800
-  notice_id: 
-  office_id: 
   enabled: true
   options_str: |-
     USB Installed
     DVD Installer
-title_28:
+Title_28:
   id: 28
   category_id: 3
   name: Ubuntu 14.04 LTS
   description: Ubuntu 14.04 LTS
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-07 01:52:22.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-06 21:52:22.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-07 01:52:22.000000000 Z
     zone: *1
     time: 2016-09-06 21:52:22.000000000 Z
   loan_length_seconds: 172800
-  notice_id: 
-  office_id: 
   enabled: true
   options_str: |-
     USB Installer
     DVD Installer
-title_29:
+Title_29:
   id: 29
   category_id: 3
   name: RedHat Linux 6
   description: RedHat Linux
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-07 01:52:47.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-06 21:52:47.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-16 18:26:54.000000000 Z
     zone: *1
     time: 2016-09-16 14:26:54.000000000 Z
   loan_length_seconds: 172800
-  notice_id: 
-  office_id: 
   enabled: true
   options_str: |-
     USB Installer (64 bit)
     DVD Installer (64 bit)
-title_30:
+Title_30:
   id: 30
   category_id: 3
   name: RedHat Linux 7
   description: RedHat Linux 7
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-07 01:53:07.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-06 21:53:07.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-16 18:26:40.000000000 Z
     zone: *1
     time: 2016-09-16 14:26:40.000000000 Z
   loan_length_seconds: 172800
-  notice_id: 
-  office_id: 
   enabled: true
   options_str: |-
     USB Installer (64 bit)
     DVD Installer (64 bit)
-title_31:
+Title_31:
   id: 31
   category_id: 6
   name: Dell Studio 1558
@@ -647,115 +537,95 @@ title_31:
   n_available: 2
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-13 15:10:35.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-13 11:10:35.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-13 15:30:00.000000000 Z
     zone: *1
     time: 2016-09-13 11:30:00.000000000 Z
   loan_length_seconds: 259200
-  notice_id: 
   office_id: 1
   enabled: true
   options_str: |-
     Aquarius (Service Tag F965BM1)
     Capricorn (Service Tag JNVJYL1)
-title_32:
+Title_32:
   id: 32
   category_id: 2
   name: Book
   description: Book
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-14 18:04:22.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-14 14:04:22.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-14 18:04:22.000000000 Z
     zone: *1
     time: 2016-09-14 14:04:22.000000000 Z
   loan_length_seconds: 172800
-  notice_id: 
-  office_id: 
   enabled: true
   options_str: ''
-title_33:
+Title_33:
   id: 33
   category_id: 4
   name: Switch
   description: A switch to connect multiple computers
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-14 18:05:29.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-14 14:05:29.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-14 18:05:29.000000000 Z
     zone: *1
     time: 2016-09-14 14:05:29.000000000 Z
   loan_length_seconds: 259200
-  notice_id: 
-  office_id: 
   enabled: true
   options_str: |-
     TRENDnet 5 Port
     TRENDnet 8 Port
     Other
-title_34:
+Title_34:
   id: 34
   category_id: 4
   name: WiFi Router
   description: Connect wireless devices
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-14 18:08:10.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-14 14:08:10.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-14 18:08:10.000000000 Z
     zone: *1
     time: 2016-09-14 14:08:10.000000000 Z
   loan_length_seconds: 259200
-  notice_id: 
-  office_id: 
   enabled: true
   options_str: ''
-title_35:
+Title_35:
   id: 35
   category_id: 2
   name: Desktop Power Supply Unit
   description: A power supply unit for a desktop computer. Connects to the wall and
     provides power to internal computer elements such as the motherboard, hard drives,
     and  graphics cards.
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-16 17:42:30.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-16 13:42:30.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-16 17:42:30.000000000 Z
     zone: *1
     time: 2016-09-16 13:42:30.000000000 Z
   loan_length_seconds: 172800
-  notice_id: 
-  office_id: 
   enabled: true
   options_str: ''
-title_36:
+Title_36:
   id: 36
   category_id: 3
   name: Microsoft Office 2013
   description: Microsoft Office 2013 Edition
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-16 18:28:35.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-16 14:28:35.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-16 18:28:35.000000000 Z
@@ -763,41 +633,34 @@ title_36:
     time: 2016-09-16 14:28:35.000000000 Z
   loan_length_seconds: 172800
   notice_id: 2
-  office_id: 
   enabled: true
   options_str: |-
     Windows Installer
     Mac Installer
-title_37:
+Title_37:
   id: 37
   category_id: 3
   name: Microsoft Windows XP
   description: "LEGACY\r\nMicrosoft Windows XP"
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-16 18:30:02.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-16 14:30:02.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-16 18:30:02.000000000 Z
     zone: *1
     time: 2016-09-16 14:30:02.000000000 Z
   loan_length_seconds: 172800
-  notice_id: 
-  office_id: 
   enabled: false
   options_str: ''
-title_38:
+Title_38:
   id: 38
   category_id: 3
   name: Microsoft Windows Vista
   description: "LEGACY\r\nMicrosoft Windows Vista"
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-16 18:30:36.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-16 14:30:36.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-16 18:33:03.000000000 Z
@@ -805,88 +668,71 @@ title_38:
     time: 2016-09-16 14:33:03.000000000 Z
   loan_length_seconds: 172800
   notice_id: 2
-  office_id: 
   enabled: false
   options_str: ''
-title_39:
+Title_39:
   id: 39
   category_id: 2
   name: Legacy Title
   description: For record keeping purposes only
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-16 18:31:59.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-16 14:31:59.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-16 18:32:10.000000000 Z
     zone: *1
     time: 2016-09-16 14:32:10.000000000 Z
   loan_length_seconds: 0
-  notice_id: 
-  office_id: 
   enabled: false
   options_str: ''
-title_40:
+Title_40:
   id: 40
   category_id: 2
   name: USB Hard Drive Adapter
   description: A USB adapter to connect SATA or IDE hard drives
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-16 18:37:38.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-16 14:37:38.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-16 18:38:20.000000000 Z
     zone: *1
     time: 2016-09-16 14:38:20.000000000 Z
   loan_length_seconds: 172800
-  notice_id: 
-  office_id: 
   enabled: true
   options_str: |-
     Dock Style (hard drive fits inside)
     Adapter Style (like one long cable)
-title_41:
+Title_41:
   id: 41
   category_id: 7
   name: SATA Hard Drive
   description: SATA Hard Drive (usually used inside of computers)
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-16 18:44:47.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-16 14:44:47.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-16 18:44:47.000000000 Z
     zone: *1
     time: 2016-09-16 14:44:47.000000000 Z
   loan_length_seconds: 259200
-  notice_id: 
-  office_id: 
   enabled: true
   options_str: ''
-title_42:
+Title_42:
   id: 42
   category_id: 7
   name: External USB Hard Drive
   description: External USB Hard Drive (useful for backups)
-  n_available: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-16 18:48:37.000000000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/New_York
+    zone: *1
     time: 2016-09-16 14:48:37.000000000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2016-09-16 18:48:37.000000000 Z
     zone: *1
     time: 2016-09-16 14:48:37.000000000 Z
   loan_length_seconds: 259200
-  notice_id: 
-  office_id: 
   enabled: true
   options_str: ''

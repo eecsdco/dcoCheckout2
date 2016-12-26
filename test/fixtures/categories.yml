@@ -1,7 +1,98 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  name: MyString
-
-two:
-  name: MyString
+category_1:
+  id: 1
+  name: Audio and Video
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2016-09-01 21:12:05.000000000 Z
+    zone: &1 !ruby/object:ActiveSupport::TimeZone
+      name: America/New_York
+    time: 2016-09-01 17:12:05.000000000 Z
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2016-09-01 21:12:05.000000000 Z
+    zone: *1
+    time: 2016-09-01 17:12:05.000000000 Z
+  description: Cables, adapters, monitors, and other audio visual equipment
+  loan_length_seconds: 172800
+category_2:
+  id: 2
+  name: Peripherals, Adapters, and Miscellaneous Items
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2016-09-01 21:33:43.000000000 Z
+    zone: &1 !ruby/object:ActiveSupport::TimeZone
+      name: America/New_York
+    time: 2016-09-01 17:33:43.000000000 Z
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2016-09-14 18:04:05.000000000 Z
+    zone: *1
+    time: 2016-09-14 14:04:05.000000000 Z
+  description: Mice, keyboards, disk drives, and power cables
+  loan_length_seconds: 172800
+category_3:
+  id: 3
+  name: Software and Operating Systems
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2016-09-01 21:45:56.000000000 Z
+    zone: &1 !ruby/object:ActiveSupport::TimeZone
+      name: America/New_York
+    time: 2016-09-01 17:45:56.000000000 Z
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2016-09-01 21:45:56.000000000 Z
+    zone: *1
+    time: 2016-09-01 17:45:56.000000000 Z
+  description: Microsoft Office, Windows, and Linux
+  loan_length_seconds: 172800
+category_4:
+  id: 4
+  name: Networking
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2016-09-06 17:54:36.000000000 Z
+    zone: &1 !ruby/object:ActiveSupport::TimeZone
+      name: America/New_York
+    time: 2016-09-06 13:54:36.000000000 Z
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2016-09-06 17:54:36.000000000 Z
+    zone: *1
+    time: 2016-09-06 13:54:36.000000000 Z
+  description: Ethernet cables, adapters, and wifi equipment
+  loan_length_seconds: 259200
+category_5:
+  id: 5
+  name: Tools
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2016-09-07 01:33:13.000000000 Z
+    zone: &1 !ruby/object:ActiveSupport::TimeZone
+      name: America/New_York
+    time: 2016-09-06 21:33:13.000000000 Z
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2016-09-07 01:33:13.000000000 Z
+    zone: *1
+    time: 2016-09-06 21:33:13.000000000 Z
+  description: Screwdrivers, wrenches, pliers, and miscellaneous tools
+  loan_length_seconds: 172800
+category_6:
+  id: 6
+  name: Loaner Computers
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2016-09-13 15:04:55.000000000 Z
+    zone: &1 !ruby/object:ActiveSupport::TimeZone
+      name: America/New_York
+    time: 2016-09-13 11:04:55.000000000 Z
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2016-09-13 15:04:55.000000000 Z
+    zone: *1
+    time: 2016-09-13 11:04:55.000000000 Z
+  description: Computer for short and long term checkout
+  loan_length_seconds: 259200
+category_7:
+  id: 7
+  name: Media and Media Readers
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2016-09-14 18:03:12.000000000 Z
+    zone: &1 !ruby/object:ActiveSupport::TimeZone
+      name: America/New_York
+    time: 2016-09-14 14:03:12.000000000 Z
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2016-09-14 18:03:12.000000000 Z
+    zone: *1
+    time: 2016-09-14 14:03:12.000000000 Z
+  description: USB flash drives, hard drives, blank CD's/DVD/s, etc., Optical Readers
+  loan_length_seconds: 259200
