@@ -30,7 +30,7 @@ class TitlesController < ApplicationController
         @titles = @category.titles.where(enabled: true)
       end
       
-      unless current_office_id.nil?
+      unless current_office_id.nil? or current_office_id == ""
         @titles = @titles.where("office_id = ? OR office_id IS NULL", current_office_id)
       end
 

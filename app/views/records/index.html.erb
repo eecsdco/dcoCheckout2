@@ -3,7 +3,7 @@
 <% end %>
 
 <% content_for :secondary_nav do %>
-  <%= link_to 'Back', :back %>
+  <%= link_to 'Back', '/admin/' %>
 <% end %>
 
 <% content_for :secondary_description do %>
@@ -21,13 +21,23 @@
         <%= label_tag :office_id, "Office:" %>
         <%= select_tag :office_id, options_from_collection_for_select(Office.all, "id", "name", current_office_id), include_blank: true, :id => params[:office_id] %>
       </div>
+      <div>
+        <%= label_tag :show_unreturned, "Show Returned:" %>
+        <%= check_box_tag :show_returned, "1", params[:show_returned] %>
+      </div>
       <%= submit_tag "Filter", name: nil %>
     </div>
   <% end %>
 <% end %>
 
+<% if params[:show_returned] %>
+  <h3>All Records</h3>
+<% else %>
+  <h3>All Unreturned Records</h3>
+<% end %>
+
 <%= render "records/table", records: @records,
-    display: [:name, :category, :borrower, :out, :in, (:office unless params[:office_id].present?)] %>
+    display: [:name, :category, :borrower, :out, (:in if params[:show_returned].present?), (:office unless params[:office_id].present?)] %>
 
 <% if @total_pages > 1 %>
   <!-- FUTURE: This is kind of a hack so... idk -->

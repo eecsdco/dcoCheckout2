@@ -18,6 +18,11 @@ class RecordsController < ApplicationController
     @records = @records.borrower_is(params[:uniqname])
     @records = @records.office_is(params[:office_id])
     @records = @records.title_like(params[:title_name])
+    @records = @records.reorder(out: :desc)
+
+    unless params[:show_returned].present?
+      @records = @records.where(in: nil)
+    end
 
 
     @total_pages = (@records.count.to_f / Rails.configuration.index_length).ceil
@@ -64,6 +69,7 @@ class RecordsController < ApplicationController
 
   def create
     @record = Record.new(record_parameters)
+    @record.loan_length = params[:record][:loan_length]
     @record.out = DateTime.current
     @record.agent = uniqname
     unless administrator?

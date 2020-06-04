@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160818201314) do
+ActiveRecord::Schema.define(version: 20180411155625) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",                null: false
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20160818201314) do
     t.integer  "notice_id"
     t.integer  "office_id"
     t.boolean  "enabled",                           null: false
-    t.string   "options_str"
+    t.text     "options_str",         limit: 65535
     t.index ["category_id"], name: "index_titles_on_category_id", using: :btree
     t.index ["notice_id"], name: "index_titles_on_notice_id", using: :btree
     t.index ["office_id"], name: "index_titles_on_office_id", using: :btree

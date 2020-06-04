@@ -1,1 +1,1 @@
-<p>This is a reminder that the <%= @record.title.name %> that you checked out is due at <%= @record.due.strftime(Rails.configuration.datetime_format) %>. Please remember to return it as soon as possible!</p>
+<p>This is a reminder that the <%= link_to @record.title.name, @record %> that you checked out is due at <%= @record.due.strftime(Rails.configuration.datetime_format) %>. Please remember to return it as soon as possible!</p>

@@ -13,7 +13,7 @@
     <%= link_to 'Edit', edit_record_path(@record) %>
     <%= link_to 'Delete', @record, method: :delete, data: {:confirm => "Are you sure? A record should only be deleted if its creation was a mistake (e.g. wrong item selected)."} %>
   <% end %>
-  <%= link_to 'Back', :back %>
+  <%= link_to 'Back', '/records/' %>
 <% end %>
 
 <% if administrator? and @record.in and @record.return_approved.nil? %>
@@ -41,6 +41,10 @@
 <div>
   <span class="show-label">Borrower:</span>
   <p><%= link_to @record.borrower, account_path(uniqname: @record.borrower) %><p>
+</div>
+<div>
+  <span class="show-label">Office:</span>
+  <p><%= @record.office.name %></p>
 </div>
 <% unless @record.borrower == @record.agent %>
   <div>

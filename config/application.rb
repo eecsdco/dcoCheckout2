@@ -21,7 +21,7 @@ Rails.application.configure do
   config.datetime_format = '%l:%M %p on %B %e, %Y'
 
   # Uniqnames of DCO staff who can edit shit
-  config.administrators = [:travigd, :victorbp, :laura, :don, :lrandolp, :kbanas, :hugh, :jvanlav, :liz, :dholt, :stander, :armruval, :mmgeorg, :swethar, :hayjacob]
+  config.administrators = [:kowalskj, :victorbp, :laura, :don, :lrandolp, :gkroslak, :hugh, :jvanlav, :liz, :dholt, :stander, :hayjacob, :pbhill, :jribben, :sabrinax, :josuegon, :rivero, :djmcdo, :cpuzzuol ]
 
   # number of items to show on index/listing pages (numbers greater than this
   # result in the page being split into multiple sub-pages)
@@ -30,8 +30,8 @@ Rails.application.configure do
   # Computers that can check stuff out
   # 1 represents the EECS office, 2 represents the BBB office
   config.checkout_computers = {
-    '141.212.104.27' => 2, # eecs-dco-frontcomp1, in EECS
-    '141.212.106.192' => 1 # dco-checkout-imac in BBB
+    '141.212.104.27' => 2, # checkout-eecs, in EECS
+    '141.212.104.157' => 1 # checkout-bbb, in BBB
   }
 
   config.office_subnets = {
