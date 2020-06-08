@@ -6,6 +6,10 @@
   <%= link_to 'Back', :back %>
 <% end %>
 
+<% if administrator? %>
+  <p>Did you want to <%= link_to "mark someone else's checkout as returned", records_path %>?</p>
+<% end %>
+
 <% if @records.empty? %>
   <p>You have no outstanding loans. Good job!</p>
 <% else %>

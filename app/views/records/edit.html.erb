@@ -42,8 +42,9 @@
   <% end %>
   <% unless @record.title.options.empty? %>
     <div>
-      <%= f.label :option %>
-      <%= f.select(:option, options_for_select(@record.title.options)) %>
+      <label>Option:</label>
+      <%-#= f.label :option %>
+      <%= f.select(:option, options_for_select(@record.title.options, f.object.option || @record.option)) %>
     </div>
   <% end %>
   <div>

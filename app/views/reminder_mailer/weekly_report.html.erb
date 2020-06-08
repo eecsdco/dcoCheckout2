@@ -1,8 +1,12 @@
-<% display ||= {} %>
+<h2>Unreturned Items Report</h2>
+<p>Hello, DCO! The following items are overdue. Please make them return their thing.</p>
+<p>As a reminder, Linda is currently the only staff member authorized to use lethal force to collect overdue items. Everyone else is limited to simple, non-fatal incapacitation methods.</p>
+
+<% display = [:name, :borrower, :office, :due] %>
 <table class="index-table" style="margin-top: 20px">
   <tr>
     <% if :name.in? display %>
-      <th colspan=2>Item</th>
+      <th>Item</th>
     <% end %>
     <% if :category.in? display %>
       <th>Category</th>
@@ -26,27 +30,16 @@
       <th>Due</th>
     <% end %>
   </tr>
-  <% records.each do |record| %>
+  <% @records.each do |record| %>
     <tr>
       <% if :name.in? display %>
-        <td>
-          <%= link_to record.title.name, record %>
-          <% if record.option %><br /><span style="color: #666; font-size: 80%;"> <%= record.option %> </span><% end %>
-        </td>
-        <td style="min-width: 0">
-          <% if administrator? and :edit_link.in? display %>
-            <%= link_to "(edit)", edit_record_path(record) %>
-          <% end %>
-          <% if record.in.nil? and record.borrower == uniqname and :return_link.in? display%>
-            <%= link_to "(return)", return_path(record) %>
-          <% end %>
-        </td>
+        <td><%= link_to record.title.name, record %></td>
       <% end %>
       <% if :category.in? display %>
         <td><%= link_to record.title.category.name, record.title.category %></td>
       <% end %>
       <% if :borrower.in? display %>
-        <td><%= link_to record.borrower, account_path(uniqname: record.borrower) %></td>
+        <td><%= link_to record.borrower, account_url(uniqname: record.borrower) %></td>
       <% end %>
       <% if :office.in? display %>
         <td>
@@ -57,15 +50,15 @@
         <td><%= short_text record.note %></td>
       <% end %>
       <% if :out.in? display %>
-        <td><%= format_datetime record.out%></td>
+        <td><%= record.out.strftime(Rails.configuration.datetime_format) %></td>
       <% end %>
       <% if :in.in? display %>
-        <td><%= format_datetime record.in unless record.in.nil? %></td>
+        <td><%= record.in.strftime(Rails.configuration.datetime_format) unless record.in.nil? %></td>
       <% end %>
       <% if :due.in? display %>
         <% if record.due %>
           <% past_due = DateTime.current > record.due %>
-          <td class=<%= '"past-due"' if past_due %>><%= format_datetime record.due %><%= " (past due)" if past_due %></td>
+          <td class=<%= '"past-due"' if past_due %>><%=record.due.strftime(Rails.configuration.datetime_format) %><%= " (past due)" if past_due %></td>
         <% else %>
           <td>Loaned indefinitely</td>
         <% end %>
@@ -73,3 +66,5 @@
     </tr>
   <% end %>
 </table>
+
+<p>... and may the odds be ever in your favor...</p>

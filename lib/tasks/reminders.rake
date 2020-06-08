@@ -7,4 +7,9 @@ namespace :reminders do
   task send_overdue: :environment do
     puts ReminderMailer.send_overdue_emails
   end
+
+  desc "Send weekly report"
+  task send_weekly_report: :environment do
+    puts ReminderMailer.send_weekly_report
+  end
 end

@@ -21,6 +21,10 @@ end
 every 1.days do
   rake 'reminders:send_overdue'
 end
+
+every "00 12 * * 1,3,5" do
+  rake 'reminders:send_weekly_report'
+end
 #
 # every 4.days do
 #   runner "AnotherModel.prune_old_records"
