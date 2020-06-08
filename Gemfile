@@ -14,7 +14,7 @@ gem "figaro"
 gem 'whenever'
 
 # to make pretty charts
-gem 'chartkick'
+gem "chartkick", ">= 3.3.0"
 
 # to dump database information to fixtures
 gem 'fixtures_dumper'
