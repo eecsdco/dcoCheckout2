@@ -1,13 +1,16 @@
 class TitlesController < ApplicationController
   before_action :load_title, only: [:edit, :update, :show, :destroy]
-  before_action :require_login
   before_action :require_administrator,
-    only: [:new, :create, :update, :edit, :destroy]
+        only: [:new, :create, :update, :edit, :destroy]
+
+  if Rails.env.production?
+    before_action :require_login
+  end
 
   def new
     @title = Title.new(title_parameters.merge(enabled: true))
   end
-  
+
   def create
     @title = Title.new(title_parameters)
     if @title.save
@@ -29,7 +32,7 @@ class TitlesController < ApplicationController
       else
         @titles = @category.titles.where(enabled: true)
       end
-      
+
       unless current_office_id.nil?
         @titles = @titles.where("office_id = ? OR office_id IS NULL", current_office_id)
       end

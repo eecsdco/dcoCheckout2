@@ -2,11 +2,13 @@ require 'ipaddr'
 
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  force_ssl
+  if Rails.env.production?
+    force_ssl
+  end
   helper_method :login_path, :logout_path, :uniqname, :logged_in?,
     :administrator?, :current_office_id, :checkout_computer?,
     :authorized_to_checkout?
-  
+
   def login_path
     path = Rails.configuration.cosign_login_path
     if path[-1] = "/"
@@ -23,7 +25,11 @@ class ApplicationController < ActionController::Base
   end
 
   def uniqname
-    return request.env['REMOTE_USER']
+    if Rails.env.production?
+      return request.env['REMOTE_USER']
+    else
+      return 'cpuzzuol'
+    end
   end
 
   def logged_in?

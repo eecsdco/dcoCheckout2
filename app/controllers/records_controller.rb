@@ -1,8 +1,10 @@
 class RecordsController < ApplicationController
-  before_action :require_login
-  before_action :require_checkout_authorization, only: [:new, :create, :return, :return_post]
-  before_action :require_administrator, only: [:edit, :update, :confirm_return, :destroy]
 
+  if Rails.env.production?
+    before_action :require_login
+    before_action :require_checkout_authorization, only: [:new, :create, :return, :return_post]
+  end
+  before_action :require_administrator, only: [:edit, :update, :confirm_return, :destroy]
   before_action :get_title, only: [:new]
   before_action :get_record, only: [:show, :return_post, :edit, :update, :destroy, :confirm_return]
 

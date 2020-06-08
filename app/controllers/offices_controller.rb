@@ -1,5 +1,8 @@
 class OfficesController < ApplicationController
-  before_action :require_login
+
+  if Rails.env.production?
+    before_action :require_login
+  end
   before_action :require_administrator, only: [:new, :create, :edit, :update, :destroy]
   before_action :get_office, only: [:show, :edit, :update, :destroy]
 

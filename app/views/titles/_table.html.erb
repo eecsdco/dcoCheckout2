@@ -28,7 +28,7 @@
         <% if administrator? and :enable_checkbox.in? display %>
           <td>
             <%= hidden_field_tag "title_ids[]", title.id %>
-            <%= check_box_tag  "titles_enabled[]", title.id, title.enabled %>  
+            <%= check_box_tag  "titles_enabled[]", title.id, title.enabled %>
           </td>
         <% end %>
         <td style="min-width: 100px;">
@@ -36,7 +36,7 @@
         </td>
         <td>
           <% if administrator? and :edit_link.in? display %>
-            <%= link_to "(edit)", edit_title_path(title) %><br> 
+            <%= link_to "(edit)", edit_title_path(title) %><br>
           <% end %>
           <% if :checkout_link.in? display and authorized_to_checkout? %>
             <% if title.available? or administrator? %>

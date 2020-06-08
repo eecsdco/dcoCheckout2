@@ -1,7 +1,10 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
-  before_action :require_login
   before_action :require_administrator, only: [:new, :create, :edit, :update, :destroy]
+
+  if Rails.env.production?
+    before_action :require_login
+  end
 
   def index
     @categories = Category.all.sort_by(&:popularity).reverse!

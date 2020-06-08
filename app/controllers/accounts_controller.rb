@@ -3,7 +3,10 @@ class AccountsController < ApplicationController
   # excluding logout so that if somehow, someone is directed to the logout
   # link, but is, in fact, NOT logged in, they won't be prompted to log in just
   # so that they can log out.
-  before_action :require_login, except: [:logout]
+
+  if Rails.env.production?
+    before_action :require_login, except: [:logout]
+  end
   before_action :require_administrator, only: [:index]
   before_action :initialize_uniqname
 
