@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20160818201314) do
 
-  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "name",                null: false
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
@@ -20,21 +20,21 @@ ActiveRecord::Schema.define(version: 20160818201314) do
     t.integer  "loan_length_seconds", null: false
   end
 
-  create_table "notices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "notices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "name",                     null: false
     t.text     "text",       limit: 65535, null: false
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
 
-  create_table "offices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "offices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "name",                     null: false
     t.text     "address",    limit: 65535, null: false
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
 
-  create_table "records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer  "title_id",                      null: false
     t.string   "borrower",                      null: false
     t.text     "note",            limit: 65535
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 20160818201314) do
     t.index ["title_id"], name: "index_records_on_title_id", using: :btree
   end
 
-  create_table "titles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "titles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer  "category_id",                       null: false
     t.string   "name",                              null: false
     t.text     "description",         limit: 65535, null: false
@@ -69,4 +69,5 @@ ActiveRecord::Schema.define(version: 20160818201314) do
   end
 
   add_foreign_key "records", "offices"
+  add_foreign_key "titles", "notices"
 end

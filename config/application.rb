@@ -21,7 +21,7 @@ Rails.application.configure do
   config.datetime_format = '%l:%M %p on %B %e, %Y'
 
   # Uniqnames of DCO staff who can edit shit
-  config.administrators = [:travigd, :victorbp, :laura, :don, :lrandolp, :kbanas, :hugh, :jvanlav, :liz, :dholt, :stander, :armruval, :mmgeorg, :swethar, :hayjacob]
+  config.administrators = [:cpuzzuol, :travigd, :victorbp, :laura, :don, :lrandolp, :kbanas, :hugh, :jvanlav, :liz, :dholt, :stander, :armruval, :mmgeorg, :swethar, :hayjacob]
 
   # number of items to show on index/listing pages (numbers greater than this
   # result in the page being split into multiple sub-pages)
@@ -78,7 +78,7 @@ Rails.application.configure do
   # Cosign Stuff
   config.cosign_login_path = "https://weblogin.umich.edu/?cosign-checkout.eecs&https://checkout.eecs.umich.edu/"
   config.cosign_logout_path = "https://weblogin.umich.edu/cosign-bin/logout?https://checkout.eecs.umich.edu/"
-  
+
   # use the routes defined to handle exceptions (HTTP 404, 500)
   config.exceptions_app = self.routes
 

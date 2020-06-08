@@ -1,6 +1,7 @@
 module ApplicationHelper
   def uniqname
     request.env["REMOTE_USER"]
+    # TODO: Add logic for unqiname based on environment
   end
 
   def short_text(text)

@@ -52,3 +52,6 @@ bower.json
 # Utilities (ex. remote reload script)
 migrate.sh
 reload_app.sh
+
+.idea/
+passenger*
