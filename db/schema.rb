@@ -12,8 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2020_07_02_182423) do
 
-  create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
-    t.string "uniqname"
+  create_table "admins", primary_key: "uniqname", id: :string, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

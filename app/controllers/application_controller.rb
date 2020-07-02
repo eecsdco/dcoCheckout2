@@ -38,7 +38,9 @@ class ApplicationController < ActionController::Base
 
   def administrator?
     unless uniqname.nil?
-      Rails.configuration.administrators.include? uniqname.to_sym
+      # Chris changed admin list to the database (dcocheckout.admins) on 7/2/20
+      #Rails.configuration.administrators.include? uniqname.to_sym
+      Admin.exists?(:uniqname => uniqname)
     else
       false
     end
