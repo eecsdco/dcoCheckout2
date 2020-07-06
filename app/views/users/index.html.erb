@@ -1,0 +1,23 @@
+<% content_for :secondary_title do %>
+  Manage Users
+<% end %>
+
+<% content_for :secondary_nav do %>
+  <%= link_to "Back", admin_path %>
+<% end %>
+
+<h3>Manage Users</h3>
+<% if @users.empty? %>
+  <p>No users in the database</p>
+<% else %>
+  <p>This list replaces the config.administrators array from config/application.rb file.</p>
+  <%= render "users/userstable", records: @users, display: [:uniqname] %>
+<% end %>
+<br>
+<%= form_with model: @user do |f| %>
+  Add uniqname: <%= f.text_field :uniqname %>
+  <%= f.submit "Add user" %>
+<% end %>
+<% flash.each do |type, msg| %>
+  <p style="color:red"><%= msg %></p>
+<% end %>

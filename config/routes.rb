@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :users
   # TODO clean up routes.rb TODO
 
   get '/titles/search', to: 'titles#search', as: 'search_titles'
@@ -7,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :notices
   get 'welcome/index', as: 'home'
-   
+
   get '/checkout/:title_id', to: 'records#new', as: 'checkout'
   # to do, refactor this to be more resourceful routing
   post '/checkout', to: 'records#create'
@@ -47,6 +48,9 @@ Rails.application.routes.draw do
   get '/admin', to: 'admin#index'
   get '/admin/unreturned', to: 'admin#unreturned', as: 'admin_unreturned'
   get '/admin/longterm', to: 'admin#longterm', as: 'admin_longterm'
+  get '/admin/users', to: 'admin#users', as: 'admin_users'
+
+  resources :users
 
   match '/401', :to => 'errors#unauthorized', :via => :all, :as => 'unauthorized'
   match '/404', :to => 'errors#not_found', :via => :all, :as => 'not_found'

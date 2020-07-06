@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_02_182423) do
+ActiveRecord::Schema.define(version: 2020_07_06_153313) do
 
   create_table "admins", primary_key: "uniqname", id: :string, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -71,6 +71,11 @@ ActiveRecord::Schema.define(version: 2020_07_02_182423) do
     t.index ["category_id"], name: "index_titles_on_category_id"
     t.index ["notice_id"], name: "index_titles_on_notice_id"
     t.index ["office_id"], name: "index_titles_on_office_id"
+  end
+
+  create_table "users", primary_key: "uniqname", id: :string, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "records", "offices"
