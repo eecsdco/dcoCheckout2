@@ -128,7 +128,7 @@ class RecordsController < ApplicationController
   def confirm_return
     @record.return_approved = DateTime.current
     @record.save!
-    redirect_to :back
+    redirect_back(fallback_location: root_path)
   end
 
   private
